@@ -1,0 +1,230 @@
+.page-logo span{
+	color: #052c48;
+	display: inline-block;
+    margin-top: 3px;
+}
+.page-header.navbar{
+	background: #FFF;
+	border-bottom: 1px solid #ddd;
+}
+.top-menu{
+	color: #000;
+}
+
+table.small_in .tablesorter-filter{
+  width: 30px !important;
+}
+table.small_in input{
+  width: 40px !important;
+}
+textarea.form-control{
+	height: 100px;
+}
+.required{
+	color: #F00;
+}
+.error{
+	color: #F42B2B;
+}
+.tablesorter-headerRow{
+	border-top: 2px solid #ddd;
+}
+label.error{
+	font-size: 11px;
+}
+.sortable div{
+	cursor: move;
+}
+.sortable-div{
+	padding: 10px;
+	border: 1px dashed #CCC;
+	font-size: 16px;
+	margin: 10px 0;
+}
+.sortable-div button {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+.sortable-div a.btn {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+.clear{
+	clear: both;
+}
+.small-text{
+	font-size:14px;
+	color:#888;
+}
+.nav-pills li{
+	background: #EEE;
+}
+.nav-pills li a{
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.event_1{
+	background: #35aa47;
+	color: #FFF;
+	font-weight: bold;
+}
+.event_2{
+	background: #FFB848;
+	color: #FFF;
+	font-weight: bold;
+}
+.event_3{
+	background: #c63927;
+	color: #FFF;
+	font-weight: bold;
+}
+.event_5{
+	background: #35aa47;
+	color: #FFF;
+	font-weight: bold;
+}
+.event_6{
+	background: #c63927;
+	color: #FFF;
+	font-weight: bold;
+}
+.red-text{
+	color: #d84a38;
+}
+.green-text{
+	color: #35aa47;
+}
+.assess_textarea{
+	width: 100%;
+	height:60px;
+}
+.displaytable{
+	display: table;
+	width: 100%;
+}
+.displaytable >div{
+	display: table-cell;
+	vertical-align: middle;
+	float: none;
+}
+.displaytable > div:first-child{
+	font-size: 22px;
+}
+.alert-failure{
+	background: red;
+}
+.big-text{
+	font-size: 20px;
+}
+.select2-container .select2-selection--single{
+	height: auto !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+	line-height: 34px;
+}
+img.preview{
+	margin: 10px;
+	border:2px solid #CCC;
+	max-width: 180px;
+	height: auto;
+}
+.variables-logo img{
+	width: 100px;
+	height: 80px;
+}
+.gallery-img{
+	height: 200px;
+}
+.gallery-img img{
+	width: 100%;
+	height: 100%;
+}
+.myBtn button{
+	position: absolute;
+	background: rgba(255,255,255,.8);
+	
+}
+.description{
+	margin-top: 20px;
+	background:#f6f6f6;
+	padding: 10px;
+}
+.description button {
+	margin: 0 10px;
+}
+.userList{
+	display: none
+}
+.round{
+	border-radius: 10px !important;
+	margin-left: 10px;
+}
+
+div.table{
+	display: table;
+}
+div.table .cell{
+	display: table-cell;
+	vertical-align: middle;
+}
+.project {
+	border-bottom: 1px solid #EEE;
+	padding-bottom: 20px;
+}
+div.table.project .cell {
+	vertical-align: top;
+}
+.project > div:last-child{
+	width: 100px;
+}
+.project a, .project-visits a {
+	/*text-decoration: underline;*/
+	color: #000;
+}
+.project h3 {
+	margin-top: 0;
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+.project img {
+	width: 20px;
+	height: auto;
+}
+
+.page-logo > a >img {
+	height: 29px;
+	width: auto;
+	margin-top: 3px;
+}
+
+@media screen and (max-width: 768px) {
+	.page-header.navbar .top-menu {
+		display: none;
+	}
+	.page-sidebar.navbar-collapse, .page-sidebar.navbar-collapse.in{
+		margin: 0 !important;
+	}
+	.project-tabs .nav-tabs{
+		padding-bottom: 10px;
+	}
+	.project-tabs .nav-tabs li{
+		width: 50%;
+	}
+	.project-tabs .nav-tabs > li > a{
+		padding: 5px;
+	}
+	.project-tabs .nav-tabs > li.active a {
+		background: #EEE;
+		border-bottom-color: #ddd;
+	}
+	.table.project .cell{
+		display: block;
+		width: 100% !important;
+		margin-bottom: 8px;
+	}
+}
+
+.ng-cloak{
+	display: none;
+}

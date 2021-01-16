@@ -1,0 +1,285 @@
+/* here you can put your own css to customize and override the theme */
+$red : #e7505a;
+$green: #32c5d2;
+$purple: #a563c1;
+
+.mt-15 {
+	margin-top: 15px;
+}
+
+.mb-15 {
+	margin-bottom: 15px;
+}
+.ng-cloak {
+	display: none !important;
+}
+.errors{
+	color: red
+}
+.row.thin {
+	margin-left: -10px;
+	margin-right: -10px;
+}
+.page-content-wrapper .page-content {
+	padding: 0;
+	.head {
+		background: #DDD;
+		padding: 15px 10px;
+		.page-title {
+			margin-bottom: 0;
+		}
+	}
+	.body-content {
+		padding: 0 10px;
+		padding-bottom: 50px;
+		.tag-head {
+			font-size: 12px;
+			padding: 5px;
+			color: #FFF;
+			&.type1{
+				background: $red;
+			}
+			&.type2{
+				background: $green;
+			}
+			&.type3{
+				background: $purple;
+			}
+		}
+		label {
+			&.small {
+				font-size: 11px;
+				text-transform: uppercase;
+			}
+		}
+		.form-control {
+			&.small{
+				height: 30px;
+				font-size: 12px;
+			}
+		}
+	}
+	.filter {
+		margin-top:8px;
+		border-bottom: 1px solid #EEE;
+		input {
+			margin-bottom: 16px;
+		}
+		.selectize-control {
+			margin-bottom: 12px;
+		}
+		.filter-head {
+			cursor: pointer;
+			font-size: 11px;
+			text-transform: uppercase;
+			color: #555;
+			position: relative;
+			padding-bottom: 10px;
+			.filter-name {
+				padding-right: 40px;
+			}
+			.icon {
+				position: absolute;
+				right: 0;
+				top: 0px;
+				color: #000;
+			}
+			&.closed {
+				/*padding-bottom: 10px;*/
+			}
+		}
+	}
+}
+
+.compare-items {
+	margin-top: 20px;
+	> div {
+		padding: 10px;
+		border: 1px solid #EEE;
+		box-shadow: 0 0 2px 2px #EEE;
+		margin-bottom: 10px;
+	}
+}
+
+.inside-modal {
+	position: fixed;
+	top: 50px;
+	margin: 0 0 0 -10px;
+	padding: 0 10px;
+	width: 30%;
+	display: none;
+	z-index: 100;
+
+	&.offset {
+    	z-index: 102;
+    	> div {
+			background: #dfe3fb;
+		}
+	}
+
+	> div {
+		position: relative;
+		background: #FFF;
+		padding: 10px;
+		box-shadow: 3px 0 2px 0px #EEE;
+	}
+
+	.close-btn{
+		display: inline-block;
+		position: absolute;
+	    margin-top: 0;
+	    margin-right: 0;
+	    width: 9px;
+	    height: 9px;
+	    background-repeat: no-repeat!important;
+	    text-indent: -10000px;
+	    outline: 0;
+	    background-image: url(../global/img/remove-icon-small.png)!important;
+	    right: 20px;
+		top: 15px;
+	}
+}
+
+#modal1 {
+	overflow-y:auto;
+}
+
+#modal2 {
+	overflow-y:auto;
+}
+
+.loader-cont {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	left: 0;
+}
+.loader {
+	height: 4px;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	background-color: #ddd;
+	&:before{
+		display: block;
+		position: absolute;
+		content: "";
+		left: -200px;
+		width: 200px;
+		height: 4px;
+		background-color: #a563c1;
+		animation: loading 2s linear infinite;
+	}
+}
+
+@keyframes loading {
+    from {left: -200px; width: 30%;}
+    50% {width: 30%;}
+    70% {width: 70%;}
+    80% { left: 50%;}
+    95% {left: 120%;}
+    to {left: 100%;}
+}
+
+.timeline-details {
+	display: table;
+	width: 100%;
+	> div {
+		display: table-cell;
+		vertical-align: top;
+		&.year {
+			width: 40px;
+			padding: 0 10px 40px 0px;
+			.title {
+				font-size: 12px;
+				font-weight: 600;
+				margin-top: -6px;
+			}
+		}
+		&.details {
+			border-left: 2px solid #CCC;
+			padding: 0 10px 20px 10px;
+			position: relative;
+			.circle {
+				position: absolute;
+				top: 0;
+				top: -2px;
+				left: -6px;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: #CCC;
+			}
+			.data {
+				margin-top: -7px;
+				font-size: 13px;
+				padding: 3px;
+				cursor: pointer;
+				> div {
+					padding-bottom: 15px;
+					&:hover {
+						background: #F7F7F7;
+					}
+				}
+			}		
+		}
+	}
+}
+
+.cust-timeline {
+	> div {
+		&:last-child {
+		.timeline-details {
+				.details {
+					border-left-color: #FFF;
+				}
+			}
+		}
+	}
+}
+
+.mt-checkbox.small {
+	font-size: 12px;
+	margin-bottom: 10px;
+	> span {
+		width: 14px;
+		height: 14px;
+		&:after {
+			left: 4px;
+    		top: 0px;
+		}
+	}
+}
+
+.data-table {
+	width:100%;
+	font-size: 12px;
+	&.td-label {
+		color: "#AAA";
+	}
+	tr:nth-child(2n+1){
+		background: #F7F7F7;
+	}
+	td {
+		padding: 2px;
+	}
+}
+
+.list-group-items {
+	padding-left: 0;
+	margin: 0 0 20px 0;
+	list-style: none;
+	li {
+		display: block;
+		margin-bottom: 10px;
+		margin-top: 15px;
+	}
+
+}
+
+.cross-btn {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	z-index: 999;
+}
