@@ -248,7 +248,7 @@
   padding: 18px 0;
 }
 .sticky .main-menu > li + li {
-  margin: 0 15px;
+  margin-left: 25px;
 }
 .sticky .main-menu {
   text-align: right;
