@@ -64,6 +64,11 @@ class User extends Authenticatable
         return $output;
     }
 
+    public static function fileExtensions()
+    {
+        return ["jpg","jpeg","png","JPG","JPEG","PNG","pdf","PDF","docs","ppt","PPT"];
+    }
+
     // public function getLink(){
     //     return url("/profile/".$this->id);
     // }

@@ -24,7 +24,7 @@
   <!-- User style -->
   <link rel="stylesheet" href="{{url('frontend/css/custom.css')}}">
   <!-- Modernizr JS -->
-  <script src="{{url('frontend/js/vendor/modernizr-2.8.3.min.js')}}"></script>
+  <script src="{{url('frontend/js/modernizr-2.8.3.min.js')}}"></script>
 </head>
 <body>
   <div class="wrapper">

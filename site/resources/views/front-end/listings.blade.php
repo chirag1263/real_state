@@ -26,7 +26,7 @@
               <div class="flat-item">
                 <div class="flat-item-image">
                   <?php if($i%2!=0){?><span class="for-sale">For Sale</span><?php }?>
-                  <a href="project-details.php"><img src="images/flat/<?php echo $i?>.jpg" alt=""></a>
+                  <a href="project-details.php"><img src="{{url('/frontend/images/flat/'.$i.'.jpg')}}" alt=""></a>
                   <div class="flat-link">
                     <a href="listing-details.php">More Details</a>
                   </div>
@@ -36,7 +36,7 @@
                     <h5><a href="project-details.php">Listing Title <?php echo $i?> </a></h5>
                     <span class="price">$52,350</span>
                   </div>
-                  <p><img src="images/icons/location.png" alt="">568 E 1st Ave, Ney Jersey</p>
+                  <p><img src="{{url('/frontend/images/icons/location.png')}}" alt="">568 E 1st Ave, Ney Jersey</p>
                 </div>
               </div>
             </div>

@@ -153,5 +153,31 @@ class UserController extends Controller {
 
         return Redirect::back()->withErrors($validator)->withInput()->with('failure','Unauthorised Access or Invalid Password');
     }
+
+    public function uploadFile(){
+        $destination = 'uploads/';
+        if(Input::hasFile('media')){
+            $file = Input::file('media');
+            $extension = Input::file('media')->getClientOriginalExtension();
+            if(in_array($extension,User::fileExtensions())){
+
+                $name_file = pathinfo(Input::file('media')->getClientOriginalName(), PATHINFO_FILENAME);
+                $name_file = preg_replace('/[^a-zA-Z0-9]/', '', $name_file);
+
+                $name = 'Doc_'.$name_file.'_'.strtotime("now").'.'.strtolower($extension);
+                $file = $file->move($destination, $name);
+
+                $data['media'] = $destination.$name;
+
+                $data["success"] = true;
+            }else{
+                $data['success'] = false;
+                $data['message'] = 'Invalid file extension';
+            }
+        }
+
+        
+        return Response::json($data, 200, array());
+    }
 	
 }
