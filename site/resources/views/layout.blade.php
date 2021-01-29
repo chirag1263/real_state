@@ -21,7 +21,12 @@
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
                 <div class="page-content">
-                    @yield('content')
+                    <div class="container-fluid">
+                        <div style="margin-top: 10px ">
+                            @yield('content')
+                        </div>
+                        
+                    </div>
                     
                 </div>
                 <!-- END CONTENT BODY -->

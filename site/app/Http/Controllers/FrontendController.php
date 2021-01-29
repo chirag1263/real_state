@@ -23,6 +23,9 @@ class FrontendController extends Controller {
 	public function listings(){
 		return view('front-end.listings');
 	}
+	public function listingDetails(){
+		return view('front-end.listing-details');
+	}
 	public function projects(){
 		return view('front-end.projects');
 	}

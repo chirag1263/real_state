@@ -35,7 +35,7 @@
             <div class="col">
               <div class="service-item">
                 <div class="service-item-image">
-                  <a href="service-details.html"><img src="images\service\1.jpg" alt=""></a>
+                  <a href="service-details.html"><img src="{{url('/frontend/images\service\1.jpg')}}"></a>
                 </div>
                 <div class="service-item-info">
                   <h5><a href="service-details.html">Sale Property</a></h5>
@@ -48,7 +48,7 @@
             <div class="col">
               <div class="service-item">
                 <div class="service-item-image">
-                  <a href="service-details.html"><img src="images\service\2.jpg" alt=""></a>
+                  <a href="service-details.html"><img src="{{url('/frontend/images\service\2.jpg')}}"></a>
                 </div>
                 <div class="service-item-info">
                   <h5><a href="service-details.html">Buy Property</a></h5>
@@ -61,7 +61,7 @@
             <div class="col">
               <div class="service-item">
                 <div class="service-item-image">
-                  <a href="service-details.html"><img src="images\service\3.jpg" alt=""></a>
+                  <a href="service-details.html"><img src="{{url('/frontend/images\service\3.jpg')}}"></a>
                 </div>
                 <div class="service-item-info">
                   <h5><a href="service-details.html">Rent Property</a></h5>
@@ -74,7 +74,7 @@
             <div class="col">
               <div class="service-item">
                 <div class="service-item-image">
-                  <a href="service-details.html"><img src="images\service\4.jpg" alt=""></a>
+                  <a href="service-details.html"><img src="{{url('/frontend/images\service\4.jpg')}}"></a>
                 </div>
                 <div class="service-item-info">
                   <h5><a href="service-details.html">Property Management</a></h5>
@@ -87,7 +87,7 @@
             <div class="col">
               <div class="service-item">
                 <div class="service-item-image">
-                  <a href="service-details.html"><img src="images\service\4.jpg" alt=""></a>
+                  <a href="service-details.html"><img src="{{url('/frontend/images\service\4.jpg')}}"></a>
                 </div>
                 <div class="service-item-info">
                   <h5><a href="service-details.html">Sale Property</a></h5>
@@ -116,43 +116,43 @@
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\1.png" alt="">
+                <img src="{{url('/frontend/images\brand\1.png')}}" alt="">
               </div>
             </div>
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\2.png" alt="">
+                <img src="{{url('/frontend/images\brand\2.png')}}" alt="">
               </div>
             </div>
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\3.png" alt="">
+                <img src="{{url('/frontend/images\brand\3.png')}}" alt="">
               </div>
             </div>
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\4.png" alt="">
+                <img src="{{url('/frontend/images\brand\4.png')}}" alt="">
               </div>
             </div>
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\5.png" alt="">
+                <img src="{{url('/frontend/images\brand\5.png')}}" alt="">
               </div>
             </div>
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\1.png" alt="">
+                <img src="{{url('/frontend/images\brand\1.png')}}" alt="">
               </div>
             </div>
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\4.png" alt="">
+                <img src="{{url('/frontend/images\brand\4.png')}}" alt="">
               </div>
             </div>
           </div>

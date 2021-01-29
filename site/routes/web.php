@@ -21,6 +21,7 @@ Route::get('/logout',function(){
 
 Route::get('services','FrontendController@services');
 Route::get('listings','FrontendController@listings');
+Route::get('listing-details/{list_id}','FrontendController@listingDetails');
 Route::get('projects','FrontendController@projects');
 Route::get('about','FrontendController@about');
 Route::get('contact','FrontendController@contact');
@@ -44,6 +45,39 @@ Route::group(["middleware"=>["auth"]],function(){
 		
 	});
 
+
+	Route::group(["prefix"=>"admin"],function(){
+
+		Route::group(["prefix"=>"list-categories"],function(){
+			Route::get('/','ListCategory@index');
+			Route::get('/add/{code_id?}','ListCategory@add');
+			Route::post('/add/{code_id?}','ListCategory@store');
+			Route::get('/delete/{code_id?}','ListCategory@delete');
+		});
+
+		Route::group(["prefix"=>"listings"],function(){
+			Route::get('/','ListingController@index');
+			Route::get('/add/{list_id?}','ListingController@add');
+			Route::delete('/delete/{list_id?}','ListingController@delete');
+			Route::post('/add/{list_id?}','ListingController@store');
+		});
+
+	});
+
+	Route::group(["prefix"=>"api"],function(){
+
+		Route::post('/upload/file','UserController@uploadFile');
+		Route::group(["prefix"=>"list-categories"],function(){
+			Route::post('/init','ListCategory@init');
+			Route::post('/store','ListCategory@store');
+		});
+
+		Route::group(["prefix"=>"listings"],function(){
+			Route::post('/init','ListingController@init');
+			Route::post('/store','ListingController@store');
+		});
+
+	});
 
 	
 
