@@ -23,6 +23,7 @@ Route::get('services','FrontendController@services');
 Route::get('listings','FrontendController@listings');
 Route::get('listing-details/{list_id}','FrontendController@listingDetails');
 Route::get('projects','FrontendController@projects');
+Route::get('project-details/{project_id}','FrontendController@projectDetails');
 Route::get('about','FrontendController@about');
 Route::get('contact','FrontendController@contact');
 
@@ -62,6 +63,12 @@ Route::group(["middleware"=>["auth"]],function(){
 			Route::post('/add/{list_id?}','ListingController@store');
 		});
 
+		Route::group(["prefix"=>"projects"],function(){
+			Route::get('/','ProjectController@index');
+			Route::get('/add','ProjectController@add');
+			Route::delete('/delete/{project_id?}','ProjectController@delete');
+		});
+
 	});
 
 	Route::group(["prefix"=>"api"],function(){
@@ -75,6 +82,12 @@ Route::group(["middleware"=>["auth"]],function(){
 		Route::group(["prefix"=>"listings"],function(){
 			Route::post('/init','ListingController@init');
 			Route::post('/store','ListingController@store');
+		});
+
+		Route::group(["prefix"=>"projects"],function(){
+			Route::post('/init','ProjectController@init');
+			Route::post('/store','ProjectController@store');
+			Route::post('upload-photos','ProjectController@uploadGalleryPhotos');
 		});
 
 	});

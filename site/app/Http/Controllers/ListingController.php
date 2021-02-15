@@ -58,8 +58,10 @@ class ListingController extends Controller {
             $specifications = Input::get('specifications');
             $list = Lists::find(Input::get('id'));
 
+            $data['message'] = 'Listing is updated successfully';
             if(!$list){
                 $list = new Lists;
+                $data['message'] = 'New listing is added successfully';
             }
 
             $list->title = Input::get('title');
@@ -105,7 +107,7 @@ class ListingController extends Controller {
             }
 
 
-            $data['message'] = 'New invoice is generated successfully';
+            
             $data['success'] = true;
             
 
