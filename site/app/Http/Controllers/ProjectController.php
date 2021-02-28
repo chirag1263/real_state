@@ -33,7 +33,14 @@ class ProjectController extends Controller {
     }
 
     public function add(){
-        $project_id = Input::get('id');
+        if(Input::has('id')){
+
+            $project_id = Input::get('id');
+        }else{
+            $project_id = 0;
+        }
+
+
         $data['sidebar'] = "projects";
         $data['subsidebar'] = "add";
         $data['project_id'] = $project_id;
@@ -114,6 +121,7 @@ class ProjectController extends Controller {
             $project->site_plan = Input::get('site_plan');
             $project->location_map = Input::get('location_map');
             $project->brochure = Input::get('brochure');
+            $project->cost = Input::get('cost');
             $project->feature_image = Input::get('feature_image');
             $project->cover_image = Input::get('cover_image');
 

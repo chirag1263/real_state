@@ -9,3 +9,4 @@ CREATE TABLE `patool`.`company_categorization` ( `id` INT NOT NULL AUTO_INCREMEN
 CREATE TABLE `patool`.`bulk_companies` ( `id` INT NOT NULL AUTO_INCREMENT , `category_id` INT NOT NULL , `com_id` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 ALTER TABLE `projects` ADD `cover_image` TEXT NULL DEFAULT NULL AFTER `featured`, ADD `feature_image` TEXT NULL DEFAULT NULL AFTER `cover_image`;
+ALTER TABLE `projects` ADD `cost` DOUBLE NULL DEFAULT NULL AFTER `added_by`;

@@ -3,6 +3,10 @@
         <label>Title <span class="errro">*</span></label>
         <input type="text" ng-model="formData.title" class="form-control" required>
     </div>
+    <div class="col-md-4 form-group">
+        <label>Cost <span class="errro">*</span></label>
+        <input type="text" ng-model="formData.cost" class="form-control" required>
+    </div>
 
     
 

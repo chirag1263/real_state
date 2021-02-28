@@ -21,26 +21,26 @@
     <div class="container">
       <div class="featured-flat">
         <div class="row">
-          <?php for($i=1;$i<=9;$i++){?>
+          @foreach($projects as $project)
             <div class="col-lg-4 col-md-6 col-12">
               <div class="flat-item">
                 <div class="flat-item-image">
-                  <?php if($i%2!=0){?><span class="for-sale">For Sale</span><?php }?>
-                  <a href="project-details.php"><img src="images/flat/<?php echo $i?>.jpg" alt=""></a>
+                  
+                  <a href="{{url('project-details/'.$project->id)}}"><img src="{{url($project->feature_image)}}" alt=""></a>
                   <div class="flat-link">
-                    <a href="project-details.php">More Details</a>
+                    <a href="{{url('project-details/'.$project->id)}}">More Details</a>
                   </div>
                 </div>
                 <div class="flat-item-info">
                   <div class="flat-title-price">
-                    <h5><a href="project-details.php">Project Title <?php echo $i?> </a></h5>
-                    <span class="price">$52,350</span>
+                    <h5><a href="{{url('project-details/'.$project->id)}}">{{$project->title}} </a></h5>
+                    <span class="price">{{$project->cost}}</span>
                   </div>
-                  <p><img src="images/icons/location.png" alt="">568 E 1st Ave, Ney Jersey</p>
+                  <p><img src="images/icons/location.png" alt="">{{$project->location}}</p>
                 </div>
               </div>
             </div>
-          <?php }?>
+          @endforeach
         </div>  
         <!-- pagination-area -->
         <div class="pagination-area mt-50 mb-60">
