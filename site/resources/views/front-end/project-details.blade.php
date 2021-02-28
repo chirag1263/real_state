@@ -25,39 +25,40 @@
           <div class="pro-details-image mb-60">
             <div class="pro-details-big-image">
               <div class="tab-content" id="pills-tabContent">
-                <?php for($i=1;$i<=4;$i++){?>
-                  <div class="tab-pane fade show <?php if($i==1){echo 'active';}?>" id="pro-<?php echo $i?>" role="tabpanel" aria-labelledby="pro-<?php echo $i?>-tab">
-                    <a href="images/single-property/big/<?php echo $i?>.jpg" data-lightbox="image-<?php echo $i?>" data-title="Listings - <?php echo $i?>">
-                      <img src="images/single-property/big/<?php echo $i?>.jpg" alt="">
+                @foreach($project->photos as $index => $photo)
+                  <div class="tab-pane fade show {{$index == 0 ?'active':''}}" id="pro-{{$index}}" role="tabpanel" aria-labelledby="pro-{{$index}}-tab">
+                    <a href="{{url($photo->photo)}}" data-lightbox="image-{{$index}}" data-title="Listings - {{$index}}">
+                      <img src="{{url($photo->photo)}}" alt="">
                     </a>
                   </div>
-                <?php }?>
+                @endforeach
               </div>
             </div>
-            <ul class="nav nav-pills pro-details-navs" id="pills-tab" role="tablist">
-              <?php for($i=1;$i<=4;$i++){?>
-                <li class="nav-item">
-                  <a class="nav-link <?php if($i==1){echo 'active';}?>" id="pro-<?php echo $i?>-tab" data-toggle="pill" href="#pro-<?php echo $i?>" role="tab" aria-controls="pro-<?php echo $i?>" aria-selected="true"><img src="images/single-property/small/<?php echo $i?>.jpg" alt=""></a>
-                </li>
-              <?php }?>
-            </ul>
+            @foreach($project->photos as $index => $photo)
+
+              <ul class="nav nav-pills pro-details-navs" id="pills-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link {{$index == 0 ?'active':''}}" id="pro-{{$index}}-tab" data-toggle="pill" href="#pro-{{$index}}" role="tab" aria-controls="pro-{{$index}}" aria-selected="true"><img src="{{url($photo->thumb)}}" alt=""></a>
+                  </li>
+              </ul>
+            @endforeach
           </div>
         </div>
         <div class="col-lg-4">
           <aside>
             <!-- description -->
             <div class="listing-description text-justify mb-50">
-              <h3 class="">Property in Rishikesh For Sale</h3>
+              <h3 class="">{{$project->title}}</h3>
               <div class="cost green">
-                <i class="fa fa-rupee"></i> 15,5000/-
+                <i class="fa fa-rupee"></i> {{$project->cost}}/-
               </div>
               <div class="location mt-10 mb-20">
-                <img src="images/icons/location.png"> &nbsp; Dehradun Road, Rishikesh
+                <img src="images/icons/location.png"> &nbsp; {{$project->location}}
               </div>
-              <p>Lorem is ipsum dolor sit amet, consecteturadipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna iqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut quipx eacodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolo</p>
-              <p>Lorem is the Best should be the consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore lore magna iqua. Ut enim ad minim veniam, quis nostrudexercitation ullamco laboris nisi ut aliquip ex eacm emod tempor incididunt utlabore lore magna iqua. Ut enim ad minim veniamco laboris nisi ut aliqu</p>
+              <p>{{$project->description}}</p>
+              
               <div class="pdf-download">
-                <i><a class="green" href="javascript:;"> <i class="fa fa-arrow-circle-right"></i> Click here</a> to download PDF presentation.</i>
+                <i><a class="green" href="{{url($project->brochure)}}" target="_blank"> <i class="fa fa-arrow-circle-right"></i> Click here</a> to download PDF presentation.</i>
               </div>
             </div>  
           </aside>
@@ -87,42 +88,11 @@
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade active show" id="pills-one-tab" role="tabpanel" aria-labelledby="pills-one">
               <ul>
+                @foreach($project->specifications as $row)
                 <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Distance from Rishikesh– 22 Kms.
+                  <i class="fa fa-check-square-o"></i> &nbsp; {{$row->specification}}
                 </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Distance from Airport– 38 Kms.
-                </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Railway Station- 26 Kms.
-                </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; ISBT- 5 Kms.
-                </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Aerial Distance from Ganges –more than 500 Mtrs.
-                </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Average Temperature of the area:
-                </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Summer – 16 to 34 degree celsius
-                </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Winter – 2 to 18 degree celsius
-                </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Water Borewell and Power Back-up availale
-                </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; 10 Cottages already constructed
-                </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Helicopters landing is also possible
-                </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Swimming/Splash pool under construction
-                </li>
+                @endforeach
               </ul>
             </div>
             <div class="tab-pane fade" id="pills-two-tab" role="tabpanel" aria-labelledby="pills-two">
@@ -165,11 +135,11 @@
             <div class="col">
               <article class="blog-item bg-gray">
                 <div class="blog-image">
-                  <a href="single-blog.html"><img src="images/blog/<?php echo $i?>.jpg" alt=""></a>
+                  <a href="single-blog.html"><img src="images/blog/{{$i}}.jpg" alt=""></a>
                 </div>
                 <div class="blog-info">
                   <div class="post-title-time">
-                    <h5><a href="single-blog.html">Project Title <?php echo $i?></a></h5>
+                    <h5><a href="single-blog.html">Project Title {{$i}}</a></h5>
                     <p><small><i class="fa fa-map-marker"></i> Rishikesh, Uttarakhand</small></p>
                   </div>
                   <p>Lorem must explain to you how all this mistaolt denouncing pleasure and praising pain wasnad I will give you a complete pain was praising</p>

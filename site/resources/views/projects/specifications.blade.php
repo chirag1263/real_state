@@ -7,7 +7,7 @@
     </tr>
     <tr ng-repeat="item in formData.specifications">
         <td>@{{$index+1}}</td>
-        <td class="form-group"><input type="text" ng-model="item.highlight" class="form-control"></td>
+        <td class="form-group"><input type="text" ng-model="item.specification" class="form-control"></td>
         <td>
             <button class="btn btn-danger" type="button" ng-click="removeSpecification($index)"><i class="fa fa-remove"></i></button>
         </td>
