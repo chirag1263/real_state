@@ -35,6 +35,26 @@
     </ul>
 </li>
 
+<li class="nav-item {{($sidebar =='projects')?'active open':''}}">
+    <a href="javascript:;" class="nav-link nav-toggle">
+        <i class="fa fa-list"></i>
+        <span class="title">Projects</span>
+        <span class="selected"></span>
+        <span class="arrow open"></span>
+    </a>
+    <ul class="sub-menu" style="display: {{($sidebar =='projects')?'block':''}}">
+      
+        <li class="{{($sidebar =='projects' && $subsidebar == '1')?'active':''}}">
+            <a href="{{url('/admin/projects')}}">
+                <i class="fa fa-list-alt"></i>
+                <span class="title">projects</span>
+                <span class="selected"></span>
+            </a>
+        </li>
+
+    </ul>
+</li>
+
 <li class="nav-item start {{($sidebar=='change-password')?'active':''}}">
     <a href="{{url('/change-password')}}" class="nav-link ">
         <i class="fa fa-cogs"></i>

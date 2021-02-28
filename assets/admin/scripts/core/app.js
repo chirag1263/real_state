@@ -5,6 +5,7 @@ var app = angular.module('app', [
 	'angular-ladda',
   'ngSanitize',
   'selectize',
+  'angularTrix'
 ]);
 
 angular.module('jcs-autoValidate')

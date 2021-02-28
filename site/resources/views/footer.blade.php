@@ -49,6 +49,10 @@
 		<script type="text/javascript" src="{{url('assets/admin/scripts/spin.min.js')}}" ></script>
 		<script type="text/javascript" src="{{url('assets/admin/scripts/ladda.min.js')}}" ></script>
 		<script type="text/javascript" src="{{url('assets/admin/scripts/angular-ladda.min.js')}}" ></script>
+		
+		<script type="text/javascript" src="{{url('assets/admin/scripts/angular-trix.min.js')}}" ></script>
+   		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.js"></script>
+
 		<script type="text/javascript" src="{{url('assets/admin/scripts/ng-file-upload-shim.min.js')}}" ></script>
 		<script type="text/javascript" src="{{url('assets/admin/scripts/ng-file-upload.min.js')}}" ></script>
 		<script type="text/javascript" src="{{url('assets/admin/scripts/angular-sanitize.js')}}" ></script>

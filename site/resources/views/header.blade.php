@@ -41,7 +41,7 @@
         <link href="{{url('assets/global/css/ladda-themeless.min.css')}}" rel="stylesheet" type="text/css" id="style_color" />
 
         <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css">
-
+        <link media="all" type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.css">
         <link href="{{url('assets/main/custom.css?v=1.0.1')}}" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
