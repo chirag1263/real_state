@@ -46,7 +46,7 @@
                     <div class="col-md-4">
                         
                         <label>Upload Brochure</label><br>
-                        <button type="button" ng-show="!formData.attachment" class="button btn blue" ngf-select="uploadFile($file,'attachment')" ngf-max-size="5MB" ladda="uploading_attachment" ngf-pattern="'.pdf'" accept=".pdf" data-style="expand-right">Select</button>
+                        <button type="button" ng-show="!formData.attachment" class="button btn blue" ngf-select="uploadFile($file,'attachment')" ngf-max-size="5MB" ladda="uploading_attachment" data-style="expand-right">Select</button>
 
                         <a class="btn blue ng-cloak" href="{{url('/')}}/@{{formData.attachment}}" ng-show="formData.attachment" target="_blank">View</a>
                         <a class="btn red ng-cloak" ng-click="removeFile('attachment')" ng-show="formData.attachment "><i class="fa fa-remove"></i></a>
@@ -55,7 +55,7 @@
                     <div class="col-md-4">
                         
                         <label>Upload Feature Image</label><br>
-                        <button type="button" ng-show="!formData.feature_image" class="button btn blue" ngf-select="uploadFile($file,'feature_image')" ngf-max-size="5MB" ladda="uploading_feature_image" ngf-pattern="'.pdf'" accept=".pdf" data-style="expand-right">Select</button>
+                        <button type="button" ng-show="!formData.feature_image" class="button btn blue" ngf-select="uploadFile($file,'feature_image')" ngf-max-size="5MB" ladda="uploading_feature_image" data-style="expand-right">Select</button>
 
                         <a class="btn blue ng-cloak" href="{{url('/')}}/@{{formData.feature_image}}" ng-show="formData.feature_image" target="_blank">View</a>
                         <a class="btn red ng-cloak" ng-click="removeFile('feature_image')" ng-show="formData.feature_image "><i class="fa fa-remove"></i></a>
@@ -64,7 +64,7 @@
                     <div class="col-md-4">
                         
                         <label>Upload Cover Image</label><br>
-                        <button type="button" ng-show="!formData.cover_image" class="button btn blue" ngf-select="uploadFile($file,'cover_image')" ngf-max-size="5MB" ladda="uploading_cover_image" ngf-pattern="'.pdf'" accept=".pdf" data-style="expand-right">Select</button>
+                        <button type="button" ng-show="!formData.cover_image" class="button btn blue" ngf-select="uploadFile($file,'cover_image')" ngf-max-size="5MB" ladda="uploading_cover_image" data-style="expand-right">Select</button>
 
                         <a class="btn blue ng-cloak" href="{{url('/')}}/@{{formData.cover_image}}" ng-show="formData.cover_image" target="_blank">View</a>
                         <a class="btn red ng-cloak" ng-click="removeFile('cover_image')" ng-show="formData.cover_image "><i class="fa fa-remove"></i></a>

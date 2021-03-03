@@ -7,7 +7,11 @@ use App\LC,App\Project;
 class ProjectController extends Controller {
 
     public function index(){
-        $projects = Project::get();
+        $projects = Project::select('projects.*');
+        if(Auth::user()->priv != 1){
+            $projects =$projects->where('added_by',Auth::id());
+        }
+        $projects =$projects->get()
         $sidebar = "projects";
         $subsidebar = "projects-project";
         return view('projects.index',compact('sidebar','subsidebar' , 'projects'));
@@ -112,6 +116,7 @@ class ProjectController extends Controller {
             $data['message'] = 'Project is updated successfully';
             if(!$project){
                 $project = new Project;
+                $project->added_by = Auth::id();
                 $data['message'] = 'New Project is added successfully';
             }
 

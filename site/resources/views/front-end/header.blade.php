@@ -64,7 +64,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-12">
               <div class="header-search clearfix text-right">
-                <a class="green-btn" href="{{url('login')}}">User Login</a> &nbsp; <a class="green-btn blue-btn" href="{{url('/login')}}">Agent Login</a>
+                <a class="green-btn" href="{{url('user-login')}}">User Login</a> &nbsp; <a class="green-btn blue-btn" href="{{url('/agent-login')}}">Agent Login</a>
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@
               </div>
               <div>
                 <div class="sticky-buttons text-right">
-                  <a class="green-btn" href="{{url('/login')}}">User Login</a> <a class="green-btn blue-btn" href="{{url('/agent-login')}}">Agent Login</a>
+                  <a class="green-btn" href="{{url('/user-login')}}">User Login</a> <a class="green-btn blue-btn" href="{{url('/agent-login')}}">Agent Login</a>
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@
                     <a href="{{url('/projects')}}">Our Projects</a>
                   </li>
                   <li><a href="{{url('/about')}}">About</a></li>
-                  <li><a href="{{url('/login')}}">Login</a></li>
+                  <li><a href="{{url('/user-login')}}">Login</a></li>
                   <li><a href="{{url('/contact')}}">Contact</a></li>
                 </ul>
               </nav>

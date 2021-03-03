@@ -3,7 +3,8 @@
 @section('content')
 	<div class="body-content" style="padding: 20px;">
 		<div class="row">
-	    	<div class="col-md-12"><h3 class="page-title">Welcome {{Auth::user()->name}}</h3></div>
+	    	<div class="col-md-12"><h3 class="page-title">Welcome {{Auth::user()->first_name}}</h3></div>
+	    	@if(Auth::user()->priv == 1)
 	        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 	            <a class="dashboard-stat dashboard-stat-v2 blue" href="{{url('/dashboard')}}">
 	                <div class="visual">
@@ -30,6 +31,7 @@
 	                </div>
 	            </a>
 	        </div>
+	        @endif
 	    </div>
     </div>
 

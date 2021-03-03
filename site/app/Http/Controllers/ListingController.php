@@ -7,7 +7,13 @@ use App\LC,App\Lists;
 class ListingController extends Controller {
 
     public function index(){
-        $listings = Lists::listing()->get();
+        $listings = Lists::listing();
+        if(Auth::user()->priv == 1){
+
+        }else{
+            $listings = $listings->where('added_by',Auth::id());
+        }
+        $listings  = $listings->get();
         $sidebar = "listings";
         $subsidebar = "listings-list";
         return view('listings.index',compact('sidebar','subsidebar' , 'listings'));
@@ -61,6 +67,7 @@ class ListingController extends Controller {
             $data['message'] = 'Listing is updated successfully';
             if(!$list){
                 $list = new Lists;
+                $list->added_by = Auth::id();
                 $data['message'] = 'New listing is added successfully';
             }
 

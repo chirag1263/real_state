@@ -26,6 +26,12 @@ Route::get('projects','FrontendController@projects');
 Route::get('project-details/{project_id}','FrontendController@projectDetails');
 Route::get('about','FrontendController@about');
 Route::get('contact','FrontendController@contact');
+Route::get('user-login','FrontendController@userLogin');
+Route::get('agent-login','FrontendController@agentLogin');
+Route::post('register-user','FrontendController@registerUser');
+Route::post('register-agent','FrontendController@registerAgent');
+
+Route::post('user-login','UserController@postLogin');
 
 // Route::get('/','DashboardController@index');
 
@@ -67,6 +73,10 @@ Route::group(["middleware"=>["auth"]],function(){
 			Route::get('/','ProjectController@index');
 			Route::get('/add','ProjectController@add');
 			Route::delete('/delete/{project_id?}','ProjectController@delete');
+		});
+
+		Route::group(["prefix"=>"users"],function(){
+			Route::get('/','UserController@users');
 		});
 
 	});

@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-12">
         <div class="breadcrumbs">
-          <h2 class="breadcrumbs-title">Agent Login</h2>
+          <h2 class="breadcrumbs-title">User Login</h2>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
       <div class="row">
         <div class="col-lg-6 col-12">
           <div class="registered-customers mb-50">
-            <h5 class="mb-20">AGENT LOGIN</h5>
+            <h5 class="mb-20">USER LOGIN</h5>
             <form action="{{url('user-login')}}" method="post">
               <div class="login-account p-30 box-shadow">
                 <p>If you have an account with us, Please log in.</p>
@@ -45,9 +45,10 @@
         <!-- new-customers -->
         <div class="col-lg-6 col-12">
           <div class="new-customers mb-50">
-            <form action="{{url('/register-agent')}}" method="post" autocomplete="off">
-              <h5 class="mb-20">AGENT REGISTRATION</h5>
+            <form action="{{url('/register-user')}}" method="post" autocomplete="off">
+              <h5 class="mb-20">USER REGISTRATION</h5>
               <div class="login-account p-30 box-shadow">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="row">
                   <div class="col-md-6">
                     <input type="text" placeholder="First Name" name="first_name" required>
@@ -70,7 +71,7 @@
                       <option value="uttarakhand">Uttarakhand</option>
                     </select>
                   </div>
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                   <div class="col-md-6">
                     <select class="custom-select-2" name="city">
                       <option>Select City/Town</option>

@@ -7,6 +7,7 @@
 </li>
 
 
+@if(Auth::user()->priv != 3)
 <li class="nav-item {{($sidebar =='listings')?'active open':''}}">
     <a href="javascript:;" class="nav-link nav-toggle">
         <i class="fa fa-list"></i>
@@ -24,6 +25,7 @@
             </a>
         </li>
 
+        @if(Auth::user()->priv == 1)
         <li class="{{($sidebar =='listings' && $subsidebar == '2')?'active':''}}">
             <a href="{{url('/admin/list-categories')}}">
                 <i class="fa fa-list-alt"></i>
@@ -31,6 +33,7 @@
                 <span class="selected"></span>
             </a>
         </li>
+        @endif
 
     </ul>
 </li>
@@ -54,6 +57,18 @@
 
     </ul>
 </li>
+
+ @if(Auth::user()->priv == 1)
+<li class="{{($sidebar =='listings' && $subsidebar == '2')?'active':''}}">
+    <a href="{{url('/admin/list-categories')}}">
+        <i class="fa fa-list-alt"></i>
+        <span class="title">Categories</span>  v  
+        <span class="selected"></span>
+    </a>
+</li>
+@endif
+
+@endif
 
 <li class="nav-item start {{($sidebar=='change-password')?'active':''}}">
     <a href="{{url('/change-password')}}" class="nav-link ">
