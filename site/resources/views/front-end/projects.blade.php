@@ -34,9 +34,9 @@
                 <div class="flat-item-info">
                   <div class="flat-title-price">
                     <h5><a href="{{url('project-details/'.$project->id)}}">{{$project->title}} </a></h5>
-                    <span class="price">{{$project->cost}}</span>
+                    <span class="price"> <i class="fa fa-rupee"></i>{{$project->cost}}</span>
                   </div>
-                  <p><img src="images/icons/location.png" alt="">{{$project->location}}</p>
+                  <p><img src="{{url('frontend/images/icons/location.png')}}" alt="">{{$project->location}}</p>
                 </div>
               </div>
             </div>

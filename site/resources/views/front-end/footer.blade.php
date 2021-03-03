@@ -1,3 +1,4 @@
+
 <footer id="footer" class="footer-area bg-2 bg-opacity-black-90">
   <div class="footer-top pt-110 pb-80">
     <div class="container">
@@ -38,58 +39,49 @@
           </div>
         </div>
         <!-- footer-latest-news -->
-        <div class="col-xl-6 col-lg-5 col-12 order-3 order-lg-2 mt-md-30">
+        <div class="col-xl-4 col-lg-4 col-12 order-3 order-lg-2">
           <div class="footer-widget middle">
-            <h6 class="footer-titel">LATEST NEWS</h6>
+            <h6 class="footer-titel">RECENT PROJECTS</h6>
             <ul class="footer-latest-news">
+              @foreach($projects as $project)
               <li>
                 <div class="latest-news-image">
-                  <a href="single-blog.html"><img src="{{url('frontend/images/blog/1.jpg')}}" alt=""></a>
+                  <a href="{{url('project-details/'.$project->id)}}"><img src="{{url($project->feature_image)}}" alt=""></a>
                 </div>
                 <div class="latest-news-info">
-                  <h6><a href="single-blog.html">Beautiful Home</a></h6>
-                  <p>Lorem ipsum dolor sit amet, consectetur acinglit sed do eiusmod tempor
-                    inciidunt ut labore 
-                  </p>
+                  <h6><a href="{{url('project-details/'.$project->id)}}">{{$project->title}}</a></h6>
+                  <p><img src="images/icons/location.png" alt="">{{$project->location}}</p>
                 </div>
               </li>
-              <li>
-                <div class="latest-news-image">
-                  <a href="single-blog.html"><img src="{{url('frontend/images/blog/2.jpg')}}" alt=""></a>
-                </div>
-                <div class="latest-news-info">
-                  <h6><a href="single-blog.html">Beautiful Home</a></h6>
-                  <p>Lorem ipsum dolor sit amet, consectetur acinglit sed do eiusmod tempor
-                    inciidunt ut labore 
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div class="latest-news-image">
-                  <a href="single-blog.html"><img src="{{url('frontend/images/blog/3.jpg')}}" alt=""></a>
-                </div>
-                <div class="latest-news-info">
-                  <h6><a href="single-blog.html">Beautiful Home</a></h6>
-                  <p>Lorem ipsum dolor sit amet, consectetur acinglit sed do eiusmod tempor
-                    inciidunt ut labore 
-                  </p>
-                </div>
-              </li>
+              @endforeach
             </ul>
           </div>
         </div>
         <!-- footer-contact -->
-        <div class="col-xl-3 col-lg-4 col-md-6 col-12 order-2 order-lg-3 mt-sm-30">
-          <div class="footer-widget">
-            <h6 class="footer-titel">QUICK CONTACT</h6>
-            <div class="footer-contact">
-              <p>Lorem ipsum dolor sit amet, consectetur acinglit sed do eiusmod tempor</p>
-              <form id="contact-form-2" action="#" method="POST">
-                <input type="email" name="email2" placeholder="E-mail address...">
-                <textarea name="message2" placeholder="Query here..."></textarea>
-                <button type="submit">Send</button>
-              </form>
-              <p class="form-messege"></p>
+        <div class="col-xl-5 col-lg-5 col-md-6 col-12 order-2 order-lg-3 mt-sm-30">
+          <div class="footer-widget pl-4">
+            <h6 class="footer-titel">Important Links</h6>
+            <div class="footer-menu">
+              <div class="row">
+                <div class="col-md-6 ">
+                  <ul>
+                    <li><a href="{{url('/buying-tips')}}"><i class="fa fa-angle-right"></i> Buying Tips</a></li>
+                    <li><a href="{{url('/calculator')}}"><i class="fa fa-angle-right"></i> Calculator</a></li>
+                    <li><a href="{{url('/uttarakhand-education')}}"><i class="fa fa-angle-right"></i> Uttarakhand Education</a></li>
+                    <li><a href="{{url('/yoga-meditation-in-rishikesh')}}"><i class="fa fa-angle-right"></i> Yoga & Meditation</a></li>
+                    <li><a href="{{url('/buying-tips')}}"><i class="fa fa-angle-right"></i> Subcribe</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li><a href="{{url('/projects')}}"><i class="fa fa-angle-right"></i> Our Projects</a></li>
+                    <li><a href="{{url('/legal-documents')}}"><i class="fa fa-angle-right"></i> Legal Documents</a></li>
+                    <li><a href="{{url('/contact-us')}}"><i class="fa fa-angle-right"></i> Contact Us</a></li>
+                    <li><a href="{{url('/adventure-activities-in-rishikesh')}}"><i class="fa fa-angle-right"></i> Adventure Activities</a></li>
+                    <li><a href="{{url('/rishikesh-hotels')}}"><i class="fa fa-angle-right"></i> Rishikesh Hotels</a></li>
+                  </ul>
+                </div>  
+              </div>
             </div>
           </div>
         </div>

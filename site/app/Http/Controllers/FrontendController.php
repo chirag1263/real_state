@@ -13,19 +13,21 @@ use App\Project , App\User;
 
 class FrontendController extends Controller {
 
-
 	public function home(){
-		return view('front-end.index');
+		$projects = Project::get();
+		return view('front-end.index',compact('projects'));
 	}
-
 	public function services(){
-		return view('front-end.services');
+		$projects = Project::get();
+		return view('front-end.services',compact('projects'));
 	}
 	public function listings(){
-		return view('front-end.listings');
+		$projects = Project::get();
+		return view('front-end.listings',compact('projects'));
 	}
 	public function listingDetails(){
-		return view('front-end.listing-details');
+		$projects = Project::get();
+		return view('front-end.listing-details',compact('projects'));
 	}
 	public function projects(){
 		$projects = Project::get();
@@ -39,19 +41,54 @@ class FrontendController extends Controller {
 		return view('front-end.projects',compact('projects'));
 	}
 	public function projectDetails($project_id){
+		$projects = Project::get();
 		$project = Project::find($project_id);
 		if($project){
 			$project->highlights = DB::table("project_highlights")->where('project_id',$project->id)->get();
 			$project->specifications = DB::table("project_specifications")->where('project_id',$project->id)->get();
 			$project->photos = DB::table("project_photos")->where('project_id',$project->id)->get();
 		}
-		return view('front-end.project-details',compact('project'));
+		return view('front-end.project-details',compact('project'), compact('projects'));
 	}
 	public function about(){
-		return view('front-end.about');
+		$projects = Project::get();
+		return view('front-end.about', compact('projects'));
 	}
 	public function contact(){
-		return view('front-end.contact');
+		$projects = Project::get();
+		return view('front-end.contact', compact('projects'));
+	}
+	public function buyingTips(){
+		$projects = Project::get();
+		return view('front-end.buying-tips', compact('projects'));
+	}
+	public function calculator(){
+		$projects = Project::get();
+		return view('front-end.calculator', compact('projects'));
+	}
+	public function uttarakhandEducation(){
+		$projects = Project::get();
+		return view('front-end.uttarakhand-education', compact('projects'));
+	}
+	public function yogaMeditation(){
+		$projects = Project::get();
+		return view('front-end.yoga-meditation', compact('projects'));
+	}
+	public function subscribe(){
+		$projects = Project::get();
+		return view('front-end.subscribe', compact('projects'));
+	}
+	public function legalDocuments(){
+		$projects = Project::get();
+		return view('front-end.legal-documents', compact('projects'));
+	}
+	public function adventureActivities(){
+		$projects = Project::get();
+		return view('front-end.adventure-activities', compact('projects'));
+	}
+	public function rishkeshHotels(){
+		$projects = Project::get();
+		return view('front-end.rishkesh-hotels', compact('projects'));
 	}
 
 	public function userLogin()

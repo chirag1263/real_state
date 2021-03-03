@@ -191,7 +191,7 @@
                 <div class="flat-item-info">
                   <div class="flat-title-price">
                     <h5><a href="project-details.php">Listing Title <?php echo $i?> </a></h5>
-                    <span class="price">$52,350</span>
+                    <span class="price">₹52,350</span>
                   </div>
                   <p><img src="images/icons/location.png" alt="">568 E 1st Ave, Ney Jersey</p>
                 </div>

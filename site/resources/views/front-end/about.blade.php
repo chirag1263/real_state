@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-6 col-12 order-md-1">
           <div class="about-image">
-            <img src="images\about\3.jpg" alt="">
+            <img src="{{url('frontend/images/about\3.jpg')}}" alt="">
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@
               </div>
             </div>
             <div class="booking-imgae">
-              <img src="images\others\booking.png" alt="">
+              <img src="{{url('frontend/images/others\booking.png')}}" alt="">
             </div>
           </div>
         </div>
@@ -115,43 +115,43 @@
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\1.png" alt="">
+                <img src="{{url('frontend/images/brand/1.png')}}" alt="">
               </div>
             </div>
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\2.png" alt="">
+                <img src="{{url('frontend/images/brand/2.png')}}" alt="">
               </div>
             </div>
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\3.png" alt="">
+                <img src="{{url('frontend/images/brand/3.png')}}" alt="">
               </div>
             </div>
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\4.png" alt="">
+                <img src="{{url('frontend/images/brand/4.png')}}" alt="">
               </div>
             </div>
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\5.png" alt="">
+                <img src="{{url('frontend/images/brand/5.png')}}" alt="">
               </div>
             </div>
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\1.png" alt="">
+                <img src="{{url('frontend/images/brand/1.png')}}" alt="">
               </div>
             </div>
             <!-- brand-item -->
             <div class="col-md-12">
               <div class="brand-item">
-                <img src="images\brand\4.png" alt="">
+                <img src="{{url('frontend/images/brand/4.png')}}" alt="">
               </div>
             </div>
           </div>

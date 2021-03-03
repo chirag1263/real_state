@@ -32,6 +32,14 @@ Route::post('register-user','FrontendController@registerUser');
 Route::post('register-agent','FrontendController@registerAgent');
 
 Route::post('user-login','UserController@postLogin');
+Route::get('buying-tips','FrontendController@buyingTips');
+Route::get('calculator','FrontendController@calculator');
+Route::get('uttarakhand-education','FrontendController@uttarakhandEducation');
+Route::get('yoga-mediation-in-rishikesh','FrontendController@yogaMediation');
+Route::get('subscribe','FrontendController@subscribe');
+Route::get('adventure-activities','FrontendController@adventureActivities');
+Route::get('rishikesh-hotels','FrontendController@rishikeshHotels');
+
 
 // Route::get('/','DashboardController@index');
 

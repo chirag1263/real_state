@@ -33,7 +33,7 @@
             <ul class="contact-address">
               <li>
                 <div class="contact-address-icon">
-                  <img src="images/icons/location-2.png" alt="">
+                  <img src="{{url('frontend/images/icons/location-2.png')}}" alt="">
                 </div>
                 <div class="contact-address-info">
                   <span>Dehradun Road, Rishikesh, </span>
@@ -42,7 +42,7 @@
               </li>
               <li>
                 <div class="contact-address-icon">
-                  <img src="images/icons/phone-3.png" alt="">
+                  <img src="{{url('frontend/images/icons/phone-3.png')}}" alt="">
                 </div>
                 <div class="contact-address-info">
                   <span>+91 123-456-7890</span>
@@ -51,7 +51,7 @@
               </li>
               <li>
                 <div class="contact-address-icon">
-                  <img src="images/icons/world.png" alt="">
+                  <img src="{{url('frontend/images/icons/world.png')}}" alt="">
                 </div>
                 <div class="contact-address-info">
                   <span>Email: info@domain.com</span>
