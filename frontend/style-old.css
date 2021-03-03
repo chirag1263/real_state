@@ -430,7 +430,7 @@
   ----------------------------------- */
 
   .features-area {
-    background: #F5F5F5 url("images/others/features.jpg") no-repeat scroll 0 0;
+    background: #F5F5F5 url("../images/others/features.jpg") no-repeat scroll 0 0;
   }
 
   .features-info {
@@ -2112,92 +2112,3 @@
   color: #FAFAFA;
 }
 
-
-/* Custom CSS */
-a.green {
-  color: #95C41F;
-}
-a.green:hover {
-  color: #1f223e;
-}
-.green-btn {
-  background: #95C41F;
-  color: #fff;
-  padding: 5px 15px;
-  font-size: 14px;
-  text-transform: uppercase;
-}
-a.green-btn:hover {
-  background: #1f223e;
-  color: #fff;
-}
-.blue-btn {
-  background: #1f223e;
-}
-a.blue-btn:hover {
-  background: #95C41F;
-}
-.grey-bg {
-  background: #f5f5f5;
-}
-.table-div {
-  display: table;
-  width: 100%;
-}
-.table-div>div {
-  display: table-cell;
-  vertical-align: middle;
-}
-.listing-description h3 {
-  font-weight: 600;
-}
-
-.listing-description .cost {
-  color: #95C41F;
-  font-size: 25px;
-  font-weight: 600;
-}
-
-.listing-description .location img {
-  vertical-align: baseline;
-}
-
-.listing-more-details .nav.nav-pills {
-  background: #e5e5e5;
-}
-
-.listing-more-details .nav-link {
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.listing-more-details hr {
-  border-bottom-color: #ddd;
-}
-
-.nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
-  background: #1f223e;
-  border-radius: 0;
-  font-weight: 400;
-}
-.blog-image {
-  position: relative;
-}
-.blog-image span.listing-price {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  display: inline-block;
-  background: #95C41F;
-  padding: 5px 10px;
-  color: #fff;
-  box-shadow: 1px 1px 1px 0 #1f223e;
-}
-.sticky-buttons {
-  display: none;
-}
-.sticky .sticky-buttons {
-  display: block;
-}
-/* End Custom CSS */

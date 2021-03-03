@@ -26,6 +26,13 @@ Route::get('projects','FrontendController@projects');
 Route::get('project-details/{project_id}','FrontendController@projectDetails');
 Route::get('about','FrontendController@about');
 Route::get('contact','FrontendController@contact');
+Route::get('buying-tips','FrontendController@buyingTips');
+Route::get('calculator','FrontendController@calculator');
+Route::get('uttarakhand-education','FrontendController@uttarakhandEducation');
+Route::get('yoga-mediation-in-rishikesh','FrontendController@yogaMediation');
+Route::get('subscribe','FrontendController@subscribe');
+Route::get('adventure-activities','FrontendController@adventureActivities');
+Route::get('rishikesh-hotels','FrontendController@rishikeshHotels');
 
 // Route::get('/','DashboardController@index');
 

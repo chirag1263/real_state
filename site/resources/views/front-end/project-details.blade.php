@@ -26,7 +26,7 @@
             <div class="pro-details-big-image">
               <div class="tab-content" id="pills-tabContent">
                 @foreach($project->photos as $index => $photo)
-                  <div class="tab-pane fade show {{$index == 0 ?'active':''}}" id="pro-{{$index}}" role="tabpanel" aria-labelledby="pro-{{$index}}-tab">
+                  <div class="tab-pane fade show {{$index == 1 ?'active':''}}" id="pro-{{$index}}" role="tabpanel" aria-labelledby="pro-{{$index}}-tab">
                     <a href="{{url($photo->photo)}}" data-lightbox="image-{{$index}}" data-title="Listings - {{$index}}">
                       <img src="{{url($photo->photo)}}" alt="">
                     </a>
@@ -34,28 +34,27 @@
                 @endforeach
               </div>
             </div>
+            <ul class="nav nav-pills pro-details-navs" id="pills-tab" role="tablist">
             @foreach($project->photos as $index => $photo)
-
-              <ul class="nav nav-pills pro-details-navs" id="pills-tab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link {{$index == 0 ?'active':''}}" id="pro-{{$index}}-tab" data-toggle="pill" href="#pro-{{$index}}" role="tab" aria-controls="pro-{{$index}}" aria-selected="true"><img src="{{url($photo->thumb)}}" alt=""></a>
-                  </li>
-              </ul>
+              <li class="nav-item">
+                <a class="nav-link {{$index == 1 ?'active':''}}" id="pro-{{$index}}-tab" data-toggle="pill" href="#pro-{{$index}}" role="tab" aria-controls="pro-{{$index}}" aria-selected="true"><img src="{{url($photo->thumb)}}" alt=""></a>
+              </li>
             @endforeach
+            </ul>
           </div>
         </div>
         <div class="col-lg-4">
           <aside>
             <!-- description -->
-            <div class="listing-description text-justify mb-50">
+            <div class="listing-description mb-50">
               <h3 class="">{{$project->title}}</h3>
               <div class="cost green">
                 <i class="fa fa-rupee"></i> {{$project->cost}}/-
               </div>
               <div class="location mt-10 mb-20">
-                <img src="images/icons/location.png"> &nbsp; {{$project->location}}
+                <img src="{{url('frontend/images/icons/location.')}}png"> &nbsp; {{$project->location}}
               </div>
-              <p>{{$project->description}}</p>
+              <div class="content mb-3 text-justify">{{$project->description}}</div>
               
               <div class="pdf-download">
                 <i><a class="green" href="{{url($project->brochure)}}" target="_blank"> <i class="fa fa-arrow-circle-right"></i> Click here</a> to download PDF presentation.</i>
@@ -97,12 +96,12 @@
             </div>
             <div class="tab-pane fade" id="pills-two-tab" role="tabpanel" aria-labelledby="pills-two">
               <div class="text-center">
-                <img class="img-fluid" src="images/site-plan.jpg">
+                <img class="img-fluid" src="{{url('frontend/images/si')}}te-plan.jpg">
               </div>
             </div>
             <div class="tab-pane fade" id="pills-three-tab" role="tabpanel" aria-labelledby="pills-three">
               <div class="text-center">
-                <img class="img-fluid" src="images/location-plan.jpg">
+                <img class="img-fluid" src="{{url('frontend/images/locati')}}on-plan.jpg">
               </div>
             </div>
             <div class="tab-pane fade" id="pills-four-tab" role="tabpanel" aria-labelledby="pills-four">
@@ -131,23 +130,23 @@
       <div class="blog-area mt-50">
         <h3 class="text-uppercase mb-20">More Projects</h3>
         <div class="blog-carousel row">
-          <?php for($i=1;$i<=4;$i++){?>
+          @foreach($projects as $project)
             <div class="col">
               <article class="blog-item bg-gray">
                 <div class="blog-image">
-                  <a href="single-blog.html"><img src="images/blog/{{$i}}.jpg" alt=""></a>
+                  <a href=""><img src="{{url($project->feature_image)}}" alt=""></a>
                 </div>
                 <div class="blog-info">
                   <div class="post-title-time">
-                    <h5><a href="single-blog.html">Project Title {{$i}}</a></h5>
-                    <p><small><i class="fa fa-map-marker"></i> Rishikesh, Uttarakhand</small></p>
+                    <h5><a href="{{url('/project-details/'.$project->id)}}">{{$project->title}}</a></h5>
+                    <p><small><i class="fa fa-map-marker"></i> {{$project->location}}</small></p>
                   </div>
-                  <p>Lorem must explain to you how all this mistaolt denouncing pleasure and praising pain wasnad I will give you a complete pain was praising</p>
-                  <a class="read-more" href="project-details.html">Explore Now</a>
+                  <p>{{$project->description}}</p>
+                  <a class="read-more" href="{{url('/project-details/'.$project->id)}}">Explore Now</a>
                 </div>
               </article>
             </div>
-          <?php }?>
+          @endforeach
         </div>
       </div>
     </div>

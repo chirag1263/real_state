@@ -430,7 +430,7 @@
   ----------------------------------- */
 
   .features-area {
-    background: #F5F5F5 url("frontend/images/others/features.jpg") no-repeat scroll 0 0;
+    background: #F5F5F5 url("../images/others/features.jpg") no-repeat scroll 0 0;
   }
 
   .features-info {
@@ -864,7 +864,7 @@
   }
 
   .bread-bg-1 {
-    background: rgba(0, 0, 0, 0) url("frontend/images/bg/5.jpg") no-repeat scroll 0 0 / cover;
+    background: rgba(0, 0, 0, 0) url("../images/bg/5.jpg") no-repeat scroll 0 0 / cover;
   }
 
   .breadcrumbs-title {
@@ -1657,7 +1657,7 @@
 
   .error-area {
     position: relative;
-    background: rgba(0, 0, 0, 0.9) url("frontend/images/others/error.jpg") no-repeat scroll right top;
+    background: rgba(0, 0, 0, 0.9) url("../images/others/error.jpg") no-repeat scroll right top;
   }
 
   .error-area:before {
@@ -1781,7 +1781,7 @@
 
   .vimeo-bg.vimeo_player {
     display: block !important;
-    background-image: url("frontend/images/bg/10.jpg");
+    background-image: url("../images/bg/10.jpg");
   }
 
   .vimeo_player_wrapper {

@@ -38,9 +38,9 @@
           </div>
         </div>
         <!-- footer-latest-news -->
-        <div class="col-xl-6 col-lg-5 col-12 order-3 order-lg-2 mt-md-30">
+        <div class="col-xl-3 col-lg-3 col-12 order-3 order-lg-2 mt-md-30">
           <div class="footer-widget middle">
-            <h6 class="footer-titel">LATEST NEWS</h6>
+            <h6 class="footer-titel">Recent Projects</h6>
             <ul class="footer-latest-news">
               <li>
                 <div class="latest-news-image">

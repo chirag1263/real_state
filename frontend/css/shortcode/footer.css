@@ -34,9 +34,15 @@
 }
 
 /*footer-latest-news*/
-.footer-widget.middle {
-  margin: auto;
-  width: calc(100% - 100px);
+.footer-widget .footer-menu ul li a {
+  color: #fff;
+}
+.footer-widget .footer-menu ul li a i {
+  color: #95c41f;
+  margin-right: 5px;
+}
+.footer-widget .footer-menu ul li a:hover {
+  color: #95c41f;
 }
 .footer-latest-news > li {
     overflow: hidden;
@@ -46,12 +52,12 @@
 }
 .latest-news-image {
     float: left;
-    width: 18%;
+    width: 20%;
 }
 .latest-news-info {
     float: left;
-    padding-left: 20px;
-    width: 82%;
+    padding-left: 15px;
+    width: 80%;
 }
 .latest-news-info > p {
   font-size: 14px;

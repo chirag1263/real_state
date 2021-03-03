@@ -115,23 +115,23 @@
       <div class="row">
         <div class="col-12">
           <div class="blog-carousel">
-            <?php for($i=1;$i<=4;$i++){?>
+            @foreach($projects as $project)
               <div class="col">
                 <article class="blog-item bg-gray">
                   <div class="blog-image">
-                    <a href="single-blog.html"><img src="{{url('frontend/images/blog/'.$i.'.jpg')}}" alt=""></a>
+                    <a href="{{url('/project-details/'.$project->id)}}"><img src="{{url($project->feature_image)}}" alt=""></a>
                   </div>
                   <div class="blog-info">
                     <div class="post-title-time">
-                      <h5><a href="single-blog.html">Project Title {{$i}}</a></h5>
-                      <p><small><i class="fa fa-map-marker"></i> Rishikesh, Uttarakhand</small></p>
+                      <h5><a href="single-blog.html">{{$project->title}}</a></h5>
+                      <p><small><i class="fa fa-map-marker"></i> {{$project->location}}</small></p>
                     </div>
                     <p>Lorem must explain to you how all this mistaolt denouncing pleasure and praising pain wasnad I will give you a complete pain was praising</p>
-                    <a class="read-more" href="project-details.html">Explore Now</a>
+                    <a class="read-more" href="{{url('/project-details/'.$project->id)}}">Explore Now</a>
                   </div>
                 </article>
               </div>
-            <?php }?>
+            @endforeach
           </div>
         </div>
       </div>
@@ -156,7 +156,7 @@
               <h2 class="h5">CALL US ON: +91 7895 456 123</h2>
             </div>
             <div class="booking-imgae">
-              <img src="{{url('images//frontend/others/booki/g.png')}}" alt="">
+              <img src="{{url('frontend/images/others/booking.png')}}" alt="">
             </div>
           </div>
         </div>
@@ -193,7 +193,7 @@
                     <h5><a href="project-details.php">Listing Title {{$i}} </a></h5>
                     <span class="price">$52,350</span>
                   </div>
-                  <p><img src="{{url('images//frontend/icons/locati/n.png')}}" alt="">568 E 1st Ave, Ney Jersey</p>
+                  <p><img src="{{url('frontend/images/icons/location.png')}}" alt="">568 E 1st Ave, Ney Jersey</p>
                 </div>
               </div>
             </div>
