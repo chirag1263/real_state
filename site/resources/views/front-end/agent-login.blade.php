@@ -13,13 +13,7 @@
   </div>
 </div>
 <!-- BREADCRUMBS AREA END -->
-@if(Session::has('success'))
-<div class="alert alert-success">{{Session::get('success')}}</div>
-@endif
 
-@if(Session::has('failure'))
-<div class="alert alert-danger">{{Session::get('failure')}}</div>
-@endif
 <!-- Start page content -->
 <section id="page-content" class="page-wrapper">
 
@@ -29,6 +23,13 @@
       <div class="row">
         <div class="col-lg-6 col-12">
           <div class="registered-customers mb-50">
+            @if(Session::has('success'))
+            <div class="alert alert-success">{{Session::get('success')}}</div>
+            @endif
+
+            @if(Session::has('failure'))
+            <div class="alert alert-danger">{{Session::get('failure')}}</div>
+            @endif
             <h5 class="mb-20">AGENT LOGIN</h5>
             <form action="{{url('user-login')}}" method="post">
               <div class="login-account p-30 box-shadow">

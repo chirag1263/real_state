@@ -732,7 +732,8 @@
   }
 
   .post-title-time h5 {
-    margin-bottom: 0;
+    /*margin-bottom: 0;*/
+    font-size: 20px;
   }
 
   .blog-item:hover .blog-info,

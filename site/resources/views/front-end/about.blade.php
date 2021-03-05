@@ -24,10 +24,10 @@
         <div class="col-md-6 col-12 order-md-2">
           <div class="section-title mb-30">
             <h3>SOME WORD </h3>
-            <h2>ABOUT SHELTEK</h2>
+            <h2>ABOUT REAL ESTATE</h2>
           </div>
           <div class="about-sheltek-info">
-            <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span> is the best theme for elit, sed do
+            <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Rishikesh Real Estate</span> is the best theme for elit, sed do
               eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et lorna aliquatd minim veniam, quis nostrud exercitation oris
             nisi ut aliquip ex ea commodo consequat. Duis aute irure dolo.</p>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-6 col-12 order-md-1">
           <div class="about-image">
-            <img src="{{url('frontend/images/about\3.jpg')}}" alt="">
+            <img src="{{url('frontend/images/about/3.jpg')}}" alt="">
           </div>
         </div>
       </div>

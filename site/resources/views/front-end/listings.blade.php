@@ -21,34 +21,34 @@
     <div class="container">
       <div class="featured-flat">
         <div class="row">
-          <?php for($i=1;$i<=9;$i++){?>
+          @foreach($listings as $listing)
             <div class="col-lg-4 col-md-6 col-12">
               <div class="flat-item">
                 <div class="flat-item-image">
-                  <?php if($i%2!=0){?><span class="for-sale">For Sale</span><?php }?>
-                  <a href="project-details.php"><img src="{{url('/frontend/images/flat/'.$i.'.jpg')}}" alt=""></a>
+                  <span class="for-sale">{{$listing->list_category_id}}</span>
+                  <a href="{{url('listing-details/'.$listing->id)}}"><img src="{{$listing->feature_image}}" alt=""></a>
                   <div class="flat-link">
-                    <a href="listing-details.php">More Details</a>
+                    <a href="{{url('listing-details/'.$listing->id)}}">More Details</a>
                   </div>
                 </div>
                 <div class="flat-item-info">
                   <div class="flat-title-price">
-                    <h5><a href="project-details.php">Listing Title <?php echo $i?> </a></h5>
-                    <span class="price">$52,350</span>
+                    <h5><a href="{{url('listing-details/'.$listing->id)}}">{{$listing->title}}</a></h5>
+                    <span class="price"><i class="fa fa-rupee"></i> {{$listing->price}}</span>
                   </div>
-                  <p><img src="{{url('/frontend/images/icons/location.png')}}" alt="">568 E 1st Ave, Ney Jersey</p>
+                  <p><img src="{{url('/frontend/images/icons/location.png')}}" alt="">{{$listing->location}}</p>
                 </div>
               </div>
             </div>
-          <?php }?>
+          @endforeach
         </div>  
         <!-- pagination-area -->
         <div class="pagination-area mt-50 mb-60">
           <ul class="pagination-list text-center">
-            <li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:;"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:;">1</a></li>
+            <li><a href="javascript:;">2</a></li>
+            <li><a href="javascript:;"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
           </ul>
         </div>
       </div>

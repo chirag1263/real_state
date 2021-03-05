@@ -26,9 +26,9 @@
             <div class="pro-details-big-image">
               <div class="tab-content" id="pills-tabContent">
                 @foreach($project->photos as $index => $photo)
-                  <div class="tab-pane fade show {{$index == 1 ?'active':''}}" id="pro-{{$index}}" role="tabpanel" aria-labelledby="pro-{{$index}}-tab">
-                    <a href="{{url($photo->photo)}}" data-lightbox="image-{{$index}}" data-title="Listings - {{$index}}">
-                      <img src="{{url($photo->photo)}}" alt="">
+                  <div class="tab-pane fade show {{$index+1 == 1 ?'active':''}}" id="pro-{{$index+1}}" role="tabpanel" aria-labelledby="pro-{{$index+1}}-tab">
+                    <a href="{{url($photo->photo)}}" data-lightbox="image-{{$index+1}}" data-title="Listings - {{$index+1}}">
+                      <img class="w-100" src="{{url($photo->photo)}}" alt="">
                     </a>
                   </div>
                 @endforeach
@@ -37,7 +37,7 @@
             <ul class="nav nav-pills pro-details-navs" id="pills-tab" role="tablist">
             @foreach($project->photos as $index => $photo)
               <li class="nav-item">
-                <a class="nav-link {{$index == 1 ?'active':''}}" id="pro-{{$index}}-tab" data-toggle="pill" href="#pro-{{$index}}" role="tab" aria-controls="pro-{{$index}}" aria-selected="true"><img src="{{url($photo->thumb)}}" alt=""></a>
+                <a class="nav-link {{$index+1 == 1 ?'active':''}}" id="pro-{{$index+1}}-tab" data-toggle="pill" href="#pro-{{$index+1}}" role="tab" aria-controls="pro-{{$index+1}}" aria-selected="true"><img src="{{url($photo->thumb)}}" alt=""></a>
               </li>
             @endforeach
             </ul>
@@ -96,62 +96,58 @@
             </div>
             <div class="tab-pane fade" id="pills-two-tab" role="tabpanel" aria-labelledby="pills-two">
               <div class="text-center">
-                <img class="img-fluid" src="{{url('frontend/images/si')}}te-plan.jpg">
+                <img class="img-fluid" src="{{url($project->site_plan)}}">
               </div>
             </div>
             <div class="tab-pane fade" id="pills-three-tab" role="tabpanel" aria-labelledby="pills-three">
               <div class="text-center">
-                <img class="img-fluid" src="{{url('frontend/images/locati')}}on-plan.jpg">
+                <img class="img-fluid" src="{{url($project->location_map)}}">
               </div>
             </div>
             <div class="tab-pane fade" id="pills-four-tab" role="tabpanel" aria-labelledby="pills-four">
-              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+              <div class="content">
+                {!! $project->payment_plan !!}
+              </div>
             </div>
             <div class="tab-pane fade" id="pills-five-tab" role="tabpanel" aria-labelledby="pills-five">
               <ul>
+                @foreach($project->highlights as $row)
                 <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Type : Developed Land
+                  <i class="fa fa-check-square-o"></i> &nbsp; {{$row->highlight}}
                 </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Zoning : Partially Agricultural & Partially non-agricultural
-                </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Area : 158 Naali / 31,600 SQ. Mtrs. / 7.9 Acres
-                </li>
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; Proposed Use : ASHRAM, YOGA & MEDITATION RETREAT,  SCHOOL/ ACADEMY, RESORTS/HOTEL, FARMING, HERBAL  FARMING, VILLAS/COTTAGES, NGOs, FARM HOUSE etc.
-                </li>
+                @endforeach
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <div class="blog-area mt-50">
-        <h3 class="text-uppercase mb-20">More Projects</h3>
-        <div class="blog-carousel row">
-          @foreach($projects as $project)
-            <div class="col">
-              <article class="blog-item bg-gray">
-                <div class="blog-image">
-                  <a href=""><img src="{{url($project->feature_image)}}" alt=""></a>
-                </div>
-                <div class="blog-info">
-                  <div class="post-title-time">
-                    <h5><a href="{{url('/project-details/'.$project->id)}}">{{$project->title}}</a></h5>
-                    <p><small><i class="fa fa-map-marker"></i> {{$project->location}}</small></p>
-                  </div>
-                  <p>{{$project->description}}</p>
-                  <a class="read-more" href="{{url('/project-details/'.$project->id)}}">Explore Now</a>
-                </div>
-              </article>
-            </div>
-          @endforeach
-        </div>
-      </div>
     </div>
   </div>
   <!-- PROJECT DETAILS AREA END -->
+  <div class="blog-area mt-50 pt-70 pb-50 grey-bg">
+    <div class="container">
+      <h3 class="text-uppercase mb-20">Related Projects</h3>
+      <div class="blog-carousel row">
+        @foreach($projects as $project)
+          <div class="col">
+            <article class="blog-item bg-gray">
+              <div class="blog-image">
+                <a href="{{url('/project-details/'.$project->id)}}"><img src="{{url($project->feature_image)}}" alt=""></a>
+              </div>
+              <div class="blog-info">
+                <div class="post-title-time">
+                  <h5><a href="{{url('/project-details/'.$project->id)}}">{{$project->title}}</a></h5>
+                  <p><small><i class="fa fa-map-marker"></i> {{$project->location}}</small></p>
+                </div>
+                <p>{{substr($project->description,0,100).'...'}}</p>
+                <a class="read-more" href="{{url('/project-details/'.$project->id)}}">Explore Now</a>
+              </div>
+            </article>
+          </div>
+        @endforeach
+      </div>
+    </div>
+  </div>
 </section>
 <!-- End page content -->
 
