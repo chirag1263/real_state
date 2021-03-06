@@ -43,7 +43,7 @@
           <div class="footer-widget middle">
             <h6 class="footer-titel">RECENT PROJECTS</h6>
             <ul class="footer-latest-news">
-              <?php $projects = App\Project::take(5)->get();?>
+              <?php $projects = App\Project::take(3)->get();?>
               @foreach($projects as $project)
               <li>
                 <div class="latest-news-image">

@@ -25,7 +25,6 @@
             <div class="col-lg-4 col-md-6 col-12">
               <div class="flat-item">
                 <div class="flat-item-image">
-                  
                   <a href="{{url('project-details/'.$project->id)}}"><img src="{{url($project->feature_image)}}" alt=""></a>
                   <div class="flat-link">
                     <a href="{{url('project-details/'.$project->id)}}">More Details</a>
@@ -45,10 +44,10 @@
         <!-- pagination-area -->
         <div class="pagination-area mt-50 mb-60">
           <ul class="pagination-list text-center">
-            <li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:;"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:;">1</a></li>
+            <li><a href="javascript:;">2</a></li>
+            <li><a href="javascript:;"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
           </ul>
         </div>
       </div>

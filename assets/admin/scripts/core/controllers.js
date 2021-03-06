@@ -207,7 +207,12 @@ app.controller('projectCtrl', function($scope,$http,DBService ,Upload){
         $scope.processing = true;
         DBService.postCall($scope.formData,'/api/projects/store').then(function(data){
             if(data.success){
-                window.location = base_url+'/admin/projects';
+                if ($scope.formData.id) {
+                    alert(data.message);
+                }else{
+
+                    window.location = base_url+'/admin/projects';
+                }
             }else{
 
                 bootbox.alert(data.message);

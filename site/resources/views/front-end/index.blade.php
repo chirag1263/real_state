@@ -22,7 +22,7 @@
           </p>
         </div>
         <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s">
-          <a class="slider-button mt-40" href="listings.php">Explore Now</a>
+          <a class="slider-button mt-40" href="{{url('/listings')}}">Explore Now</a>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
           </p>
         </div>
         <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s">
-          <a class="slider-button mt-40" href="login.php">Explore Now</a>
+          <a class="slider-button mt-40" href="{{url('/user-login')}}">Explore Now</a>
         </div>
       </div>
     </div>
@@ -58,7 +58,7 @@
           </p>
         </div>
         <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s">
-          <a class="slider-button mt-40" href="projects.php">Explore Now</a>
+          <a class="slider-button mt-40" href="{{url('/projects')}}">Explore Now</a>
         </div>
       </div>
     </div>

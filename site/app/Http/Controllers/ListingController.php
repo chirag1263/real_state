@@ -6,44 +6,44 @@ use App\LC,App\Lists;
 
 class ListingController extends Controller {
 
-    public function index(){
-        $listings = Lists::listing();
-        if(Auth::user()->priv == 1){
-
-        }else{
-            $listings = $listings->where('added_by',Auth::id());
-        }
-        $listings  = $listings->get();
-        $sidebar = "listings";
-        $subsidebar = "listings-list";
-        return view('listings.index',compact('sidebar','subsidebar' , 'listings'));
+  public function index(){
+    $listings = Lists::listing();
+    if(Auth::user()->priv == 1){
+    }else{
+      $listings = $listings->where('added_by',Auth::id());
     }
+    $listings  = $listings->get();
+    $sidebar = "listings";
+    $subsidebar = "listings-list";
+    return view('listings.index',compact('sidebar','subsidebar' , 'listings'));
+  }
 
-    public function init(){
-        $list = Lists::find(Input::get('list_id'));
-        if($list){
+  public function init(){
+    $list = Lists::find(Input::get('list_id'));
+    if($list){
 
-            $list->highlights = DB::table('list_highlights')->where('list_id',$list->id)->get();
-            $list->specifications = DB::table('list_specifications')->where('list_id',$list->id)->get();
-            $list->photos = DB::table('listing_photos')->where('list_id',$list->id)->get();
-
-            foreach ($list->photos as $photo) {
-                $photo->th_photo_link = url($photo->thumb);
-            }
-            $data['formData'] = $list;
-        }
-        $data['categories'] = LC::get();
-        $data['success'] = true;
-        return Response::json($data,200,[]);
+      $list->highlights = DB::table('list_highlights')->where('list_id',$list->id)->get();
+      $list->specifications = DB::table('list_specifications')->where('list_id',$list->id)->get();
+      $list->photos = DB::table('listing_photos')->where('list_id',$list->id)->get();
+      foreach ($list->photos as $photo) {
+          $photo->th_photo_link = url($photo->thumb);
+      }
+      
+      $data['formData'] = $list;
     }
+    $data['categories'] = LC::get();
+    $data['success'] = true;
+    return Response::json($data,200,[]);
+  }
 
-    public function add($list_id = 0){
+  public function add($list_id = 0){
 
-        $sidebar = "listings";
-        $subsidebar = "add";
+    $sidebar = "listings";
+    $subsidebar = "add";
 
-        return view('listings.add',compact('sidebar','subsidebar' , 'list_id'));
-    }
+    return view('listings.add',compact('sidebar','subsidebar' , 'list_id'));
+  }
+
 
     public function store(){
         $cre = [
@@ -141,25 +141,28 @@ class ListingController extends Controller {
             $data['success'] = true;
             
 
-        }
+      $data['success'] = true;
+      
 
-        return Response::json($data,200,[]);
     }
 
-    public function delete($list_id)
-    {
-        $list = Lists::find($list_id);
-        if($list){
-            DB::table('list_highlights')->where('list_id',$list->id)->delete();
-            DB::table('list_specifications')->where('list_id',$list->id)->delete();
-            $list->delete();
-            $data['success'] = true;
-            $data['message'] = 'Listing is successfully removed';
-        }else{
-            $data['success'] = false;
-            $data['message'] = 'Invalid request';
-        }
-        return json_encode($data);
+    return Response::json($data,200,[]);
+  }
+
+  public function delete($list_id)
+  {
+    $list = Lists::find($list_id);
+    if($list){
+      DB::table('list_highlights')->where('list_id',$list->id)->delete();
+      DB::table('list_specifications')->where('list_id',$list->id)->delete();
+      $list->delete();
+      $data['success'] = true;
+      $data['message'] = 'Listing is successfully removed';
+    }else{
+      $data['success'] = false;
+      $data['message'] = 'Invalid request';
     }
+    return json_encode($data);
+  }
 
 }
