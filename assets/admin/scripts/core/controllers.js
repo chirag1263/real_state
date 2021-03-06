@@ -116,6 +116,52 @@ app.controller('listCtrl', function($scope,$http,DBService ,Upload){
         $scope.formData[name] = '';
     }
 
+
+    $scope.addGalleryPhotos = function (files, name) {
+        console.log("dfa");
+
+        if(files){
+
+            $scope['uploading_'+name] = true;
+            var url = base_url+'/api/projects/upload-photos';
+            Upload.upload({
+                url: url,
+                data: {
+                    media: files
+                }
+            }).then(function (resp) {
+                if(resp.data.success){
+                    for (var i = resp.data.media.length - 1; i >= 0; i--) {
+                         
+                        $scope.formData.photos.push(resp.data.media[i]);
+                    }
+
+                } else {
+                    alert(resp.data.message);
+                }
+                $scope['uploading_'+name] = false;
+            }, function (resp) {
+                $scope['uploading_'+name] = false;
+                console.log('Error status: ' + resp.status);
+            }, function (evt) {
+                $scope.uploading_percentage = parseInt(100.0 * evt.loaded / evt.total) + '%';
+            });
+        }
+        angular.forEach(files,function(file,key){
+
+        });
+    }
+
+    
+
+    $scope.removePhotoFile = function(obj){
+        obj.photo = null;
+    }
+
+
+    $scope.removeGalleryPhoto = function(index) {
+        $scope.formData.photos.splice(index,1);
+    }
 });
 
 
@@ -237,7 +283,9 @@ app.controller('projectCtrl', function($scope,$http,DBService ,Upload){
         });
     }
 
-    
+    $scope.removeGalleryPhoto = function(index) {
+        $scope.formData.photos.splice(index,1);
+    }
 
     $scope.removePhotoFile = function(obj){
         obj.photo = null;

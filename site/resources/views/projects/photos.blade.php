@@ -6,8 +6,8 @@
 
 <div class="row">
     <div class="col-md-3" style="margin-top: 10px; @{{($index%4==0 ) ?' clear: both':''}}" ng-repeat="photo in formData.photos">
-        <div style="border: 1px solid #ddd;padding: 10px;">
-            
+        <div style="border: 1px solid #ddd;padding: 10px;position: relative;">
+            <button style="position: absolute;top:11px;right: 26px" class="btn btn-sm btn-danger" type="button" ng-click="removeGalleryPhoto($index)"><i class="fa fa-remove"></i></button>
             <img src="@{{photo.th_photo_link}}" style="width: 100%;height: 200px">
         </div>
     </div>

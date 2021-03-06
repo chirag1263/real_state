@@ -11,7 +11,7 @@ class ProjectController extends Controller {
         if(Auth::user()->priv != 1){
             $projects =$projects->where('added_by',Auth::id());
         }
-        $projects =$projects->get()
+        $projects =$projects->get();
         $sidebar = "projects";
         $subsidebar = "projects-project";
         return view('projects.index',compact('sidebar','subsidebar' , 'projects'));
@@ -130,6 +130,7 @@ class ProjectController extends Controller {
             $project->feature_image = Input::get('feature_image');
             $project->cover_image = Input::get('cover_image');
 
+            $project->short_address = Input::get('short_address');
             $project->location = Input::get('location');
             $project->longitude = Input::get('longitude');
             $project->latitude = Input::get('latitude');
@@ -165,7 +166,7 @@ class ProjectController extends Controller {
 
                 }
             }
-
+            
             DB::table('project_photos')->where('project_id',$project->id)->delete();
             foreach ($photos as $item) {
                 if(isset($item['photo'])){

@@ -25,6 +25,11 @@ class ListingController extends Controller {
 
             $list->highlights = DB::table('list_highlights')->where('list_id',$list->id)->get();
             $list->specifications = DB::table('list_specifications')->where('list_id',$list->id)->get();
+            $list->photos = DB::table('listing_photos')->where('list_id',$list->id)->get();
+
+            foreach ($list->photos as $photo) {
+                $photo->th_photo_link = url($photo->thumb);
+            }
             $data['formData'] = $list;
         }
         $data['categories'] = LC::get();
@@ -62,6 +67,7 @@ class ListingController extends Controller {
 
             $highlights = Input::get('highlights');
             $specifications = Input::get('specifications');
+
             $list = Lists::find(Input::get('id'));
 
             $data['message'] = 'Listing is updated successfully';
@@ -74,6 +80,7 @@ class ListingController extends Controller {
             $list->title = Input::get('title');
             $list->list_category_id = Input::get('list_category_id');
             $list->location = Input::get('location');
+            $list->short_address = Input::get('short_address');
             $list->price = Input::get('price');
             $list->description = Input::get('description');
             $list->attachment = Input::get('attachment');
@@ -106,6 +113,22 @@ class ListingController extends Controller {
                         DB::table('list_specifications')->insert([
                             "list_id" =>$list->id,
                             "specification" => $item['specification'],
+                        ]);
+
+                    }
+
+                }
+            }
+            $photos = Input::get('photos');
+            DB::table('listing_photos')->where('list_id',$list->id)->delete();
+            foreach ($photos as $item) {
+                if(isset($item['photo'])){
+
+                    if($item['photo']){
+                        DB::table('listing_photos')->insert([
+                            "list_id" =>$list->id,
+                            "photo" => $item['photo'],
+                            "thumb" => $item['thumb'],
                         ]);
 
                     }

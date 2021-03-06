@@ -34,6 +34,11 @@
                     </div>
 
                     <div class="col-md-12 form-group">
+                        <label>Short Address</label>
+                        <input type="text" ng-model="formData.short_address" class="form-control">
+                    </div>
+
+                    <div class="col-md-12 form-group">
                         <label>Location</label>
                         <input type="text" ng-model="formData.location" class="form-control">
                     </div>
@@ -102,7 +107,7 @@
                     </tr>
                     <tr ng-repeat="item in formData.specifications">
                         <td>@{{$index+1}}</td>
-                        <td class="form-group"><input type="text" ng-model="item.highlight" class="form-control" required></td>
+                        <td class="form-group"><input type="text" ng-model="item.specification" class="form-control" required></td>
                         <td>
                             <button class="btn btn-danger" type="button" ng-click="removeSpecification($index)"><i class="fa fa-remove"></i></button>
                         </td>
@@ -113,7 +118,25 @@
                     <button class="btn btn-sm yellow" type="button" ng-click="addMoreSpecification()">Add More </button>
                 </div>
 
-                <div style="margin-top: 10px" class="text-right">
+                
+
+                <h3>Photos</h3>
+                <div class="row">
+                    <div class="col-md-2">
+                        <button type="button" style="margin-top: 23px" class="btn yellow" ngf-select="addGalleryPhotos($files,'files')" ladda="uploading_files" ngf-pattern="'image/jpeg,jpg'" accept=".pdf ,.jpeg,.jpg" ngf-multiple="true">Select Photos</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3" style="position: relative;margin-top: 10px; @{{($index%4==0 ) ?' clear: both':''}}" ng-repeat="photo in formData.photos">
+                        <div style="border: 1px solid #ddd;padding: 10px;">
+                            <button style="position: absolute;top:11px;right: 26px" class="btn btn-sm btn-danger" type="button" ng-click="removeGalleryPhoto($index)"><i class="fa fa-remove"></i></button>
+                            <img src="@{{photo.th_photo_link}}" style="width: 100%;height: 200px">
+                        </div>
+                    </div>
+                </div>
+                <div><hr></div>
+                <div style="margin-top: 10px;margin-bottom: 50px" class="text-right">
 
                     <button class="btn btn-primary" ladda="processing">Submit</button>
                 </div>
