@@ -77,7 +77,7 @@
                   <ul>
                     <li><a href="{{url('/projects')}}"><i class="fa fa-angle-right"></i> Our Projects</a></li>
                     <li><a href="{{url('/legal-documents')}}"><i class="fa fa-angle-right"></i> Legal Documents</a></li>
-                    <li><a href="{{url('/contact-us')}}"><i class="fa fa-angle-right"></i> Contact Us</a></li>
+                    <li><a href="{{url('/contact')}}"><i class="fa fa-angle-right"></i> Contact Us</a></li>
                     <li><a href="{{url('/adventure-activities-in-rishikesh')}}"><i class="fa fa-angle-right"></i> Adventure Activities</a></li>
                     <li><a href="{{url('/rishikesh-hotels')}}"><i class="fa fa-angle-right"></i> Rishikesh Hotels</a></li>
                   </ul>

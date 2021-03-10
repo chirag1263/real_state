@@ -15,7 +15,8 @@ class FrontendController extends Controller {
 
 	public function home(){
 		$projects = Project::get();
-		return view('front-end.index', compact('projects'));
+		$listings = Lists::get();
+		return view('front-end.index', compact('projects'), compact('listings'));
 	}
 
 	public function services(){
@@ -31,7 +32,7 @@ class FrontendController extends Controller {
 		if($listing){
 			$listing->highlights = DB::table("list_highlights")->where('list_id',$listing->id)->get();
 			$listing->specifications = DB::table("list_specifications")->where('list_id',$listing->id)->get();
-			// $listing->photos = DB::table("listing_photos")->where('listing_id',$listing->id)->get();
+			$listing->photos = DB::table("listing_photos")->where('list_id',$listing->id)->get();
 		}
 		return view('front-end.listing-details', compact('listing'), compact('listings'));
 	}

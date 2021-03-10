@@ -124,7 +124,7 @@
                   <div class="blog-info">
                     <div class="post-title-time">
                       <h5><a href="single-blog.html">{{$project->title}}</a></h5>
-                      <p><small><i class="fa fa-map-marker"></i> {{$project->location}}</small></p>
+                      <p><small><i class="fa fa-map-marker"></i> {{$project->short_address}}</small></p>
                     </div>
                     <p>Lorem must explain to you how all this mistaolt denouncing pleasure and praising pain wasnad I will give you a complete pain was praising</p>
                     <a class="read-more" href="{{url('/project-details/'.$project->id)}}">Explore Now</a>
@@ -132,6 +132,9 @@
                 </article>
               </div>
             @endforeach
+          </div>
+          <div class="text-center">
+            <a href="{{url('/projects')}}" class="green-btn">View All Projects &nbsp; <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
@@ -178,26 +181,31 @@
       </div>
       <div class="featured-flat">
         <div class="row">
-          <?php for($i=1;$i<=9;$i++){?>
+          @foreach($listings as $listing)
             <div class="col-lg-4 col-md-6 col-12">
               <div class="flat-item">
                 <div class="flat-item-image">
-                  <?php if($i%2!=0){?><span class="for-sale">For Sale</span><?php }?>
-                  <a href="project-details.php"><img src="{{url('frontend/images/flat/'.$i.'.jpg')}}" alt=""></a>
+                  <span class="for-sale">
+                    <?php if($listing->list_category_id == 1){echo 'Rent';}else{echo 'Sale';}?>
+                  </span>
+                  <a href="{{url('listing-details/'.$listing->id)}}"><img src="{{$listing->feature_image}}" alt=""></a>
                   <div class="flat-link">
-                    <a href="listing-details.php">More Details</a>
+                    <a href="{{url('listing-details/'.$listing->id)}}">More Details</a>
                   </div>
                 </div>
                 <div class="flat-item-info">
                   <div class="flat-title-price">
-                    <h5><a href="project-details.php">Listing Title {{$i}} </a></h5>
-                    <span class="price">$52,350</span>
+                    <h5><a href="{{url('listing-details/'.$listing->id)}}">{{$listing->title}}</a></h5>
+                    <span class="price"><i class="fa fa-rupee"></i> {{$listing->price}}</span>
                   </div>
-                  <p><img src="{{url('frontend/images/icons/location.png')}}" alt="">568 E 1st Ave, Ney Jersey</p>
+                  <p><img src="{{url('/frontend/images/icons/location.png')}}" alt="">{{$listing->short_address}}</p>
                 </div>
               </div>
             </div>
-          <?php }?>
+          @endforeach
+        </div>
+        <div class="text-center mt-30">
+          <a href="{{url('/listings')}}" class="green-btn">View All Listings &nbsp; <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
     </div>

@@ -28,27 +28,27 @@
         <div class="col-lg-8">
           <!-- pro-details-image -->
           <div class="pro-details-image mb-60">
-            <div class="pro-details-big-image">
-              <img class="w-100" src="{{url($listing->feature_image)}}">
-            </div>
             <!-- <div class="pro-details-big-image">
+              <img class="w-100" src="{{url($listing->feature_image)}}">
+            </div> -->
+            <div class="pro-details-big-image">
               <div class="tab-content" id="pills-tabContent">
-                <?php //for($i=1;$i<=4;$i++){?>
-                  <div class="tab-pane fade show <?php //if($i==1){echo 'active';}?>" id="pro-<?php //echo $i?>" role="tabpanel" aria-labelledby="pro-<?php //echo $i?>-tab">
-                    <a href="images/single-property/big/<?php //echo $i?>.jpg" data-lightbox="image-<?php //echo $i?>" data-title="Listings - <?php //echo $i?>">
-                      <img src="{{url('/frontend/images/single-property/big/<?php //echo $i?>.jpg" alt="">
+                @foreach($listing->photos as $index => $photo)
+                  <div class="tab-pane fade show {{$index+1 == 1 ?'active':''}}" id="pro-{{$index+1}}" role="tabpanel" aria-labelledby="pro-{{$index+1}}-tab">
+                    <a href="{{url($photo->photo)}}" data-lightbox="image-{{$index+1}}" data-title="Listings - {{$index+1}}">
+                      <img class="w-100" src="{{url($photo->photo)}}" alt="">
                     </a>
                   </div>
-                <?php //}?>
+                @endforeach
               </div>
             </div>
             <ul class="nav nav-pills pro-details-navs" id="pills-tab" role="tablist">
-              <?php //for($i=1;$i<=4;$i++){?>
-                <li class="nav-item">
-                  <a class="nav-link <?php //if($i==1){//echo 'active';}?>" id="pro-<?php //echo $i?>-tab" data-toggle="pill" href="#pro-<?php //echo $i?>" role="tab" aria-controls="pro-<?php //echo $i?>" aria-selected="true"><img src="{{url('/frontend/images/single-property/small/<?php //echo $i?>.jpg" alt=""></a>
-                </li>
-              <?php //}?>
-            </ul> -->
+            @foreach($listing->photos as $index => $photo)
+              <li class="nav-item">
+                <a class="nav-link {{$index+1 == 1 ?'active':''}}" id="pro-{{$index+1}}-tab" data-toggle="pill" href="#pro-{{$index+1}}" role="tab" aria-controls="pro-{{$index+1}}" aria-selected="true"><img src="{{url($photo->thumb)}}" alt=""></a>
+              </li>
+            @endforeach
+            </ul>
           </div>
         </div>
         <div class="col-lg-4">
@@ -60,7 +60,7 @@
                 <i class="fa fa-rupee"></i> {{$listing->price}}
               </div>
               <div class="location mt-10 mb-10">
-                <img src="{{url('/frontend/images/icons/location.png')}}"> &nbsp; {{$listing->location}}
+                <img src="{{url('/frontend/images/icons/location.png')}}"> &nbsp; {{$listing->short_address}}
               </div>
               <div class="content">
                 {{$listing->description}}

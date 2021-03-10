@@ -36,7 +36,7 @@
                     <h5><a href="{{url('listing-details/'.$listing->id)}}">{{$listing->title}}</a></h5>
                     <span class="price"><i class="fa fa-rupee"></i> {{$listing->price}}</span>
                   </div>
-                  <p><img src="{{url('/frontend/images/icons/location.png')}}" alt="">{{$listing->location}}</p>
+                  <p><img src="{{url('/frontend/images/icons/location.png')}}" alt="">{{$listing->short_address}}</p>
                 </div>
               </div>
             </div>

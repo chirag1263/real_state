@@ -27,7 +27,7 @@
         <label>Location/Complete Address</label>
         <input type="text" ng-model="formData.location" class="form-control location">
     </div>
-    <div class="col-md-12 form-group">
+    <div class="form-group">
         <label>Short Address</label>
         <input type="text" ng-model="formData.short_address" class="form-control">
     </div>

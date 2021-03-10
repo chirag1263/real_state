@@ -137,7 +137,7 @@
               <div class="blog-info">
                 <div class="post-title-time">
                   <h5><a href="{{url('/project-details/'.$project->id)}}">{{$project->title}}</a></h5>
-                  <p><small><i class="fa fa-map-marker"></i> {{$project->location}}</small></p>
+                  <p><small><i class="fa fa-map-marker"></i> {{$project->short_address}}</small></p>
                 </div>
                 <p>{{substr($project->description,0,100).'...'}}</p>
                 <a class="read-more" href="{{url('/project-details/'.$project->id)}}">Explore Now</a>

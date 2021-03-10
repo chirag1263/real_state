@@ -35,7 +35,7 @@
                     <h5><a href="{{url('project-details/'.$project->id)}}">{{$project->title}} </a></h5>
                     <span class="price"> <i class="fa fa-rupee"></i>{{$project->cost}}</span>
                   </div>
-                  <p><img src="{{url('frontend/images/icons/location.png')}}" alt="">{{$project->location}}</p>
+                  <p><img src="{{url('frontend/images/icons/location.png')}}" alt="">{{$project->short_address}}</p>
                 </div>
               </div>
             </div>
