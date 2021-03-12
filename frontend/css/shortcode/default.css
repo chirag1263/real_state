@@ -421,7 +421,7 @@ textarea {
   
   font-size: 13px;
   font-weight: 300;
-  padding: 10px 10px 10px 20px;
+  padding: 10px;
   resize: vertical;
   width: 100%;
 }

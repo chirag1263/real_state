@@ -62,8 +62,8 @@
               <div class="location mt-10 mb-10">
                 <img src="{{url('/frontend/images/icons/location.png')}}"> &nbsp; {{$listing->short_address}}
               </div>
-              <div class="mt-20 mb-30">
-                <a class="green-btn" href="javascript:;"><i class="fa fa-envelope"></i> Enquire Now</a> &nbsp; <a class="green-btn blue-btn" href="javascript:;"><i class="fa fa-heart-o"></i> Add to Wishlist</a>
+              <div class="mt-20 mb-30 wishlist-area">
+                <a class="green-btn" href="javascript:;" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope"></i> Enquire Now</a> &nbsp; <?php $wishlist = true; if($wishlist){?><a class="green-btn blue-btn wishlist-btn" href="javascript:;" title="View Wishlist"><i class="fa fa-heart"></i> View Wishlist</a><?php }else{?> <a class="green-btn blue-btn wishlist-btn" href="javascript:;"><i class="fa fa-heart-o"></i> Add to Wishlist</a><?php }?>
               </div>
               <div class="content">
                 {{$listing->description}}
@@ -145,5 +145,34 @@
   <!-- END MORE DETAILS -->
 </section>
 <!-- End page content -->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-uppercase">Enquire Now</h4>
+      </div>
+      <div class="modal-body">
+        <form id="contact-form" method="post">
+          <input type="text" name="name" placeholder="Your Name" required="true">
+          <div class="row">
+            <div class="col-md-6 pr-0">
+              <input type="email" name="email" placeholder="Email" required="true">
+            </div>
+            <div class="col-md-6">
+              <input type="text" name="email" placeholder="Phone" required="true">
+            </div>
+          </div>
+          <textarea name="message" placeholder="Message" required="true"></textarea>
+          <button type="submit" class="submit-btn-1">SUBMIT</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modal -->
 
 @endsection
