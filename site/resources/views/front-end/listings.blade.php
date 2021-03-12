@@ -25,7 +25,7 @@
             <div class="col-lg-4 col-md-6 col-12">
               <div class="flat-item">
                 <div class="flat-item-image">
-                  <span class="for-sale">{{$listing->list_category_id}}</span>
+                  <span class="for-sale">{{$listing->category_name}}</span>
                   <a href="{{url('listing-details/'.$listing->id)}}"><img src="{{$listing->feature_image}}" alt=""></a>
                   <div class="flat-link">
                     <a href="{{url('listing-details/'.$listing->id)}}">More Details</a>

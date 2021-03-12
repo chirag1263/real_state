@@ -15,7 +15,7 @@ class FrontendController extends Controller {
 
 	public function home(){
 		$projects = Project::get();
-		$listings = Lists::get();
+		$listings = Lists::join('list_categories','list_categories.id','=','listings.list_category_id')->get();;
 		return view('front-end.index', compact('projects'), compact('listings'));
 	}
 
@@ -23,11 +23,11 @@ class FrontendController extends Controller {
 		return view('front-end.services');
 	}
 	public function listings(){
-		$listings = Lists::get();
+		$listings = Lists::join('list_categories','list_categories.id','=','listings.list_category_id')->get();
 		return view('front-end.listings', compact('listings'));
 	}
 	public function listingDetails($listing_id){
-		$listings = Lists::get();
+		$listings = Lists::join('list_categories','list_categories.id','=','listings.list_category_id')->get();;
 		$listing = Lists::find($listing_id);
 		if($listing){
 			$listing->highlights = DB::table("list_highlights")->where('list_id',$listing->id)->get();

@@ -186,7 +186,7 @@
               <div class="flat-item">
                 <div class="flat-item-image">
                   <span class="for-sale">
-                    <?php if($listing->list_category_id == 1){echo 'Rent';}else{echo 'Sale';}?>
+                    {{$listing->category_name}}
                   </span>
                   <a href="{{url('listing-details/'.$listing->id)}}"><img src="{{$listing->feature_image}}" alt=""></a>
                   <div class="flat-link">
