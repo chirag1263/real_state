@@ -54,6 +54,9 @@
               <div class="location mt-10 mb-20">
                 <img src="{{url('frontend/images/icons/location.')}}png"> &nbsp; {{$project->location}}
               </div>
+              <div class="mt-20 mb-30">
+                <a class="green-btn" href="javascript:;"><i class="fa fa-envelope"></i> Enquire Now</a> &nbsp; <a class="green-btn blue-btn" href="javascript:;"><i class="fa fa-heart-o"></i> Add to Wishlist</a>
+              </div>
               <div class="content mb-3 text-justify">{{$project->description}}</div>
               
               <div class="pdf-download">

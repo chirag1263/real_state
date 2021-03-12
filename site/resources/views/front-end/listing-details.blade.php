@@ -62,6 +62,9 @@
               <div class="location mt-10 mb-10">
                 <img src="{{url('/frontend/images/icons/location.png')}}"> &nbsp; {{$listing->short_address}}
               </div>
+              <div class="mt-20 mb-30">
+                <a class="green-btn" href="javascript:;"><i class="fa fa-envelope"></i> Enquire Now</a> &nbsp; <a class="green-btn blue-btn" href="javascript:;"><i class="fa fa-heart-o"></i> Add to Wishlist</a>
+              </div>
               <div class="content">
                 {{$listing->description}}
               </div>
