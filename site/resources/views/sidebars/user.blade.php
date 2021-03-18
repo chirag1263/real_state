@@ -6,6 +6,13 @@
   </a>
 </li>
 
+<li class="nav-item start {{($sidebar=='')?'active':''}}">
+  <a href="{{url('/')}}" class="nav-link ">
+    <i class="fa fa-cogs"></i>
+    <span class="title">Go To Website</span>
+    <span class="selected"></span>
+  </a>
+</li>
 
 @if(Auth::user()->priv != 3)
 <li class="nav-item {{($sidebar =='listings')?'active open':''}}">
@@ -70,6 +77,26 @@
 
 @endif
 
+@if(Auth::user()->priv != 1)
+<li class="nav-item start {{($sidebar=='wishlist')?'active':''}}">
+  <a href="{{url('/wishlist?type=1')}}" class="nav-link ">
+    <i class="fa fa-gift"></i>
+    <span class="title">My Wishlist</span>
+    <span class="selected"></span>
+  </a>
+</li>
+@endif
+
+@if(Auth::user()->priv == 1)
+<li class="nav-item start {{($sidebar=='enquiries')?'active':''}}">
+  <a href="{{url('admin/enquiries?type=1')}}" class="nav-link ">
+    <i class="fa fa-gift"></i>
+    <span class="title">Enquiries</span>
+    <span class="selected"></span>
+  </a>
+</li>
+@endif
+
 <li class="nav-item start {{($sidebar=='change-password')?'active':''}}">
   <a href="{{url('/change-password')}}" class="nav-link ">
     <i class="fa fa-cogs"></i>
@@ -77,6 +104,8 @@
     <span class="selected"></span>
   </a>
 </li>
+
+
 
 
 <li class="nav-item start {{($sidebar=='logout')?'active':''}}">

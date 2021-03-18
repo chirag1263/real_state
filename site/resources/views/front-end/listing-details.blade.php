@@ -18,7 +18,9 @@
   </div>
 </div>
 <!-- BREADCRUMBS AREA END -->
-
+@if(Session::has('success'))
+<div class="alert alert-success">{{Session::get('success')}}</div>
+@endif
 <!-- Start page content -->
 <section id="page-content" class="page-wrapper">
   <!-- LISTING DETAILS AREA START -->
@@ -42,6 +44,7 @@
                 @endforeach
               </div>
             </div>
+
             <ul class="nav nav-pills pro-details-navs" id="pills-tab" role="tablist">
             @foreach($listing->photos as $index => $photo)
               <li class="nav-item">
@@ -63,7 +66,13 @@
                 <img src="{{url('/frontend/images/icons/location.png')}}"> &nbsp; {{$listing->short_address}}
               </div>
               <div class="mt-20 mb-30 wishlist-area">
-                <a class="green-btn" href="javascript:;" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope"></i> Enquire Now</a> &nbsp; <?php $wishlist = true; if($wishlist){?><a class="green-btn blue-btn wishlist-btn" href="javascript:;" title="View Wishlist"><i class="fa fa-heart"></i> View Wishlist</a><?php }else{?> <a class="green-btn blue-btn wishlist-btn" href="javascript:;"><i class="fa fa-heart-o"></i> Add to Wishlist</a><?php }?>
+                <a class="green-btn" href="javascript:;" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope"></i> Enquire Now</a> &nbsp; 
+                <?php $wishlist = App\Wishlist::listing();?>
+                @if(in_array($listing->id , $wishlist))
+                <a class="green-btn blue-btn wishlist-btn pop_details" action="{{('/view-wishlist/2')}}"  href="javascript:;" data-title="View Wishlist"><i class="fa fa-heart"></i> View Wishlist</a>
+                @else
+                <a class="green-btn blue-btn wishlist-btn " href="{{url('/add-wishlist/2/'.$listing->id)}}"><i class="fa fa-heart-o"></i> Add to Wishlist</a>
+                @endif
               </div>
               <div class="content">
                 {{$listing->description}}
@@ -118,26 +127,26 @@
       <h3 class="text-uppercase mb-20">Related Listings</h3>
       <div class="featured-flat">
         <div class="row">
-          @foreach($listings as $listing)
+          @foreach($listings as $row)
             <div class="col-lg-4 col-md-6 col-12">
               <div class="flat-item">
                 <div class="flat-item-image">
-                  <span class="for-sale">{{$listing->category_name}}</span>
-                  <a href="{{url('listing-details/'.$listing->id)}}"><img src="{{url($listing->feature_image)}}" alt=""></a>
+                  <span class="for-sale">{{$row->category_name}}</span>
+                  <a href="{{url('listing-details/'.$row->id)}}">@if($row->feature_image)<img src="{{url($row->feature_image)}}" alt="">@endif</a>
                   <div class="flat-link">
-                    <a href="{{url('listing-details/'.$listing->id)}}">More Details</a>
+                    <a href="{{url('listing-details/'.$row->id)}}">More Details</a>
                   </div>
-                </div>
                 <div class="flat-item-info">
                   <div class="flat-title-price">
-                    <h5><a href="{{url('listing-details/'.$listing->id)}}">{{$listing->title}}</a></h5>
-                    <span class="price"><i class="fa fa-rupee"></i> {{$listing->price}}</span>
+                    <h5><a href="{{url('listing-details/'.$row->id)}}">{{$row->title}}</a></h5>
+                    <span class="price"><i class="fa fa-rupee"></i> {{$row->price}}</span>
                   </div>
-                  <p><img src="{{url('/frontend/images/icons/location.png')}}" alt="">{{$listing->location}}</p>
+                  <p><img src="{{url('/frontend/images/icons/location.png')}}" alt="">{{$row->location}}</p>
                 </div>
               </div>
             </div>
           @endforeach
+                
         </div>
       </div>
     </div>
@@ -156,14 +165,15 @@
         <h4 class="modal-title text-uppercase">Enquire Now</h4>
       </div>
       <div class="modal-body">
-        <form id="contact-form" method="post">
+        <form id="contact-form" method="post" action="{{url('enquire/2/'.$listing->id)}}">
           <input type="text" name="name" placeholder="Your Name" required="true">
           <div class="row">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="col-md-6 pr-0">
               <input type="email" name="email" placeholder="Email" required="true">
             </div>
             <div class="col-md-6">
-              <input type="text" name="email" placeholder="Phone" required="true">
+              <input type="text" name="phone" placeholder="Phone" required="true">
             </div>
           </div>
           <textarea name="message" placeholder="Message" required="true"></textarea>

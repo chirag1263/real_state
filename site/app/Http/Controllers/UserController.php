@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Input,Redirect,Validator,Hash,Response,Session;
-use App\User,DB;
+use App\User,DB,App\Wishlist;
 
 
 class UserController extends Controller {
@@ -15,6 +15,23 @@ class UserController extends Controller {
 	public function login(){
 		return view('login');
 	}
+
+    public function enquiries()
+    {
+        $type = 1;
+
+        if(Input::get('type') != ''){
+            $type = Input::get('type');
+        }
+
+        $enquiries = DB::table('enquiries')->select('enquiries.*','projects.title as project_name','listings.title as list_name')
+            ->leftJoin('projects','projects.id','=','enquiries.item_id')
+            ->leftJoin('listings','listings.id','=','enquiries.item_id')
+            ->where('enquiries.type',$type)
+            ->get();
+        $sidebar = 'enquiries';
+        return view('enquiries',compact('enquiries','sidebar'));
+    }
 
 	public function postLogin(){
 
@@ -178,6 +195,28 @@ class UserController extends Controller {
 
         
         return Response::json($data, 200, array());
+    }
+
+    public function wishlist()
+    {
+        $type = 1;
+
+        if(Input::get('type') != ''){
+            $type = Input::get('type');
+        }
+        $sidebar = 'wishlist';
+
+        if($type == 1){
+            $projects = Wishlist::select('projects.title','wishlist.*')->join('projects','projects.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
+            return view('my_wishlist',compact('projects','sidebar'));
+        }
+
+        if($type == 2){
+            $listings = Wishlist::select('listings.title','wishlist.*')->join('listings','listings.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
+            return view('my_wishlist',compact('listings','sidebar'));
+        }
+
+
     }
 	
 }

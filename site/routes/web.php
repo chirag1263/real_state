@@ -43,7 +43,12 @@ Route::get('rishikesh-hotels','FrontendController@rishikeshHotels');
 
 // Route::get('/','DashboardController@index');
 
+Route::post('/enquire/{type}/{item_id}','FrontendController@enquiryForm');
+
 Route::group(["middleware"=>["auth"]],function(){
+
+	Route::get('add-wishlist/{type}/{item_id}','FrontendController@addWishlist');
+	Route::get('view-wishlist/{type}','FrontendController@viewWishlist');
 	
 	Route::get('/dashboard', 'DashboardController@index');
 	Route::get('/change-password', 'UserController@changePassword');
@@ -57,6 +62,12 @@ Route::group(["middleware"=>["auth"]],function(){
 		Route::post('/store', 'UserController@store');
 		Route::get('/edit/{id}', 'UserController@edit');
 		Route::post('/update/{id}', 'UserController@update');
+		
+	});
+
+	Route::group(["prefix"=>"wishlist"],function(){
+
+		Route::get('/', 'UserController@wishlist');
 		
 	});
 
@@ -85,6 +96,10 @@ Route::group(["middleware"=>["auth"]],function(){
 
 		Route::group(["prefix"=>"users"],function(){
 			Route::get('/','UserController@users');
+		});
+
+		Route::group(["prefix"=>"enquiries"],function(){
+			Route::get('/','UserController@enquiries');
 		});
 
 	});

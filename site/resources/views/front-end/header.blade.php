@@ -64,7 +64,11 @@
             </div>
             <div class="col-lg-3 col-md-6 col-12">
               <div class="header-search clearfix text-right">
+                @if(!Auth::check())
                 <a class="green-btn" href="{{url('user-login')}}">User Login</a> &nbsp; <a class="green-btn blue-btn" href="{{url('/agent-login')}}">Agent Login</a>
+                @else
+                  <a class="green-btn" href="{{url('/logout')}}">Logout</a>                    
+                @endif
               </div>
             </div>
           </div>
@@ -101,7 +105,11 @@
               </div>
               <div>
                 <div class="sticky-buttons text-right">
-                  <a class="green-btn" href="{{url('/user-login')}}">User Login</a> <a class="green-btn blue-btn" href="{{url('/agent-login')}}">Agent Login</a>
+                  @if(!Auth::check())
+                    <a class="green-btn" href="{{url('/user-login')}}">User Login</a> <a class="green-btn blue-btn" href="{{url('/agent-login')}}">Agent Login</a>
+                  @else
+                    <a class="green-btn" href="{{url('/logout')}}">Logout</a>                    
+                  @endif
                 </div>
               </div>
             </div>

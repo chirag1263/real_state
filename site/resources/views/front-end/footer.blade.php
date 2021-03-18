@@ -107,6 +107,25 @@
 </footer>
 
 </div>
+
+<div id="detailsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-uppercase">Enquire Now</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var base_url = "{{url('/')}}";
+</script>
 <!-- Body main wrapper end -->
 <!-- Placed js at the end of the document so the pages load faster -->
 <!-- jquery latest version -->
@@ -119,6 +138,7 @@
 <script src="{{url('frontend/js/plugins.js')}}"></script>
 <!-- Main js file that contents all jQuery plugins activation. -->
 <script src="{{url('frontend/js/main.js')}}"></script>
+<script src="{{url('frontend/js/custom.js')}}"></script>
 
 </body>
 </html>

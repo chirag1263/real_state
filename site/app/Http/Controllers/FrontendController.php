@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use Input,Redirect,Validator,Hash,Response,Session;
-use App\Project , App\User, App\Lists;
+use App\Project , App\User, App\Lists, App\Wishlist;
 
 class FrontendController extends Controller {
 
@@ -27,14 +27,15 @@ class FrontendController extends Controller {
 		return view('front-end.listings', compact('listings'));
 	}
 	public function listingDetails($listing_id){
-		$listings = Lists::join('list_categories','list_categories.id','=','listings.list_category_id')->get();;
-		$listing = Lists::find($listing_id);
+		$listings = Lists::listing()->get();
+		// dd($listings);
+		$listing = Lists::select('listings.*','list_categories.category_name')->join('list_categories','list_categories.id','=','listings.list_category_id')->where('listings.id',$listing_id)->first();
 		if($listing){
 			$listing->highlights = DB::table("list_highlights")->where('list_id',$listing->id)->get();
 			$listing->specifications = DB::table("list_specifications")->where('list_id',$listing->id)->get();
 			$listing->photos = DB::table("listing_photos")->where('list_id',$listing->id)->get();
 		}
-		return view('front-end.listing-details', compact('listing'), compact('listings'));
+		return view('front-end.listing-details', compact('listing','listings'));
 	}
 	public function projects(){
 		$projects = Project::get();
@@ -150,5 +151,47 @@ class FrontendController extends Controller {
 		}else{
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
+	}
+
+	public function addWishlist($type , $item_id)
+	{
+		$check = Wishlist::where('type',$type)->where('item_id',$item_id)->where('user_id',Auth::id())->first();
+		if(!$check){
+			Wishlist::insert(['type'=>$type,'item_id'=>$item_id,'user_id'=>Auth::id()]);
+		}
+
+		return Redirect::back();
+	}
+
+	public function viewWishlist($type)
+	{
+		
+		if($type == 1){
+			$projects = Wishlist::select('projects.title','wishlist.*')->join('projects','projects.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
+			$data['message'] = html_entity_decode(view('front-end.wishlist',compact('projects')));
+		}
+
+		if($type == 2){
+			$listings = Wishlist::select('listings.title','wishlist.*')->join('listings','listings.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
+			$data['message'] = html_entity_decode(view('front-end.wishlist',compact('listings')));
+		}
+		$data['success'] = true;
+		return ($data);
+	}
+
+	public function enquiryForm($type , $item_id)
+	{
+		DB::table('enquiries')->insert([
+			"type"=>$type,
+			"item_id"=>$item_id,
+			"user_id"=>(Auth::check())?Auth::id():NULL,
+			"name"=>Input::get("name"),
+			"email"=>Input::get("email"),
+			"phone"=>Input::get("phone"),
+			"message"=>Input::get("message"),
+			"created_at"=>date("Y-m-d H:i:s")
+		]);
+
+		return Redirect::back()->with('success','Your enquiry has been submitted successfully');
 	}
 }

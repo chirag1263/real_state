@@ -13,7 +13,9 @@
   </div>
 </div>
 <!-- BREADCRUMBS AREA END -->
-
+@if(Session::has('success'))
+<div class="alert alert-success">{{Session::get('success')}}</div>
+@endif
 <!-- Start page content -->
 <section id="page-content" class="page-wrapper">
   <!-- PROJECT DETAILS AREA START -->
@@ -55,7 +57,13 @@
                 <img src="{{url('frontend/images/icons/location.')}}png"> &nbsp; {{$project->location}}
               </div>
               <div class="mt-20 mb-30 wishlist-area">
-                <a class="green-btn" href="javascript:;" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope"></i> Enquire Now</a> &nbsp; <?php $wishlist = true; if($wishlist){?><a class="green-btn blue-btn wishlist-btn" href="javascript:;" title="View Wishlist"><i class="fa fa-heart"></i> View Wishlist</a><?php }else{?> <a class="green-btn blue-btn wishlist-btn" href="javascript:;"><i class="fa fa-heart-o"></i> Add to Wishlist</a><?php }?>
+                <a class="green-btn" href="javascript:;" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope"></i> Enquire Now</a> &nbsp; 
+                  <?php $wishlist = App\Wishlist::projects();?>
+                  @if(in_array($project->id , $wishlist))
+                  <a class="green-btn blue-btn wishlist-btn pop_details" action="{{('/view-wishlist/1')}}"  href="javascript:;" data-title="View Wishlist"><i class="fa fa-heart"></i> View Wishlist</a>
+                  @else
+                  <a class="green-btn blue-btn wishlist-btn " href="{{url('/add-wishlist/1/'.$project->id)}}"><i class="fa fa-heart-o"></i> Add to Wishlist</a>
+                  @endif
               </div>
               <div class="content mb-3 text-justify">{{$project->description}}</div>
               
@@ -161,17 +169,18 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title text-uppercase">Enquire Now</h4>
+        <h4 class="modal-title text-uppercase"></h4>
       </div>
       <div class="modal-body">
-        <form id="contact-form" method="post">
+        <form id="contact-form" method="post" action="{{url('enquire/1/'.$project->id)}}">
           <input type="text" name="name" placeholder="Your Name" required="true">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="row">
             <div class="col-md-6 pr-0">
               <input type="email" name="email" placeholder="Email" required="true">
             </div>
             <div class="col-md-6">
-              <input type="text" name="email" placeholder="Phone" required="true">
+              <input type="text" name="phone" placeholder="Phone" required="true">
             </div>
           </div>
           <textarea name="message" placeholder="Message" required="true"></textarea>
