@@ -65,15 +65,17 @@
   </ul>
 </li>
 
-<!-- @if(Auth::user()->priv == 1)
-<li class="{{($sidebar =='listings' && $subsidebar == '2')?'active':''}}">
-  <a href="{{url('/admin/list-categories')}}">
-    <i class="fa fa-list-alt"></i>
-    <span class="title">Categories</span>  v  
+
+
+@if(Auth::user()->priv == 1)
+<li class="{{($sidebar =='users' && $subsidebar == 'users')?'active':''}}">
+  <a href="{{url('/admin/users')}}">
+    <i class="fa fa-users"></i>
+    <span class="title">Users</span>
     <span class="selected"></span>
   </a>
 </li>
-@endif -->
+@endif
 
 @endif
 
@@ -96,6 +98,15 @@
   </a>
 </li>
 @endif
+
+<li class="nav-item start {{($sidebar=='settings')?'active':''}}">
+  <a href="{{url('/settings')}}" class="nav-link ">
+    <i class="fa fa-cogs"></i>
+    <span class="title">Settings</span>
+    <span class="selected"></span>
+  </a>
+</li>
+
 
 <li class="nav-item start {{($sidebar=='change-password')?'active':''}}">
   <a href="{{url('/change-password')}}" class="nav-link ">

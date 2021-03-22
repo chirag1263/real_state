@@ -71,7 +71,11 @@
                 @if(in_array($listing->id , $wishlist))
                 <a class="green-btn blue-btn wishlist-btn pop_details" action="{{('/view-wishlist/2')}}"  href="javascript:;" data-title="View Wishlist"><i class="fa fa-heart"></i> View Wishlist</a>
                 @else
-                <a class="green-btn blue-btn wishlist-btn " href="{{url('/add-wishlist/2/'.$listing->id)}}"><i class="fa fa-heart-o"></i> Add to Wishlist</a>
+                  @if(Auth::check())
+                    <a class="green-btn blue-btn wishlist-btn " href="{{url('/add-wishlist/2/'.$listing->id)}}"><i class="fa fa-heart-o"></i> Add to Wishlist</a>
+                  @else
+                    <a class="green-btn blue-btn wishlist-btn pop-login" action="{{url('/add-wishlist/2/'.$listing->id)}}"><i class="fa fa-heart-o"></i> Add to Wishlist</a>
+                  @endif
                 @endif
               </div>
               <div class="content">

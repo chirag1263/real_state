@@ -20,7 +20,7 @@
         <div class="col-md-6">
             <h2 class="page-title">Personal Information</h2>
             <ul class="list-group">
-                <li class="list-group-item"><strong>Name :</strong> {{Auth::user()->name}}</li>
+                <li class="list-group-item"><strong>Name :</strong> {{Auth::user()->first_name}} {{Auth::user()->last_name}}</li>
                 <li class="list-group-item"><strong>Email :</strong> {{Auth::user()->username}}</li>
             </ul>
             <!-- change password -->

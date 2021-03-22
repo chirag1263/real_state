@@ -41,9 +41,21 @@ class UserController extends Controller {
 		if($validator->passes()){
 
 			if(Auth::attempt($cre)){
-                return Redirect::to('/dashboard');
+                if(Input::has('call_url')){
+                    $data['call_url'] = Input::get('call_url');
+                    $data['success'] = true;
+                }else{
+                    return Redirect::to('/dashboard');
+                }
 			}else{
-				return Redirect::back()->with('failure','Invalid username or password');
+                if(Input::has('call_url')){
+                    $data['success'] = false;
+                    $data['message'] = 'Invalid username or password';
+                    return json_encode($data);
+                }else{
+
+				    return Redirect::back()->with('failure','Invalid username or password');
+                }
 			}
 
 		}else{
@@ -51,7 +63,12 @@ class UserController extends Controller {
 			$data['message'] = $validator->errors()->first();
 		}
 
-		return Redirect::back()->with('failure',$data["message"]);
+        if(Input::has('call_url')){
+            return json_encode($data);
+        }else{
+		  return Redirect::back()->with('failure',$data["message"]);
+
+        }
 	}
 
 	public function index(){
@@ -207,16 +224,100 @@ class UserController extends Controller {
         $sidebar = 'wishlist';
 
         if($type == 1){
-            $projects = Wishlist::select('projects.title','wishlist.*')->join('projects','projects.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
+            $projects = Wishlist::select('projects.title','projects.short_address','projects.cost','wishlist.*')->join('projects','projects.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
             return view('my_wishlist',compact('projects','sidebar'));
         }
 
         if($type == 2){
-            $listings = Wishlist::select('listings.title','wishlist.*')->join('listings','listings.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
+            $listings = Wishlist::select('listings.title','listings.short_address','listings.price','wishlist.*')->join('listings','listings.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
             return view('my_wishlist',compact('listings','sidebar'));
         }
 
 
     }
+
+    public function users()
+    {
+        if(Input::has('type')){
+            $type = Input::get('type');
+        }else{
+            $type = 2;
+        }
+        $sidebar = 'users';
+        $subsidebar = 'users';
+        $users = User::where('priv',$type)->get();
+
+        return view('users.list',compact('sidebar','subsidebar','users','type'));
+    }
+
+    public function settings()
+    {
+        
+        $sidebar = 'settings';
+        $subsidebar = 'settings';
+
+        return view('users.settings',compact('sidebar','subsidebar'));
+    }
+    public function editSettings()
+    {
+        
+        $sidebar = 'settings';
+        $subsidebar = 'settings';
+
+        return view('users.info',compact('sidebar','subsidebar'));
+    }
+
+    public function updateSettings()
+    {
+        
+        $cre = [
+            "first_name"=>Input::get("first_name"),
+        ];
+        
+        $rules = [
+            "first_name"=>"required",
+        ];
+
+        $validator = Validator::make($cre, $rules);
+        if($validator->passes()){
+
+            $user = User::find(Auth::id());
+            $user->first_name = Input::get("first_name");
+            $user->last_name = Input::get("last_name");
+            $user->phone = Input::get("phone");
+            $user->city = Input::get("city");
+            $user->state = Input::get("state");
+            $user->address = Input::get("address");
+
+            $user->state = Input::get("state");
+            
+
+            $destination = 'uploads/';
+            if(Input::hasFile('picture')){
+                $file = Input::file('picture');
+                $extension = Input::file('picture')->getClientOriginalExtension();
+                if(in_array(strtolower($extension),['jpg','jpeg','png','gif','bmp'])){
+
+                    $name_file = pathinfo(Input::file('picture')->getClientOriginalName(), PATHINFO_FILENAME);
+                    $name_file = preg_replace('/[^a-zA-Z0-9]/', '', $name_file);
+
+                    $name = 'pic_'.$name_file.'_'.strtotime("now").'.'.strtolower($extension);
+                    $file = $file->move($destination, $name);
+
+                    $user->picture = $destination.$name;
+
+                }else{
+                    return Redirect::back()->with('failure','Invalid file format ,please upload only jpeg or png file');
+                }
+            }
+
+            $user->save();
+
+            return Redirect::back()->with('success','Details is updated successfully');
+        }else{
+            return Redirect::back()->withInput()->withErrors($validator)->with('failure','Please fill all required fields');
+        }
+    }
+    
 	
 }

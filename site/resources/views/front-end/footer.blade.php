@@ -123,8 +123,38 @@
   </div>
 </div>
 
+
+<div id="loginModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-uppercase">Login</h4>
+      </div>
+      <div class="modal-body">
+          <form id="contact-form" class="ajax_update" method="post" action="{{url('user-login')}}">
+            <div class="row">
+              <input type="hidden" name="_token" value="{{csrf_token()}}">
+              <div class="col-md-6 pr-0">
+                <input type="email" name="username" placeholder="Username" required="true">
+              </div>
+              <div class="col-md-6">
+                <input type="password" name="password" placeholder="Password" required="true">
+              </div>
+            </div>
+            <input type="hidden" name="call_url" value="">
+            <button type="submit" class="submit-btn-1">Login</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script type="text/javascript">
   var base_url = "{{url('/')}}";
+  var auth = "{{(Auth::check())?1:0}}";
 </script>
 <!-- Body main wrapper end -->
 <!-- Placed js at the end of the document so the pages load faster -->

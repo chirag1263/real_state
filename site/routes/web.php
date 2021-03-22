@@ -51,6 +51,11 @@ Route::group(["middleware"=>["auth"]],function(){
 	Route::get('view-wishlist/{type}','FrontendController@viewWishlist');
 	
 	Route::get('/dashboard', 'DashboardController@index');
+	Route::get('/settings', 'UserController@settings');
+	Route::get('/edit-settings', 'UserController@editSettings');
+	
+	Route::post('/settings', 'UserController@updateSettings');
+
 	Route::get('/change-password', 'UserController@changePassword');
 	Route::post('/update-password', 'UserController@updatePassword');
 

@@ -62,7 +62,11 @@
                   @if(in_array($project->id , $wishlist))
                   <a class="green-btn blue-btn wishlist-btn pop_details" action="{{('/view-wishlist/1')}}"  href="javascript:;" data-title="View Wishlist"><i class="fa fa-heart"></i> View Wishlist</a>
                   @else
-                  <a class="green-btn blue-btn wishlist-btn " href="{{url('/add-wishlist/1/'.$project->id)}}"><i class="fa fa-heart-o"></i> Add to Wishlist</a>
+                    @if(Auth::check())
+                      <a class="green-btn blue-btn wishlist-btn" href="{{url('/add-wishlist/1/'.$project->id)}}"><i class="fa fa-heart-o"></i> Add to Wishlist</a>
+                    @else
+                      <a class="green-btn blue-btn wishlist-btn pop-login" action="{{url('/add-wishlist/1/'.$project->id)}}"><i class="fa fa-heart-o"></i> Add to Wishlist</a>
+                    @endif
                   @endif
               </div>
               <div class="content mb-3 text-justify">{{$project->description}}</div>

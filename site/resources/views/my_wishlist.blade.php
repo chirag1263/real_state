@@ -19,6 +19,8 @@
 				<tr>
 					<th>SN</th>
 					<th>Project Title</th>
+					<th>Address</th>
+					<th>Cost</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,6 +28,8 @@
 					<tr>
 						<td>{{$index+1}}</td>
 						<td><a href="{{url('project-details/'.$project->item_id)}}" target="_blank">{{$project->title}}</a></td>
+						<td>{{$project->short_address}}</td>
+						<td>{{$project->cost}}</td>
 
 					</tr>
 				@endforeach
@@ -46,6 +50,9 @@
 				<tr>
 					<th>SN</th>
 					<th>List Title</th>
+					<th>Address</th>
+					<th>Cost</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -53,6 +60,8 @@
 					<tr>
 						<td>{{$index+1}}</td>
 						<td><a href="{{url('listing-details/'.$list->item_id)}}" target="_blank">{{$list->title}}</a></td>
+						<td>{{$list->short_address}}</td>
+						<td>{{$list->cost}}</td>
 					</tr>
 				@endforeach
 			</tbody>

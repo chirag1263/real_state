@@ -7,7 +7,7 @@ use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use App\VisitHistory;
 class User extends Authenticatable
 {
 
@@ -69,35 +69,50 @@ class User extends Authenticatable
         return ["jpg","jpeg","png","JPG","JPEG","PNG","pdf","PDF","docs","ppt","PPT"];
     }
 
-    // public function getLink(){
-    //     return url("/profile/".$this->id);
-    // }
-
-    // public static function getLinkStatic($slug){
-    //     return url("/profile/".$slug);
-    // }
-
-    // public static function getPhoto($profile_pic){
-    //     if($profile_pic){
-    //         return url($profile_pic);
-    //     } else {
-    //         return url('front-end/img/default.png');
-    //     }
-    // }
-
-    // public static function getCompany($user_id){
-    //     return DB::table("companies")->where("added_by",$user_id)->first();
-    // }
-
-    // public static function getCompanyName($user_id){
-    //     $company_name = DB::table("companies")->where("added_by",$user_id)->limit(1)->pluck('company_name');
-    //     return $company_name[0];
-    // }
-
-    // public static function getCompanyLogo($user_id){
-    //     $logo = DB::table("companies")->where("added_by",$user_id)->limit(1)->pluck('logo');
-    //     return url($logo[0]);
-    // }
+    
+    public static function dashboard($type)
+    {
+        $count = 0;
+        switch ($type) {
+            case 'agents':
+                $count = DB::table('users')->where('priv',2)->count();
+                break;
+            case 'users':
+                $count = DB::table('users')->where('priv',3)->count();
+                break;
+            case 'projects':
+                $count = DB::table('projects')->select('id')->count();
+                break;
+            case 'listings':
+                $count = DB::table('listings')->select('id')->count();
+                break;
+            case 'wishlist-projects':
+                $count = DB::table('wishlist')->select('id')->where('type',1)->where('user_id',Auth::id())->count();
+                break;
+            case 'wishlist-listing':
+                $count = DB::table('wishlist')->select('id')->where('type',2)->where('user_id',Auth::id())->count();
+                break;
+            case 'history-listing':
+                $count = VisitHistory::select('cat.category_name','ls.feature_image','ls.id as list_id','ls.title','ls.price','ls.location','visit_history.*')
+                    ->join('listings as ls','ls.id','=','visit_history.entity_id')
+                    ->join('list_categories as cat','cat.id','=','ls.list_category_id')
+                    ->where('entity_type',2)->where('user_id',Auth::id())
+                    ->orderBy('updated_at','desc')
+                    ->take(5)
+                    ->get();
+                break;
+            case 'history-project':
+                $count = VisitHistory::select('pr.feature_image','pr.id as list_id','pr.title','pr.cost','pr.location','visit_history.*')
+                    ->join('projects as pr','pr.id','=','visit_history.entity_id')
+                    ->where('entity_type',1)->where('user_id',Auth::id())
+                    ->orderBy('updated_at','desc')
+                    ->take(5)
+                    ->get();
+                break;
+            
+        }
+        return $count;
+    }
 
 }
 

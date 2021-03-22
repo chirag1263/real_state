@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use Input,Redirect,Validator,Hash,Response,Session;
-use App\Project , App\User, App\Lists, App\Wishlist;
+use App\Project , App\User, App\Lists, App\Wishlist ,App\VisitHistory;
 
 class FrontendController extends Controller {
 
@@ -29,6 +29,7 @@ class FrontendController extends Controller {
 	public function listingDetails($listing_id){
 		$listings = Lists::listing()->get();
 		// dd($listings);
+		VisitHistory::create(2 , $listing_id);
 		$listing = Lists::select('listings.*','list_categories.category_name')->join('list_categories','list_categories.id','=','listings.list_category_id')->where('listings.id',$listing_id)->first();
 		if($listing){
 			$listing->highlights = DB::table("list_highlights")->where('list_id',$listing->id)->get();
@@ -51,6 +52,8 @@ class FrontendController extends Controller {
 	public function projectDetails($project_id){
 		$projects = Project::get();
 		$project = Project::find($project_id);
+		VisitHistory::create(1 , $project_id);
+
 		if($project){
 			$project->highlights = DB::table("project_highlights")->where('project_id',$project->id)->get();
 			$project->specifications = DB::table("project_specifications")->where('project_id',$project->id)->get();
@@ -167,12 +170,12 @@ class FrontendController extends Controller {
 	{
 		
 		if($type == 1){
-			$projects = Wishlist::select('projects.title','wishlist.*')->join('projects','projects.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
+			$projects = Wishlist::select('projects.title','projects.cost','projects.short_address','wishlist.*')->join('projects','projects.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
 			$data['message'] = html_entity_decode(view('front-end.wishlist',compact('projects')));
 		}
 
 		if($type == 2){
-			$listings = Wishlist::select('listings.title','wishlist.*')->join('listings','listings.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
+			$listings = Wishlist::select('listings.title','listings.short_address','listings.price','wishlist.*')->join('listings','listings.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
 			$data['message'] = html_entity_decode(view('front-end.wishlist',compact('listings')));
 		}
 		$data['success'] = true;
