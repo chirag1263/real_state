@@ -18,14 +18,15 @@
   </div>
 </div>
 <!-- BREADCRUMBS AREA END -->
-@if(Session::has('success'))
-<div class="alert alert-success">{{Session::get('success')}}</div>
-@endif
+
 <!-- Start page content -->
 <section id="page-content" class="page-wrapper">
   <!-- LISTING DETAILS AREA START -->
   <div class="properties-details-area pt-115 pb-60">
     <div class="container">
+      @if(Session::has('success'))
+      <div class="alert alert-success mb-30">{{Session::get('success')}}</div>
+      @endif
       <div class="row">
         <div class="col-lg-8">
           <!-- pro-details-image -->
@@ -140,6 +141,7 @@
                   <div class="flat-link">
                     <a href="{{url('listing-details/'.$row->id)}}">More Details</a>
                   </div>
+                </div>
                 <div class="flat-item-info">
                   <div class="flat-title-price">
                     <h5><a href="{{url('listing-details/'.$row->id)}}">{{$row->title}}</a></h5>
@@ -149,8 +151,7 @@
                 </div>
               </div>
             </div>
-          @endforeach
-                
+          @endforeach   
         </div>
       </div>
     </div>

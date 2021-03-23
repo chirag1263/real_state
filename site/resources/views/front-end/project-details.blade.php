@@ -13,14 +13,14 @@
   </div>
 </div>
 <!-- BREADCRUMBS AREA END -->
-@if(Session::has('success'))
-<div class="alert alert-success">{{Session::get('success')}}</div>
-@endif
 <!-- Start page content -->
 <section id="page-content" class="page-wrapper">
   <!-- PROJECT DETAILS AREA START -->
   <div class="properties-details-area pt-115 pb-60">
     <div class="container">
+      @if(Session::has('success'))
+      <div class="alert alert-success mb-30">{{Session::get('success')}}</div>
+      @endif
       <div class="row">
         <div class="col-lg-8">
           <!-- pro-details-image -->
@@ -173,7 +173,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title text-uppercase"></h4>
+        <h4 class="modal-title text-uppercase"> Enquire Now</h4>
       </div>
       <div class="modal-body">
         <form id="contact-form" method="post" action="{{url('enquire/1/'.$project->id)}}">

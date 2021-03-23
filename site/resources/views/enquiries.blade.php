@@ -15,8 +15,8 @@
 	<thead>
 		<tr>
 			<th>SN</th>
-			<th>Title</th>
-			<th>User</th>
+			<th>{{(Input::get('type') == 1)?'Project':'Listing'}} Name</th>
+			<th>Name</th>
 			<th>Email</th>
 			<th>Mobile</th>
 			<th>Message</th>

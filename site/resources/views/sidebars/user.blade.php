@@ -1,15 +1,16 @@
+<div class="text-center">
+  @if(Auth::user()->picture)
+    <img src="{{url(Auth::user()->picture)}}" class="img-circle" style="width:100%;max-width:100px;border: 2px solid #fff;padding: 5px;">
+  @else
+    <img class="img-circle" src="{{url('assets/admin/img/avatar-big.jpg')}}" style="width:100%;max-width:100px;border: 2px solid #fff;padding: 5px;">
+  @endif
+  <h5 class="text-uppercase" style="color:#fff;"><b>{{Auth::user()->first_name}} {{Auth::user()->last_name}}</b></h5>
+  <hr style="width:50px;margin:0 auto 30px auto;">
+</div>
 <li class="nav-item start {{($sidebar=='dashboard')?'active':''}}">
   <a href="{{url('/dashboard')}}" class="nav-link ">
     <i class="icon-home"></i>
     <span class="title">Dashboard</span>
-    <span class="selected"></span>
-  </a>
-</li>
-
-<li class="nav-item start {{($sidebar=='')?'active':''}}">
-  <a href="{{url('/')}}" class="nav-link ">
-    <i class="fa fa-cogs"></i>
-    <span class="title">Go To Website</span>
     <span class="selected"></span>
   </a>
 </li>
@@ -102,19 +103,19 @@
 <li class="nav-item start {{($sidebar=='settings')?'active':''}}">
   <a href="{{url('/settings')}}" class="nav-link ">
     <i class="fa fa-cogs"></i>
-    <span class="title">Settings</span>
+    <span class="title">My Profile</span>
     <span class="selected"></span>
   </a>
 </li>
 
 
-<li class="nav-item start {{($sidebar=='change-password')?'active':''}}">
+<!-- <li class="nav-item start {{($sidebar=='change-password')?'active':''}}">
   <a href="{{url('/change-password')}}" class="nav-link ">
     <i class="fa fa-cogs"></i>
     <span class="title">Change Password</span>
     <span class="selected"></span>
   </a>
-</li>
+</li> -->
 
 
 

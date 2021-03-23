@@ -7,7 +7,7 @@
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8"/>
-<title>RealState</title>
+<title>Login - Rishikesh Real Estate</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -32,7 +32,6 @@
   <div class="logo">
     
   </div>
-
   <div class="content">
     <!-- BEGIN LOGIN FORM -->
     {{ Form::open(array('url' => '/login','class' => 'login-form',"method"=>"POST")) }}
@@ -41,7 +40,10 @@
           <i class="fa fa-ban-circle"></i><strong>Failure!</strong> {{Session::get('failure')}}
         </div>
     @endif
-      <h3 class="form-title">Login to your account</h3>
+      <div class="img text-center">
+        <img src="{{url('assets/admin/img/logo.png')}}" style="width:100px;height:auto;padding-top: 20px;">
+      </div>
+      <h3 class="form-title">LOGIN</h3>
       <div class="alert alert-danger display-hide">
         <button class="close" data-close="alert"></button>
         <span>
@@ -52,7 +54,7 @@
         <label class="control-label visible-ie8 visible-ie9">Username</label>
         <div class="input-icon">
           <i class="fa fa-user"></i>
-          {{Form::text('username','',["class"=>"form-control placeholder-no-fix","autocomplete"=>"off"])}}
+          {{Form::text('username','',["class"=>"form-control placeholder-no-fix","autocomplete"=>"off", "placeholder"=>"Username or Email", "required"])}}
           <span class="error">{{$errors->first('username')}}</span>
         </div>
       </div>
@@ -60,12 +62,13 @@
         <label class="control-label visible-ie8 visible-ie9">Password</label>
         <div class="input-icon">
           <i class="fa fa-lock"></i>
-          {{Form::password('password',["class"=>"form-control"])}}
+          {{Form::password('password',["class"=>"form-control", "placeholder"=>"Password", "required"])}}
         </div>
       </div>
+      <p><a href="javascript:;">Forgot Password?</a></p>
       <div class="form-actions">
         <button type="submit" class="btn blue pull-right">
-        Login <i class="m-icon-swapright m-icon-white"></i>
+        Login &nbsp; <i class="m-icon-swapright m-icon-white"></i>
         </button>
       </div>
 

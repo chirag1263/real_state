@@ -67,8 +67,7 @@
                 @if(!Auth::check())
                 <a class="green-btn" href="{{url('user-login')}}">User Login</a> &nbsp; <a class="green-btn blue-btn" href="{{url('/agent-login')}}">Agent Login</a>
                 @else
-                  <span>{{Auth::user()->first_name}} {{Auth::user()->last_name}}</span>
-                  <a class="green-btn" href="{{url('/logout')}}">Logout</a>                    
+                  <a class="green-btn blue-btn" href="{{url('/dashboard')}}">My Account</a> &nbsp; <a class="green-btn" href="{{url('/logout')}}">Logout</a>                    
                 @endif
               </div>
             </div>
@@ -109,8 +108,7 @@
                   @if(!Auth::check())
                     <a class="green-btn" href="{{url('/user-login')}}">User Login</a> <a class="green-btn blue-btn" href="{{url('/agent-login')}}">Agent Login</a>
                   @else
-                    <span>{{Auth::user()->first_name}} {{Auth::user()->last_name}}</span>
-                    <a class="green-btn" href="{{url('/logout')}}">Logout</a>                    
+                    <a class="green-btn blue-btn" href="{{url('/dashboard')}}">My Account</a> &nbsp; <a class="green-btn" href="{{url('/logout')}}">Logout</a>                    
                   @endif
                 </div>
               </div>

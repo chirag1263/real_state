@@ -398,14 +398,14 @@
 
   .price {
     font-family: 'Cairo', sans-serif;
-    font-size: 22px;
+    font-size: 19px;
     font-weight: 400;
     color: #95C41F;
   }
 
   .flat-title-price .price {
     line-height: 1;
-    font-weight: 800;
+    font-weight: 600;
     float: right;
   }
 
@@ -2121,14 +2121,15 @@ a.green {
 a.green:hover {
   color: #1f223e;
 }
-.green-btn {
+.green-btn, a.green-btn:not([href]):not([tabindex]) {
   background: #95C41F;
   color: #fff;
   padding: 5px 15px;
   font-size: 14px;
   text-transform: uppercase;
+  cursor: pointer;
 }
-a.green-btn:hover {
+a.green-btn:not([href]):not([tabindex]), a.green-btn:hover {
   background: #1f223e;
   color: #fff;
 }
