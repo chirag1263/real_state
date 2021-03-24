@@ -70,7 +70,6 @@
                   @endif
               </div>
               <div class="content mb-3 text-justify">{{$project->description}}</div>
-              
               <div class="pdf-download">
                 <i><a class="green" href="{{url($project->brochure)}}" target="_blank"> <i class="fa fa-arrow-circle-right"></i> Click here</a> to download PDF presentation.</i>
               </div>
@@ -78,60 +77,87 @@
           </aside>
         </div>
       </div>
-      <div class="listing-more-details elements-tab">
-        <h5 class="text-uppercase">More Details:</h5>
-        <hr class="mt-15">
-        <div class="tab">
-          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active show" id="pills-one" data-toggle="pill" href="#pills-one-tab" role="tab" aria-controls="pills-one" aria-selected="false">Specifications</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="pills-two" data-toggle="pill" href="#pills-two-tab" role="tab" aria-controls="pills-two" aria-selected="false">Site Plan</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="pills-three" data-toggle="pill" href="#pills-three-tab" role="tab" aria-controls="pills-three" aria-selected="false">Location Plan</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="pills-four" data-toggle="pill" href="#pills-four-tab" role="tab" aria-controls="pills-four" aria-selected="false">Payment Plan</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="pills-five" data-toggle="pill" href="#pills-five-tab" role="tab" aria-controls="pills-five" aria-selected="true">Highlights</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade active show" id="pills-one-tab" role="tabpanel" aria-labelledby="pills-one">
-              <ul>
-                @foreach($project->specifications as $row)
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; {{$row->specification}}
+      <div class="row">
+        <div class="col-md-9">
+          <div class="listing-more-details elements-tab">
+            <h5 class="text-uppercase">More Details:</h5>
+            <hr class="mt-15">
+            <div class="tab">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active show" id="pills-one" data-toggle="pill" href="#pills-one-tab" role="tab" aria-controls="pills-one" aria-selected="false">Specifications</a>
                 </li>
-                @endforeach
-              </ul>
-            </div>
-            <div class="tab-pane fade" id="pills-two-tab" role="tabpanel" aria-labelledby="pills-two">
-              <div class="text-center">
-                <img class="img-fluid" src="{{url($project->site_plan)}}">
-              </div>
-            </div>
-            <div class="tab-pane fade" id="pills-three-tab" role="tabpanel" aria-labelledby="pills-three">
-              <div class="text-center">
-                <img class="img-fluid" src="{{url($project->location_map)}}">
-              </div>
-            </div>
-            <div class="tab-pane fade" id="pills-four-tab" role="tabpanel" aria-labelledby="pills-four">
-              <div class="content">
-                {!! $project->payment_plan !!}
-              </div>
-            </div>
-            <div class="tab-pane fade" id="pills-five-tab" role="tabpanel" aria-labelledby="pills-five">
-              <ul>
-                @foreach($project->highlights as $row)
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; {{$row->highlight}}
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-two" data-toggle="pill" href="#pills-two-tab" role="tab" aria-controls="pills-two" aria-selected="false">Site Plan</a>
                 </li>
-                @endforeach
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-three" data-toggle="pill" href="#pills-three-tab" role="tab" aria-controls="pills-three" aria-selected="false">Location Plan</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-four" data-toggle="pill" href="#pills-four-tab" role="tab" aria-controls="pills-four" aria-selected="false">Payment Plan</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-five" data-toggle="pill" href="#pills-five-tab" role="tab" aria-controls="pills-five" aria-selected="true">Highlights</a>
+                </li>
               </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade active show" id="pills-one-tab" role="tabpanel" aria-labelledby="pills-one">
+                  <ul>
+                    @foreach($project->specifications as $row)
+                    <li>
+                      <i class="fa fa-check-square-o"></i> &nbsp; {{$row->specification}}
+                    </li>
+                    @endforeach
+                  </ul>
+                </div>
+                <div class="tab-pane fade" id="pills-two-tab" role="tabpanel" aria-labelledby="pills-two">
+                  <div class="text-center">
+                    <img class="img-fluid" src="{{url($project->site_plan)}}">
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="pills-three-tab" role="tabpanel" aria-labelledby="pills-three">
+                  <div class="text-center">
+                    <img class="img-fluid" src="{{url($project->location_map)}}">
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="pills-four-tab" role="tabpanel" aria-labelledby="pills-four">
+                  <div class="content">
+                    {!! $project->payment_plan !!}
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="pills-five-tab" role="tabpanel" aria-labelledby="pills-five">
+                  <ul>
+                    @foreach($project->highlights as $row)
+                    <li>
+                      <i class="fa fa-check-square-o"></i> &nbsp; {{$row->highlight}}
+                    </li>
+                    @endforeach
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="border p-3">
+            <h4>Seller Description:</h4>
+            <div class="table-div">
+              <div class="img">
+                <img src="{{url('frontend/images/avatar/1.')}}jpg" class="img-fluid img-circle">
+              </div>
+              <div class="txt">
+                <h5 class="mb-0">Seller Name</h5>
+                <div class="rating">
+                  <small>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                  </small> &nbsp;(4.0)
+                </div>
+
+              </div>
             </div>
           </div>
         </div>

@@ -89,36 +89,63 @@
           </aside>
         </div>
       </div>
-      <div class="listing-more-details elements-tab">
-        <h5 class="text-uppercase">More Details:</h5>
-        <hr class="mt-15">
-        <div class="tab">
-          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active show" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Highlights</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Specifications</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade active show" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-              <ul>
-                @foreach($listing->highlights as $row)
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; {{$row->highlight}}
+      <div class="row">
+        <div class="col-md-9">
+          <div class="listing-more-details elements-tab">
+            <h5 class="text-uppercase">More Details:</h5>
+            <hr class="mt-15">
+            <div class="tab">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active show" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Highlights</a>
                 </li>
-                @endforeach
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Specifications</a>
+                </li>
               </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade active show" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                  <ul>
+                    @foreach($listing->highlights as $row)
+                    <li>
+                      <i class="fa fa-check-square-o"></i> &nbsp; {{$row->highlight}}
+                    </li>
+                    @endforeach
+                  </ul>
+                </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                  <ul>
+                    @foreach($listing->specifications as $row)
+                    <li>
+                      <i class="fa fa-check-square-o"></i> &nbsp; {{$row->specification}}
+                    </li>
+                    @endforeach
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-              <ul>
-                @foreach($listing->specifications as $row)
-                <li>
-                  <i class="fa fa-check-square-o"></i> &nbsp; {{$row->specification}}
-                </li>
-                @endforeach
-              </ul>
+          </div>   
+        </div>
+        <div class="col-md-3">
+          <div class="border p-3">
+            <h4>Seller Description:</h4>
+            <div class="table-div">
+              <div class="img">
+                <img src="{{url('frontend/images/avatar/1.')}}jpg" class="img-fluid img-circle">
+              </div>
+              <div class="txt">
+                <h5 class="mb-0">Seller Name</h5>
+                <div class="rating">
+                  <small>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                  </small> &nbsp;(4.0)
+                </div>
+
+              </div>
             </div>
           </div>
         </div>

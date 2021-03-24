@@ -10,7 +10,6 @@
 	<li class="{{(Input::get('type') == 2)?'active':''}}"><a href="{{url('admin/enquiries?type=2')}}">Listings</a></li>
 </ul>
 
-
 <table class="table table-bordered">
 	<thead>
 		<tr>

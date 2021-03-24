@@ -2121,6 +2121,11 @@ a.green {
 a.green:hover {
   color: #1f223e;
 }
+.img-circle {
+  border-radius: 100%;
+  border: 1px solid;
+  padding: 5px;
+}
 .green-btn, a.green-btn:not([href]):not([tabindex]) {
   background: #95C41F;
   color: #fff;
@@ -2149,6 +2154,15 @@ a.blue-btn:hover {
 .table-div>div {
   display: table-cell;
   vertical-align: middle;
+}
+.table-div>div.top {
+  vertical-align: top;
+}
+.table-div>div.img {
+  width: 25%;
+}
+.table-div>div.txt {
+  padding-left: 10px;
 }
 .listing-description h3 {
   font-weight: 600;
