@@ -7,16 +7,45 @@ use App\LC,App\Lists;
 class ListingController extends Controller {
 
   public function index(){
-    $listings = Lists::listing();
-    if(Auth::user()->priv == 1){
-    }else{
-      $listings = $listings->where('added_by',Auth::id());
+    $sql = Lists::listing();
+    if(Auth::user()->priv != 1){
+      $sql =$sql->where('added_by',Auth::id());
     }
-    $listings  = $listings->get();
+
+
+    $total = $sql->count();
+    $max_per_page = 100;
+    $total_pages = ceil($total/$max_per_page);
+    if(Input::has('page')){
+      $page_id = Input::get('page');
+    } else {
+      $page_id = 1;
+    }
+
+    $input_string = 'admin/listings?';
+    $count_string = 0;
+    foreach (Input::all() as $key => $value) {
+      if($key != 'page'){
+        $input_string .= ($count_string == 0)?'':'&';
+        $input_string .= $key.'='.$value;
+        $count_string++;
+      }
+    }
+
+    if(Input::has('exportExcel') && Input::get('exportExcel') == 1){
+
+      $listings = $sql->get();
+    }else{
+
+      $listings = $sql->skip(($page_id-1)*$max_per_page)->take($max_per_page)->get();
+    }
+
     $sidebar = "listings";
     $subsidebar = "listings-list";
-    return view('listings.index',compact('sidebar','subsidebar' , 'listings'));
+    return view('listings.index',['sidebar'=>$sidebar,'subsidebar'=>$subsidebar,"listings"=>$listings,'flag'=>1,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ]);
   }
+
+  
 
   public function init(){
     $list = Lists::find(Input::get('list_id'));

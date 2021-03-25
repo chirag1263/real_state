@@ -142,7 +142,7 @@
                 <div class="flat-title-price">
                   <h5><a href="{{url('project-details/'.$project->id)}}">{{$project->title}} </a></h5>
                 </div>
-                <p><img src="{{url('frontend/images/icons/location.png')}}" alt="">{{$project->short_address}}</p>
+                <p><img src="{{url('frontend/images/icons/location.png')}}" alt="">{{$project->location}}</p>
               </div>
             </div>
           </div>

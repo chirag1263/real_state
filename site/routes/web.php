@@ -19,6 +19,9 @@ Route::get('/logout',function(){
 	return Redirect::to('/');
 });
 
+Route::get('/forget-password', 'UserController@forgetPassword');
+Route::post('/forget-password', 'UserController@postForgetPassword');
+
 Route::get('services','FrontendController@services');
 Route::get('listings','FrontendController@listings');
 Route::get('listing-details/{list_id}','FrontendController@listingDetails');

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Input,Redirect,Validator,Hash,Response,Session;
-use App\User,DB,App\Wishlist;
+use App\User,DB,App\Wishlist,App\MailQueue;
 
 
 class UserController extends Controller {
@@ -317,6 +317,38 @@ class UserController extends Controller {
         }else{
             return Redirect::back()->withInput()->withErrors($validator)->with('failure','Please fill all required fields');
         }
+    }
+
+    public function forgetPassword(){
+        return view('forget-password');
+    }
+
+    public function postForgetPassword(Request $request){
+        $validator = Validator::make(["email"=>$request->email],["email"=>"required|email"]);
+        if($validator->fails()){
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        
+        $user = User::where('email',$request->email)->first();
+        
+        if(!$user){
+            return Redirect::back()->withErrors($validator)->withInput()->with('failure','No user found with this email id');
+        }
+
+        $rand_pwd = User::getRandPassword();
+        
+        $user->password = Hash::make($rand_pwd);
+        $user->check_password = $rand_pwd;
+        $user->save();
+
+        $mail = new MailQueue;
+        $mail->mailto = $user->email;
+        $mail->subject = "Realstate - Reset Password";
+        $mail->content = view('mails',["user"=>$user , "type"=>"password_reset"]);
+        $mail->save();
+
+        return Redirect::to('/forget-password')->with('success','New password has been sent to your registered email id');
+
     }
     
 	

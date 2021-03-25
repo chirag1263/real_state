@@ -42,15 +42,47 @@
             </div>
           @endforeach
         </div>  
+        @if(isset($total))
         <!-- pagination-area -->
+        <?php
+          $max_page = $page_id + 9;
+          if($max_page > $total_pages) $max_page = $total_pages;
+
+          $first_page = $page_id - 1;
+          if($first_page <= 0) $first_page = $page_id;
+        ?>
         <div class="pagination-area mt-50 mb-60">
           <ul class="pagination-list text-center">
-            <li><a href="javascript:;"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
-            <li><a href="javascript:;">1</a></li>
-            <li><a href="javascript:;">2</a></li>
-            <li><a href="javascript:;"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+              <li>
+                <a  href="{{url($input_string.'&page=1')}}"><i class="fa fa-angle-double-left"></i></a>
+              </li>
+              @if($page_id >= 3)
+              <li>
+                <a href="{{url($input_string.'&page='.($page_id - 2))}}"><i class="fa fa-angle-left"></i></a>
+              </li>
+              @endif
+              @for($x = $first_page ; $x <= $max_page; $x++  )
+                <li>
+                  @if($x != $page_id )
+                    <a  class="@if($page_id == $x) active @endif" href="{{url($input_string.'&page='.$x)}}">{{$x}}</a>
+                  @else
+                    <a  class="@if($page_id == $x) active @endif" href="javascript:;"><b>{{$x}}</b></a>
+                  @endif
+                </li>
+              @endfor
+
+              @if($x < $total_pages)
+                <li>
+                  <a  href="{{url($input_string.'&page='.$x)}}"><i class="fa fa-angle-right"></i></a>
+                </li>
+              @endif
+              <li>
+                <a  href="{{url($input_string.'&page='.$total_pages)}}"><i class="fa fa-angle-double-right"></i></a>
+              </li>
+
           </ul>
         </div>
+        @endif
       </div>
     </div>
   </div>

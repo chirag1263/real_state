@@ -65,7 +65,7 @@
           {{Form::password('password',["class"=>"form-control", "placeholder"=>"Password", "required"])}}
         </div>
       </div>
-      <p><a href="javascript:;">Forgot Password?</a></p>
+      <p><a href="{{url('forget-password')}}">Forgot Password?</a></p>
       <div class="form-actions">
         <button type="submit" class="btn blue pull-right">
         Login &nbsp; <i class="m-icon-swapright m-icon-white"></i>

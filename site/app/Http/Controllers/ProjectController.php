@@ -8,14 +8,42 @@ class ProjectController extends Controller {
 
 
   public function index(){
-    $projects = Project::select('projects.*');
+    $sql = Project::select('projects.*');
     if(Auth::user()->priv != 1){
-      $projects =$projects->where('added_by',Auth::id());
+      $sql =$sql->where('added_by',Auth::id());
     }
-    $projects =$projects->get();
+
+
+    $total = $sql->count();
+    $max_per_page = 100;
+    $total_pages = ceil($total/$max_per_page);
+    if(Input::has('page')){
+      $page_id = Input::get('page');
+    } else {
+      $page_id = 1;
+    }
+
+    $input_string = 'admin/projects?';
+    $count_string = 0;
+    foreach (Input::all() as $key => $value) {
+      if($key != 'page'){
+        $input_string .= ($count_string == 0)?'':'&';
+        $input_string .= $key.'='.$value;
+        $count_string++;
+      }
+    }
+
+    if(Input::has('exportExcel') && Input::get('exportExcel') == 1){
+
+      $projects = $sql->get();
+    }else{
+
+      $projects = $sql->skip(($page_id-1)*$max_per_page)->take($max_per_page)->get();
+    }
+
     $sidebar = "projects";
     $subsidebar = "projects-project";
-    return view('projects.index',compact('sidebar','subsidebar' , 'projects'));
+    return view('projects.index',['sidebar'=>$sidebar,'subsidebar'=>$subsidebar,"projects"=>$projects,'flag'=>1,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ]);
   }
 
   public function init(){

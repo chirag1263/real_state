@@ -37,7 +37,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="text" name="username" placeholder="Email Address" required>
                 <input type="password" name="password" placeholder="Password" required>
-                <p><small><a href="#">Forgot Password?</a></small></p>
+                <p><small><a href="{{url('forget-password')}}">Forgot Password?</a></small></p>
                 <button class="submit-btn-1" type="submit">Login</button>
               </div>
             </form>

@@ -27,3 +27,23 @@ CREATE TABLE `enquiries` ( `id` INT NOT NULL AUTO_INCREMENT , `type` INT NOT NUL
 CREATE TABLE `visit_history` ( `id` INT NOT NULL AUTO_INCREMENT , `entity_type` INT NOT NULL , `entity_id` INT NOT NULL , `user_id` INT NOT NULL , `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `visit_count` INT NOT NULL DEFAULT '0' , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 ALTER TABLE `users` ADD `picture` TEXT NULL DEFAULT NULL AFTER `state`;
+
+
+CREATE TABLE `mail_queue` (
+  `id` int(11) NOT NULL,
+  `mailto` text COLLATE latin1_general_ci NOT NULL,
+  `mailcc` text COLLATE latin1_general_ci NOT NULL,
+  `mailbcc` text COLLATE latin1_general_ci NOT NULL,
+  `subject` text COLLATE latin1_general_ci NOT NULL,
+  `content` text COLLATE latin1_general_ci NOT NULL,
+  `solved` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+ALTER TABLE `mail_queue`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `mail_queue`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;

@@ -31,16 +31,16 @@
         <div class="col-lg-8">
           <!-- pro-details-image -->
           <div class="pro-details-image mb-60">
-            <!-- <div class="pro-details-big-image">
-              <img class="w-100" src="{{url($listing->feature_image)}}">
-            </div> -->
+            
             <div class="pro-details-big-image">
               <div class="tab-content" id="pills-tabContent">
                 @foreach($listing->photos as $index => $photo)
                   <div class="tab-pane fade show {{$index+1 == 1 ?'active':''}}" id="pro-{{$index+1}}" role="tabpanel" aria-labelledby="pro-{{$index+1}}-tab">
-                    <a href="{{url($photo->photo)}}" data-lightbox="image-{{$index+1}}" data-title="Listings - {{$index+1}}">
-                      <img class="w-100" src="{{url($photo->photo)}}" alt="">
-                    </a>
+                      @if($photo->photo)
+                      <a href="{{url($photo->photo)}}" data-lightbox="image-{{$index+1}}" data-title="Listings - {{$index+1}}">
+                        <img class="w-100" src="{{url($photo->photo)}}" alt="">
+                      </a>
+                      @endif
                   </div>
                 @endforeach
               </div>
@@ -49,7 +49,11 @@
             <ul class="nav nav-pills pro-details-navs" id="pills-tab" role="tablist">
             @foreach($listing->photos as $index => $photo)
               <li class="nav-item">
-                <a class="nav-link {{$index+1 == 1 ?'active':''}}" id="pro-{{$index+1}}-tab" data-toggle="pill" href="#pro-{{$index+1}}" role="tab" aria-controls="pro-{{$index+1}}" aria-selected="true"><img src="{{url($photo->thumb)}}" alt=""></a>
+                @if($photo->thumb)
+                  <a class="nav-link {{$index+1 == 1 ?'active':''}}" id="pro-{{$index+1}}-tab" data-toggle="pill" href="#pro-{{$index+1}}" role="tab" aria-controls="pro-{{$index+1}}" aria-selected="true">
+                    <img src="{{url($photo->thumb)}}" alt="">
+                  </a>
+                @endif
               </li>
             @endforeach
             </ul>
@@ -89,6 +93,7 @@
           </aside>
         </div>
       </div>
+
       <div class="row">
         <div class="col-md-9">
           <div class="listing-more-details elements-tab">

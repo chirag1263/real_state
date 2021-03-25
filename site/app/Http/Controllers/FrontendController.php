@@ -23,8 +23,34 @@ class FrontendController extends Controller {
 		return view('front-end.services');
 	}
 	public function listings(){
-		$listings = Lists::join('list_categories','list_categories.id','=','listings.list_category_id')->get();
-		return view('front-end.listings', compact('listings'));
+		$sql = Lists::select('listings.*','list_categories.category_name')->join('list_categories','list_categories.id','=','listings.list_category_id');
+
+		$total = $sql->count();
+        $max_per_page = 8;
+        $total_pages = ceil($total/$max_per_page);
+        if(Input::has('page')){
+          $page_id = Input::get('page');
+        } else {
+          $page_id = 1;
+        }
+
+        $input_string = 'listings?';
+        $count_string = 0;
+        foreach (Input::all() as $key => $value) {
+          if($key != 'page'){
+            $input_string .= ($count_string == 0)?'':'&';
+            $input_string .= $key.'='.$value;
+            $count_string++;
+          }
+        }
+
+      	$listings = $sql->skip(($page_id-1)*$max_per_page)->take($max_per_page)->get();
+        
+
+		
+
+		return view('front-end.listings',["listings"=>$listings,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ]);
+
 	}
 	public function listingDetails($listing_id){
 		$listings = Lists::listing()->get();
@@ -39,15 +65,29 @@ class FrontendController extends Controller {
 		return view('front-end.listing-details', compact('listing','listings'));
 	}
 	public function projects(){
-		$projects = Project::get();
+		$sql = Project::select();
+		$total = $sql->count();
+        $max_per_page = 8;
+        $total_pages = ceil($total/$max_per_page);
+        if(Input::has('page')){
+          $page_id = Input::get('page');
+        } else {
+          $page_id = 1;
+        }
 
-		// foreach ($projects as $project) {
-		// 	$project->highlights = DB::table("project_highlights")->where('project_id',$project->id)->get();
-		// 	$project->specifications = DB::table("project_specifications")->where('project_id',$project->id)->get();
-		// 	$project->photos = DB::table("project_photos")->where('project_id',$project->id)->get();
-		// }
+        $input_string = 'projects?';
+        $count_string = 0;
+        foreach (Input::all() as $key => $value) {
+          if($key != 'page'){
+            $input_string .= ($count_string == 0)?'':'&';
+            $input_string .= $key.'='.$value;
+            $count_string++;
+          }
+        }
 
-		return view('front-end.projects',compact('projects'));
+      	$projects = $sql->skip(($page_id-1)*$max_per_page)->take($max_per_page)->get();
+
+      	return view('front-end.projects',["projects"=>$projects,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ]);
 	}
 	public function projectDetails($project_id){
 		$projects = Project::get();
