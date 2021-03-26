@@ -55,7 +55,7 @@
         <div class="pagination-area mt-50 mb-60">
           <ul class="pagination-list text-center">
               <li>
-                <a  href="{{url($input_string.'&page=1')}}"><i class="fa fa-angle-double-left"></i></a>
+                <a  href="{{url($input_string.'&page=1')}}"><i class="fa fa-angle-left"></i></a>
               </li>
               @if($page_id >= 3)
               <li>
@@ -78,7 +78,7 @@
                 </li>
               @endif
               <li>
-                <a  href="{{url($input_string.'&page='.$total_pages)}}"><i class="fa fa-angle-double-right"></i></a>
+                <a  href="{{url($input_string.'&page='.$total_pages)}}"><i class="fa fa-angle-right"></i></a>
               </li>
 
           </ul>

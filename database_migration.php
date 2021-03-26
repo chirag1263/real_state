@@ -28,7 +28,7 @@ CREATE TABLE `visit_history` ( `id` INT NOT NULL AUTO_INCREMENT , `entity_type` 
 
 ALTER TABLE `users` ADD `picture` TEXT NULL DEFAULT NULL AFTER `state`;
 
-
+// 26 March 
 CREATE TABLE `mail_queue` (
   `id` int(11) NOT NULL,
   `mailto` text COLLATE latin1_general_ci NOT NULL,

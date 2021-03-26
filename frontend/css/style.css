@@ -987,14 +987,17 @@
     text-align: center;
     color: #606060;
     border-radius: 50%;
-    background: #F5F5F5 none repeat scroll 0 0;
+    background: #eee none repeat scroll 0 0;
   }
 
   .pagination-list>li a i {
     font-weight: 700;
     line-height: 40px;
   }
-
+  .pagination-list>li a.active {
+    /*color: #FFF;*/
+    background: #ccc none repeat scroll 0 0;
+  }
   .pagination-list>li a:hover {
     color: #FFF;
     background: #95C41F none repeat scroll 0 0;
