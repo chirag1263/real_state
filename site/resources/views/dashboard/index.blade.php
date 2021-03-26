@@ -131,21 +131,21 @@
 
 					@foreach($projects as $project)
 					<div class="col-lg-3 col-md-6 col-12">
-            <div class="flat-item">
-              <div class="flat-item-image">
-                <a href="{{url('project-details/'.$project->id)}}"><img src="{{url($project->feature_image)}}" alt=""></a>
-                <div class="flat-link">
-                  <a href="{{url('project-details/'.$project->id)}}">More Details</a>
-                </div>
-              </div>
-              <div class="flat-item-info">
-                <div class="flat-title-price">
-                  <h5><a href="{{url('project-details/'.$project->id)}}">{{$project->title}} </a></h5>
-                </div>
-                <p><img src="{{url('frontend/images/icons/location.png')}}" alt="">{{$project->location}}</p>
-              </div>
-            </div>
-          </div>
+			            <div class="flat-item">
+			              <div class="flat-item-image">
+			                <a href="{{url('project-details/'.$project->id)}}"><img src="{{url($project->feature_image)}}" alt=""></a>
+			                <div class="flat-link">
+			                  <a href="{{url('project-details/'.$project->id)}}">More Details</a>
+			                </div>
+			              </div>
+			              <div class="flat-item-info">
+			                <div class="flat-title-price">
+			                  <h5><a href="{{url('project-details/'.$project->id)}}">{{$project->title}} </a></h5>
+			                </div>
+			                <p><img src="{{url('frontend/images/icons/location.png')}}" alt="">{{$project->location}}</p>
+			              </div>
+			            </div>
+			        </div>
 					@endforeach
 				</div>
 			</div>

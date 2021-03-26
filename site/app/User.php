@@ -98,7 +98,7 @@ class User extends Authenticatable
                     ->join('list_categories as cat','cat.id','=','ls.list_category_id')
                     ->where('entity_type',2)->where('user_id',Auth::id())
                     ->orderBy('updated_at','desc')
-                    ->take(5)
+                    ->take(4)
                     ->get();
                 break;
             case 'history-project':
@@ -106,7 +106,7 @@ class User extends Authenticatable
                     ->join('projects as pr','pr.id','=','visit_history.entity_id')
                     ->where('entity_type',1)->where('user_id',Auth::id())
                     ->orderBy('updated_at','desc')
-                    ->take(5)
+                    ->take(4)
                     ->get();
                 break;
             

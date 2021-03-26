@@ -194,7 +194,6 @@
                     </select>
                   </div>
                 </div>
-                <input type="password" placeholder="Password" name="password" required>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" name="agree_terms" required> &nbsp; I agree to all the <a href="javascript:;">Terms & Conditions</a>

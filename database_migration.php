@@ -47,3 +47,8 @@ ALTER TABLE `mail_queue`
 ALTER TABLE `mail_queue`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
+
+
+CREATE TABLE `seller_reviews` ( `id` INT NOT NULL AUTO_INCREMENT , `seller_id` INT NOT NULL , `review` TEXT NULL DEFAULT NULL , `rating` INT NOT NULL , `added_by` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `seller_reviews` ADD `status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `added_by`;

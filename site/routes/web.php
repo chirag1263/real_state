@@ -43,6 +43,9 @@ Route::get('subscribe','FrontendController@subscribe');
 Route::get('adventure-activities','FrontendController@adventureActivities');
 Route::get('rishikesh-hotels','FrontendController@rishikeshHotels');
 
+Route::get('seller-details/{seller_id}','FrontendController@seller');
+Route::any('seller_review/{seller_id}','FrontendController@sellerReview');
+
 
 // Route::get('/','DashboardController@index');
 
@@ -104,6 +107,11 @@ Route::group(["middleware"=>["auth"]],function(){
 
 		Route::group(["prefix"=>"users"],function(){
 			Route::get('/','UserController@users');
+		});
+
+		Route::group(["prefix"=>"rating_reviews"],function(){
+			Route::get('/','UserController@ratings');
+			Route::delete('/approve/{id}','UserController@approveRating');
 		});
 
 		Route::group(["prefix"=>"enquiries"],function(){

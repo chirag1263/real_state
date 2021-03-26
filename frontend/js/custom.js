@@ -63,3 +63,21 @@ $(document).on('click','form.ajax_update button[type=submit]', function(e){
 	},"json");
     
 });
+
+$(document).on('click','.rating', function(e){
+	var btn = $(this);
+	var value = btn.attr('value');
+	var str = '';
+	for (var i = 1; i <= 5; i++) {
+		if(i <= value){
+			str += '<i class="fa fa-star rating" value="'+i+'"></i>';
+		}else{
+			str += '<i class="fa fa-star-o rating" value="'+i+'"></i>';
+		}
+	}
+	$("input[name=rating_value]").val(value);
+	$("#rating_div").html(str);
+    
+});
+
+
