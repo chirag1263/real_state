@@ -128,8 +128,8 @@ class FrontendController extends Controller {
 	public function adventureActivities(){
 		return view('front-end.adventure-activities');
 	}
-	public function rishkeshHotels(){
-		return view('front-end.rishkesh-hotels');
+	public function rishikeshHotels(){
+		return view('front-end.rishikesh-hotels');
 	}
 
 	public function userLogin()

@@ -1,5 +1,5 @@
 
-<footer id="footer" class="footer-area bg-2 bg-opacity-black-90">
+<footer id="footer" class="footer-area">
   <div class="footer-top pt-110 pb-80">
     <div class="container">
       <div class="row">
@@ -70,7 +70,7 @@
                     <li><a href="{{url('/calculator')}}"><i class="fa fa-angle-right"></i> Calculator</a></li>
                     <li><a href="{{url('/uttarakhand-education')}}"><i class="fa fa-angle-right"></i> Uttarakhand Education</a></li>
                     <li><a href="{{url('/yoga-meditation-in-rishikesh')}}"><i class="fa fa-angle-right"></i> Yoga & Meditation</a></li>
-                    <li><a href="{{url('/buying-tips')}}"><i class="fa fa-angle-right"></i> Subcribe</a></li>
+                    <li><a href="{{url('/subscribe')}}"><i class="fa fa-angle-right"></i> Subscribe</a></li>
                   </ul>
                 </div>
                 <div class="col-md-6">

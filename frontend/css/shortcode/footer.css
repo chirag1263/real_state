@@ -6,7 +6,7 @@
 }
 .footer-widget {}
 .footer-titel {
-  color: #fefefe;
+  color: #ccc;
   margin-bottom: 30px;
   text-transform: uppercase;
 }
@@ -35,7 +35,7 @@
 
 /*footer-latest-news*/
 .footer-widget .footer-menu ul li a {
-  color: #fff;
+  color: #999;
 }
 .footer-widget .footer-menu ul li a i {
   color: #95c41f;
@@ -65,7 +65,7 @@
   margin-bottom: 0;
 }
 .latest-news-info > h6 {
-  color: #fff;
+  color: #ccc;
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
@@ -139,7 +139,7 @@
 }
 /*copyright*/
 .footer-bottom {
-  background: rgba(23, 23, 23, 0.7) none repeat scroll 0 0;
+  /*background: rgba(23, 23, 23, 0.7) none repeat scroll 0 0;*/
   border-top: 1px solid #484848;
   padding: 20px 0;
 }
@@ -159,6 +159,6 @@
 .footer-contact textarea,
 .copyright > p {
   /*color: #919191;*/
-  color: #ccc;
+  color: #999;
 }
 

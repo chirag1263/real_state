@@ -35,6 +35,10 @@ a.green {
 a.green:hover {
   color: #1f223e;
 }
+ul.no-dots {
+  list-style-type: none;
+  padding-left: 0px;
+}
 .green-btn {
   background: #95C41F;
   color: #fff;
@@ -135,5 +139,8 @@ a.blue-btn:focus {
   top: 12px;
   right: 15px;
   font-size: 30px;
+}
+.footer-area {
+  background: #000;
 }
 /* End Custom CSS */

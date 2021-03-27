@@ -38,10 +38,11 @@ Route::post('user-login','UserController@postLogin');
 Route::get('buying-tips','FrontendController@buyingTips');
 Route::get('calculator','FrontendController@calculator');
 Route::get('uttarakhand-education','FrontendController@uttarakhandEducation');
-Route::get('yoga-mediation-in-rishikesh','FrontendController@yogaMediation');
+Route::get('yoga-meditation-in-rishikesh','FrontendController@yogaMeditation');
 Route::get('subscribe','FrontendController@subscribe');
-Route::get('adventure-activities','FrontendController@adventureActivities');
+Route::get('adventure-activities-in-rishikesh','FrontendController@adventureActivities');
 Route::get('rishikesh-hotels','FrontendController@rishikeshHotels');
+Route::get('legal-documents','FrontendController@legalDocuments');
 
 
 // Route::get('/','DashboardController@index');
