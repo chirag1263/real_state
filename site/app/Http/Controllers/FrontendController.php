@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use Input,Redirect,Validator,Hash,Response,Session;
-use App\Project , App\User, App\Lists, App\Wishlist ,App\VisitHistory;
+use App\Project , App\User, App\Lists, App\Wishlist ,App\VisitHistory,App\MailQueue;
 
 class FrontendController extends Controller {
 
@@ -55,7 +55,10 @@ class FrontendController extends Controller {
 	public function listingDetails($listing_id){
 		$listings = Lists::listing()->get();
 		// dd($listings);
-		VisitHistory::create(2 , $listing_id);
+		if(Auth::check()){
+
+			VisitHistory::create(2 , $listing_id);
+		}
 		$listing = Lists::select('listings.*','list_categories.category_name')->join('list_categories','list_categories.id','=','listings.list_category_id')->where('listings.id',$listing_id)->first();
 		if($listing){
 			$listing->highlights = DB::table("list_highlights")->where('list_id',$listing->id)->get();
@@ -92,7 +95,9 @@ class FrontendController extends Controller {
 	public function projectDetails($project_id){
 		$projects = Project::get();
 		$project = Project::find($project_id);
-		VisitHistory::create(1 , $project_id);
+		if(Auth::check()){
+			VisitHistory::create(1 , $project_id);
+		}
 
 		if($project){
 			$project->highlights = DB::table("project_highlights")->where('project_id',$project->id)->get();
@@ -144,11 +149,11 @@ class FrontendController extends Controller {
 
 	public function registerUser()
 	{
-		$cre = ["first_name"=>Input::get("first_name") , "email"=>Input::get("email") , "password"=>Input::get("password")];
-		$rules = ["first_name"=>"required" , "email"=>"required|unique:users" , "password"=>"required"];
+		$cre = ["first_name"=>Input::get("first_name") , "email"=>Input::get("email")];
+		$rules = ["first_name"=>"required" , "email"=>"required|unique:users"];
 		$validator = Validator::make($cre ,$rules);
 		if($validator->passes()){
-
+			$rand_pwd = User::getRandPassword();
 			$user = new User;
 			$user->first_name = Input::get('first_name');
 			$user->last_name = Input::get('last_name');
@@ -158,11 +163,15 @@ class FrontendController extends Controller {
 			$user->address = Input::get('address');
 			$user->city = Input::get('city');
 			$user->state = Input::get('state');
-			$user->password = Hash::make(Input::get('password'));
-			$user->check_password = Input::get('password');
+			$user->password = Hash::make($rand_pwd);
+			$user->check_password = $rand_pwd;
 			$user->priv = 3;
 			$user->save();
-			return Redirect::back()->with('success','You have successfully registered , Please login with your email and password');
+			$content = view('mails',["type"=>"registration","user"=>$user]);
+			MailQueue::createNew($user->email,'','','User Registration',$content);
+			
+
+			return Redirect::back()->with('success','You have successfully registered , Your login details has been sent to you registered mail id');
 		}else{
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
@@ -174,7 +183,7 @@ class FrontendController extends Controller {
 		$rules = ["first_name"=>"required" , "email"=>"required|unique:users" , "password"=>"required"];
 		$validator = Validator::make($cre ,$rules);
 		if($validator->passes()){
-
+			$rand_pwd = User::getRandPassword();
 			$user = new User;
 			$user->first_name = Input::get('first_name');
 			$user->last_name = Input::get('last_name');
@@ -184,12 +193,15 @@ class FrontendController extends Controller {
 			$user->address = Input::get('address');
 			$user->city = Input::get('city');
 			$user->state = Input::get('state');
-			$user->password = Hash::make(Input::get('password'));
-			$user->check_password = Input::get('password');
+			$user->password = Hash::make($rand_pwd);
+			$user->check_password = $rand_pwd;
 			$user->priv = 2;
 			$user->save();
 
-			return Redirect::back()->with('success','You have successfully registered , Please login with your email and password');
+			$content = view('mails',["type"=>"registration","user"=>$user]);
+			MailQueue::createNew($user->email,'','','Agent Registration',$content);
+
+			return Redirect::back()->with('success','You have successfully registered , Your login details has been sent to you registered mail id');
 
 		}else{
 			return Redirect::back()->withInput()->withErrors($validator);
@@ -236,5 +248,43 @@ class FrontendController extends Controller {
 		]);
 
 		return Redirect::back()->with('success','Your enquiry has been submitted successfully');
+	}
+
+	public function seller($seller_id)
+	{
+		$seller = User::find($seller_id);
+		if($seller){
+			$seller->reviews = DB::table('seller_reviews')->select('seller_reviews.*','users.first_name','users.last_name')
+				->join('users','users.id','=','seller_reviews.added_by')
+				->where('seller_id',$seller_id)->where('seller_reviews.status',1)->orderBy('seller_reviews.id','desc')->take(5)->get();
+
+			foreach ($seller->reviews as $row) {
+				$row->given_by = $row->first_name.' '.$row->last_name;
+			}
+			$seller->rating = DB::table('seller_reviews')->where('seller_id',$seller_id)->where('status',1)->avg("rating");
+		}
+
+		return view('front-end.seller',compact('seller'));
+	}
+
+	public function sellerReview($seller_id)
+	{
+		$cre = ["review"=>Input::get("review"),"rating_value"=>Input::get("rating_value")];
+		$rules = ["review"=>"required","rating_value"=>"required"];
+		$validator = Validator::make($cre , $rules);
+		if($validator->passes()){
+			$check = DB::table('seller_reviews')->where('seller_id',$seller_id)->where('added_by',Auth::id())->first();
+			if(!$check){
+
+				DB::table("seller_reviews")->insert(["seller_id"=>$seller_id,"review"=>Input::get('review'),"rating"=>Input::get('rating_value'),"added_by"=>Auth::id()]);
+				return Redirect::back()->with('success','Your ratings has been submitted successfully');
+			}else{
+
+				return Redirect::back()->with('failure','you have already given ratings to this seller')->withInput();
+			}
+
+		}else{
+			return Redirect::back()->with('failure',$validator->errors()->first())->withInput()->withErrors($validator);
+		}
 	}
 }

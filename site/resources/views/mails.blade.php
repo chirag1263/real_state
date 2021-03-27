@@ -16,5 +16,25 @@
 @endif
 
 
+
+@if($type == "registration")
+    <p>
+        Dear {{$user->name}},
+    </p>
+
+    <p>
+        Your profile is successfully created on Realstate  ,below is your login details, <br>
+        	<b>Username - {{$user->username}}</b> <br>
+        	<b>Password - {{$user->check_password}}</b> <br>
+         	<a target="_blank" href="{{url('/login')}}">Click here </a> to login to your account
+    </p>
+    
+    <p>
+        Thanks.
+    </p>
+@endif
+
+
+
 </body>
 </html>

@@ -224,15 +224,14 @@ class UserController extends Controller {
         $sidebar = 'wishlist';
 
         if($type == 1){
-            $projects = Wishlist::select('projects.title','projects.short_address','projects.cost','wishlist.*')->join('projects','projects.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
+            $projects = Wishlist::select('projects.title','projects.feature_image','projects.location','projects.short_address','projects.cost','wishlist.*')->join('projects','projects.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
             return view('my_wishlist',compact('projects','sidebar'));
         }
 
         if($type == 2){
-            $listings = Wishlist::select('listings.title','listings.short_address','listings.price','wishlist.*')->join('listings','listings.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
+            $listings = Wishlist::select('listings.title','listings.feature_image','listings.location','listings.short_address','listings.price','wishlist.*')->join('listings','listings.id','=','wishlist.item_id')->where('user_id',Auth::id())->where('type',$type)->get();
             return view('my_wishlist',compact('listings','sidebar'));
         }
-
 
     }
 
@@ -349,6 +348,31 @@ class UserController extends Controller {
 
         return Redirect::to('/forget-password')->with('success','New password has been sent to your registered email id');
 
+    }
+
+    public function ratings(){
+        $reviews = DB::table('seller_reviews')->select('seller_reviews.*','users.first_name','users.last_name' ,'u1.first_name as sf','u1.last_name as sl')
+                ->join('users','users.id','=','seller_reviews.added_by')
+                ->join('users as u1','u1.id','=','seller_reviews.seller_id')
+                ->where('seller_reviews.status',0)
+                ->get();
+        $sidebar = 'rating_reviews';
+        $subsidebar = 'rating_reviews';
+        return view('users.ratings',compact('reviews','sidebar','subsidebar'));
+    }
+
+    public function approveRating($id)
+    {
+        $review = DB::table('seller_reviews')->where('id',$id)->first();
+
+        if($review){
+            DB::table('seller_reviews')->where('id',$id)->update(["status"=>1]);
+            $data['success'] = true;
+        }else{
+            $data['message'] = 'Invalid rating';
+            $data['success'] = false;
+        }
+        return json_encode($data);
     }
     
 	

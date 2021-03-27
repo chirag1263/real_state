@@ -78,6 +78,16 @@
 </li>
 @endif
 
+@if(Auth::user()->priv == 1)
+<li class="{{($sidebar =='rating_reviews' && $subsidebar == 'rating_reviews')?'active':''}}">
+  <a href="{{url('/admin/rating_reviews')}}">
+    <i class="fa fa-star"></i>
+    <span class="title">Rating & Reviews</span>
+    <span class="selected"></span>
+  </a>
+</li>
+@endif
+
 @endif
 
 @if(Auth::user()->priv != 1)

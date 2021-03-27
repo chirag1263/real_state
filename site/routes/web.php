@@ -44,6 +44,9 @@ Route::get('adventure-activities-in-rishikesh','FrontendController@adventureActi
 Route::get('rishikesh-hotels','FrontendController@rishikeshHotels');
 Route::get('legal-documents','FrontendController@legalDocuments');
 
+Route::get('seller-details/{seller_id}','FrontendController@seller');
+Route::any('seller_review/{seller_id}','FrontendController@sellerReview');
+
 
 // Route::get('/','DashboardController@index');
 
@@ -105,6 +108,11 @@ Route::group(["middleware"=>["auth"]],function(){
 
 		Route::group(["prefix"=>"users"],function(){
 			Route::get('/','UserController@users');
+		});
+
+		Route::group(["prefix"=>"rating_reviews"],function(){
+			Route::get('/','UserController@ratings');
+			Route::delete('/approve/{id}','UserController@approveRating');
 		});
 
 		Route::group(["prefix"=>"enquiries"],function(){

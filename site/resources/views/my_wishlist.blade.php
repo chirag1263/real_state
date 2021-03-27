@@ -14,29 +14,28 @@
 
 @if(isset($projects))
 	@if(sizeof($projects) > 0)
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>SN</th>
-					<th>Project Title</th>
-					<th>Address</th>
-					<th>Cost</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($projects as $index => $project)
-					<tr>
-						<td>{{$index+1}}</td>
-						<td><a href="{{url('project-details/'.$project->item_id)}}" target="_blank">{{$project->title}}</a></td>
-						<td>{{$project->short_address}}</td>
-						<td>{{$project->cost}}</td>
+		<div class="row">
+			@foreach($projects as $index => $project)
+				<div class="col-lg-3 col-md-6 col-12">
+		            <div class="flat-item">
+		              <div class="flat-item-image">
+		                <a href="{{url('project-details/'.$project->id)}}"><img src="{{url($project->feature_image)}}" alt=""></a>
+		                <div class="flat-link">
+		                  <a href="{{url('project-details/'.$project->id)}}">More Details</a>
+		                </div>
+		              </div>
+		              <div class="flat-item-info">
+		                <div class="flat-title-price">
+		                  <h5><a href="{{url('project-details/'.$project->id)}}">{{$project->title}} </a></h5>
+		                </div>
+		                <p><img src="{{url('frontend/images/icons/location.png')}}" alt="">{{$project->location}}</p>
+		              </div>
+		            </div>
+		        </div>
 
-					</tr>
-				@endforeach
-				
-			</tbody>
-		</table>
-		</ul>
+			@endforeach
+			
+		</div>
 	@else
 		No wishlist item found
 	@endif
@@ -45,27 +44,29 @@
 
 @if(isset($listings))
 	@if(sizeof($listings) > 0)
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>SN</th>
-					<th>List Title</th>
-					<th>Address</th>
-					<th>Cost</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($listings as $index => $list)
-					<tr>
-						<td>{{$index+1}}</td>
-						<td><a href="{{url('listing-details/'.$list->item_id)}}" target="_blank">{{$list->title}}</a></td>
-						<td>{{$list->short_address}}</td>
-						<td>{{$list->cost}}</td>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
+		<div class="row">
+			
+			@foreach($listings as $index => $list)
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="flat-item">
+						<div class="flat-item-image">
+							<span class="for-sale">{{$list->category_name}}</span>
+							<a href="{{url('listing-details/'.$list->list_id)}}">@if($list->feature_image)<img src="{{url($list->feature_image)}}" alt="">@endif</a>
+							<div class="flat-link">
+								<a href="{{url('listing-details/'.$list->list_id)}}">More Details</a>
+							</div>
+						</div>
+						<div class="flat-item-info">
+							<div class="flat-title-price">
+								<h5><a href="{{url('listing-details/'.$list->list_id)}}">{{$list->title}}</a></h5>
+								<span class="price"><i class="fa fa-rupee"></i> {{$list->price}}</span>
+							</div>
+							<p><img src="{{url('/frontend/images/icons/location.png')}}" alt="">{{$list->location}}</p>
+						</div>
+					</div>
+				</div>
+			@endforeach
+		</div>
 	@else
 		No wishlist item found
 	@endif
