@@ -19,6 +19,7 @@ Route::get('/logout',function(){
 	return Redirect::to('/');
 });
 
+
 Route::get('/forget-password', 'UserController@forgetPassword');
 Route::post('/forget-password', 'UserController@postForgetPassword');
 
