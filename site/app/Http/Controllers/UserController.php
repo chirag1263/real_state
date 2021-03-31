@@ -364,9 +364,12 @@ class UserController extends Controller {
     public function approveRating($id)
     {
         $review = DB::table('seller_reviews')->where('id',$id)->first();
-
+        $status = 1;
+        if(Input::get('status') != ''){
+            $status = Input::get('status');
+        }
         if($review){
-            DB::table('seller_reviews')->where('id',$id)->update(["status"=>1]);
+            DB::table('seller_reviews')->where('id',$id)->update(["status"=>$status]);
             $data['success'] = true;
         }else{
             $data['message'] = 'Invalid rating';

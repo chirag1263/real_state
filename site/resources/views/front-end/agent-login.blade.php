@@ -31,166 +31,58 @@
             <div class="alert alert-danger">{{Session::get('failure')}}</div>
             @endif
             <h5 class="mb-20">AGENT LOGIN</h5>
-            <form action="{{url('user-login')}}" method="post">
+            {{Form::open(["url"=>"user-login","method"=>"post"])}}
               <div class="login-account p-30 box-shadow">
                 <p>If you have an account with us, Please log in.</p>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="text" name="username" placeholder="Email Address" required>
-                <input type="password" name="password" placeholder="Password" required>
+                {{Form::text('username','',["plaseholder"=>"Email Address","required"=>true])}}
+                <span class="error">{{$errors->first('username')}}</span>
+                {{Form::password('password',["plaseholder"=>"Password","required"=>true])}}
                 <p><small><a href="{{url('forget-password')}}">Forgot Password?</a></small></p>
                 <button class="submit-btn-1" type="submit">Login</button>
               </div>
-            </form>
+            {{Form::close()}}
           </div>
         </div>
         <!-- new-customers -->
         <div class="col-lg-6 col-12">
           <div class="new-customers mb-50">
-            <form action="{{url('/register-agent')}}" method="post" autocomplete="off">
+            {{Form::open(["url"=>"register-agent","method"=>"post"])}}
               <h5 class="mb-20">AGENT REGISTRATION</h5>
               <div class="login-account p-30 box-shadow">
                 <div class="row">
                   <div class="col-md-6">
-                    <input type="text" placeholder="First Name" name="first_name" required>
+                    {{Form::text('first_name','',["placeholder"=>"First Name","required"=>true])}}
+                    <span class="error">{{$errors->first('first_name')}}</span>
                   </div>
                   <div class="col-md-6">
-                    <input type="text" placeholder="Last Name" name="last_name">
+                    {{Form::text('last_name','',["placeholder"=>"Last Name"])}}
+                    <span class="error">{{$errors->first('last_name')}}</span>
+
                   </div>
                   <div class="col-md-6">
-                    <input type="email" placeholder="Email Address" name="email" required>
+                    {{Form::text('email','',["placeholder"=>"Email Address","required"=>true])}}
+                    <span class="error">{{$errors->first('email')}}</span>
                   </div>
                   <div class="col-md-6">
-                    <input type="text" placeholder="Phone" name="phone">
+                    {{Form::text('phone','',["placeholder"=>"Phone"])}}
+                    <span class="error">{{$errors->first('phone')}}</span>
                   </div>
                   <div class="col-md-12">
-                    <input type="text" placeholder="Address" name="addresss">
+                    {{Form::text('address','',["placeholder"=>"Address"])}}
+                    <span class="error">{{$errors->first('address')}}</span>
+
                   </div>
                   <div class="col-md-6">
-                    <select class="custom-select-2" name="state">
-                      <option value="defalt">Select State</option>
-                      <option value="uttarakhand">Uttarakhand</option>
-                    </select>
+                    {{Form::select('state',[""=>"Select State","uttarakhand"=>"Uttarakhand"],"")}}
+                    <span class="error">{{$errors->first('state')}}</span>
+
                   </div>
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <div class="col-md-6">
-                    <select class="custom-select-2" name="city">
-                      <option>Select City/Town</option>
-                      <option value="">Almora</option>
-                      <option value="">Almora Cantonment</option>
-                      <option value="">Badrinathpuri</option>
-                      <option value="">Bageshwar</option>
-                      <option value="">Bahadarabad</option>
-                      <option value="">Bajpur (Bazpur)</option>
-                      <option value="">Banbasa</option>
-                      <option value="">Bandiya (Bandia)</option>
-                      <option value="">Bangherimahabatpur (Must)</option>
-                      <option value="">Barkot</option>
-                      <option value="">Bhagwanpur</option>
-                      <option value="">BHEL Ranipur</option>
-                      <option value="">Bhimtal</option>
-                      <option value="">Bhowali</option>
-                      <option value="">Central Hope Town</option>
-                      <option value="">Chakrata</option>
-                      <option value="">Chamba</option>
-                      <option value="">Chamoli Gopeshwar</option>
-                      <option value="">Champawat</option>
-                      <option value="">Clement Town</option>
-                      <option value="">Dehradun</option>
-                      <option value="">Dehradun Cantonment</option>
-                      <option value="">Devaprayag</option>
-                      <option value="">Dhaluwala</option>
-                      <option value="">Dhandera</option>
-                      <option value="">Dharchula</option>
-                      <option value="">Didihat</option>
-                      <option value="">Dineshpur</option>
-                      <option value="">Dogadda</option>
-                      <option value="">Doiwala</option>
-                      <option value="">Dwarahat</option>
-                      <option value="">Fatehpur Range, Dhamua Dunga Area</option>
-                      <option value="">Gadarpur</option>
-                      <option value="">Gangotri</option>
-                      <option value="">Gochar (Gauchar)</option>
-                      <option value="">Gumaniwala</option>
-                      <option value="">Haldwani-cum-Kathgodam</option>
-                      <option value="">Haldwani Talli</option>
-                      <option value="">Hardwar (Haridwar)</option>
-                      <option value="">Haripur Kalan</option>
-                      <option value="">Herbertpur</option>
-                      <option value="">Jagjeetpur</option>
-                      <option value="">Jaspur</option>
-                      <option value="">Jhabrera</option>
-                      <option value="">Jiwangarh</option>
-                      <option value="">Jonk</option>
-                      <option value="">Joshimath (Jyotirmath)</option>
-                      <option value="">Kaladhungi</option>
-                      <option value="">Kanchal Gosain</option>
-                      <option value="">Karnaprayag</option>
-                      <option value="">Kashipur</option>
-                      <option value="">Kashirampur</option>
-                      <option value="">Kedarnath</option>
-                      <option value="">Kela Khera</option>
-                      <option value="">Khanjarpur</option>
-                      <option value="">Kharak mafi</option>
-                      <option value="">Khatima</option>
-                      <option value="">Khatyari</option>
-                      <option value="">Kichha</option>
-                      <option value="">Kirtinagar</option>
-                      <option value="">Kotdwara (Kotdwar)</option>
-                      <option value="">Laksar</option>
-                      <option value="">Lalkuan</option>
-                      <option value="">Landaur (Landour)</option>
-                      <option value="">Landhaura</option>
-                      <option value="">Lansdowne</option>
-                      <option value="">Lohaghat</option>
-                      <option value="">Maholiya</option>
-                      <option value="">Mahua Dabra Haripura</option>
-                      <option value="">Mahua Kheraganj</option>
-                      <option value="">Manglaur</option>
-                      <option value="">Maohanpur Mohammadpur</option>
-                      <option value="">Mehu Wala Mafi</option>
-                      <option value="">Mukhani (Roopnagar, Basant Vihar Colony and Judges Farm)</option>
-                      <option value="">Muni Ki Reti</opton>
-                      <option value="">Mussoorie</option>
-                      <option value="">Nagala Imarti</option>
-                      <option value="">Nagla</option>
-                      <option value="">Nainital</option>
-                      <option value="">Nainital Cantonment</option>
-                      <option value="">Nandprayag (Nandaprayag)</option>
-                      <option value="">Narendranagar</option>
-                      <option value="">Natthan Pur</option>
-                      <option value="">Natthuwa Wala</option>
-                      <option value="">Padali Gujar</option>
-                      <option value="">Padampur Sukhran</option>
-                      <option value="">Pauri</option>
-                      <option value="">Piran Kaliyar</option>
-                      <option value="">Pithoragarh</option>
-                      <option value="">Pratitnagar</option>
-                      <option value="">Raipur</option>
-                      <option value="">Ramnagar</option>
-                      <option value="">Ranikhet</option>
-                      <option value="">Rawali Mahdood</option>
-                      <option value="">Rishikesh</option>
-                      <option value="">Rishikesh</option>
-                      <option value="">Roorkee</option>
-                      <option value="">Roorkee Cantonment</option>
-                      <option value="">Rudraprayag</option>
-                      <option value="">Rudrapur</option>
-                      <option value="">Saidpura</option>
-                      <option value="">Salempur Rajputan</option>
-                      <option value="">Shafipur</option>
-                      <option value="">Shahpur</option>
-                      <option value="">Shaktigarh</option>
-                      <option value="">Sitarganj</option>
-                      <option value="">Srinagar</option>
-                      <option value="">Sultanpur</option>
-                      <option value="">Sunhaira</option>
-                      <option value="">Tanakpur</option>
-                      <option value="">Tehri</option>
-                      <option value="">Umru Khurd</option>
-                      <option value="">Uttarkashi</option>
-                      <option value="">Vikasnagar</option>
-                      <option value="">Virbhadra</option>
-                    </select>
+                    {{Form::select('city',$cities,'',["class"=>"custom=select-2"])}}
+                    <span class="error">{{$errors->first('city')}}</span>
+
                   </div>
                 </div>
                 <div class="checkbox">
@@ -204,7 +96,7 @@
                   </div>
                 </div>
               </div>
-            </form>
+            {{Form::close()}}
           </div>
         </div>
       </div>

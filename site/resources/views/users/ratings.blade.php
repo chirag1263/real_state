@@ -33,6 +33,7 @@
           <td>
             @if($row->status == 0)
               <button class="btn btn-sm btn-primary delete-div" action="{{('/admin/rating_reviews/approve/'.$row->id)}}" div-id="rating_{{$row->id}}">Approve</button>
+              <button class="btn btn-sm btn-danger delete-div" action="{{('/admin/rating_reviews/approve/'.$row->id.'?status=2')}}" div-id="rating_{{$row->id}}"><i class="fa fa-remove"></i></button>
             @endif
           </td>
           </tr>

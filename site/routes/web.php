@@ -44,6 +44,7 @@ Route::get('subscribe','FrontendController@subscribe');
 Route::get('adventure-activities-in-rishikesh','FrontendController@adventureActivities');
 Route::get('rishikesh-hotels','FrontendController@rishikeshHotels');
 Route::get('legal-documents','FrontendController@legalDocuments');
+Route::post('contact-us','FrontendController@sendContactUs');
 
 Route::get('seller-details/{seller_id}','FrontendController@seller');
 Route::any('seller_review/{seller_id}','FrontendController@sellerReview');

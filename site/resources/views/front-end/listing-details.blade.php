@@ -131,31 +131,40 @@
             </div>
           </div>   
         </div>
+        <?php $seller = App\User::getSeller($listing->added_by);?>
+        @if($seller)
         <div class="col-md-3">
           <div class="border pt-4 pb-4 p-3">
             <h4>Seller Description:</h4>
             <div class="table-div">
               <div class="img">
-                <img src="{{url('frontend/images/avatar/1.')}}jpg" class="img-fluid img-circle">
+                @if($seller->picture)
+                  <img src="{{url($seller->picture)}}" class="img-fluid img-circle">
+                @else
+                  <img src="{{url('frontend/images/avatar/1.jpg')}}" class="img-fluid img-circle">
+
+                @endif
               </div>
               <div class="txt">
-                <h5 class="mb-0"><a href="{{url('/seller-details/1')}}">Admin</a></h5>
+                <h5 class="mb-0"><a href="{{url('/seller-details/'.$seller->id)}}">{{$seller->first_name}} {{$seller->last_name}}</a></h5>
                 <div class="rating">
                   <small>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                  </small> &nbsp;(4)
+                    @for($i=1;$i<=$seller->rating;$i++)
+                      <i class="fa fa-star"></i>
+                    @endfor
+                    @for($i=1;$i<=5-$seller->rating;$i++)
+                      <i class="fa fa-star-o"></i>
+                    @endfor
+                  </small> &nbsp;({{$seller->rating ? $seller->rating : 0}})
                   <div style="margin-top:-10px;">
-                    <small>74 Reviews</small>
+                    <small>{{sizeof($seller->reviews)}} Reviews</small>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        @endif
       </div>
     </div>
   </div>

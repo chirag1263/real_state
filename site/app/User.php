@@ -114,6 +114,26 @@ class User extends Authenticatable
         return $count;
     }
 
+    public static function getSeller($seller_id)
+    {
+        $seller = User::find($seller_id);
+        if($seller){
+            $seller->reviews = DB::table('seller_reviews')->select('seller_reviews.*','users.first_name','users.last_name')
+                ->join('users','users.id','=','seller_reviews.added_by')
+                ->where('seller_id',$seller_id)->where('seller_reviews.status',1)->orderBy('seller_reviews.id','desc')->take(5)->get();
+
+            $seller->reviews_count = DB::table('seller_reviews')->select('seller_reviews.id')
+                ->where('seller_id',$seller_id)->where('seller_reviews.status',1)->count();
+
+            foreach ($seller->reviews as $row) {
+                $row->given_by = $row->first_name.' '.$row->last_name;
+            }
+            $seller->rating = DB::table('seller_reviews')->where('seller_id',$seller_id)->where('status',1)->avg("rating");
+        }
+
+        return $seller;
+    }
+
     public static function getRandPassword(){
         $string1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         $string2 = "abcdefghijklmnopqrstuvwxyz";

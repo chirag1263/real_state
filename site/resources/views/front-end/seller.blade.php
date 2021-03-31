@@ -52,10 +52,10 @@
                 <b>Phone</b>: {{$seller->phone}}
               </div> -->
               <div>
-                <b>Rating</b>: 4.5
+                <b>Rating</b>: {{$seller->rating ? round($seller->rating,2):0}}
               </div>
               <div>
-                <b>Reviews</b>: 265
+                <b>Reviews</b>: {{$seller->reviews_count}}
               </div>
             </div>
           </div>

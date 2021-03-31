@@ -35,7 +35,7 @@ app.controller('LCCtrl', function($scope,$http,DBService){
 app.controller('listCtrl', function($scope,$http,DBService ,Upload){
 
     $scope.list_id = 0;
-    $scope.formData = {};
+    $scope.formData = {photos:[]};
 
     $scope.init = function(){
 

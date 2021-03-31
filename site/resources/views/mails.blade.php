@@ -35,6 +35,20 @@
 @endif
 
 
+@if($type == "contact-us")
+    <p>
+        Contact us form Enquiry
+    </p>
+
+    <p>
+        
+        <b>Name - </b>{{$data['name']}} <br>
+        <b>Email - </b>{{$data['email']}} <br>
+        <b>Message -</b>  {{$data['message']}}<br>
+    </p>
+    
+@endif
+
 
 </body>
 </html>

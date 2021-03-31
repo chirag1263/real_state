@@ -92,6 +92,7 @@
 		@endif
 	</div>
 
+	@if(Auth::user()->priv != 1)
 	<div class="featured-flat-area grey-bg pt-70 pb-50 mt-50">
 		<div class="">
 			<h3 class="text-uppercase" style="margin-bottom:20px;">Recently Visited Listings</h3>
@@ -151,5 +152,6 @@
 			</div>
 		</div>
 	</div>
+	@endif
 
 	@endsection

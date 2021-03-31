@@ -144,7 +144,8 @@ class FrontendController extends Controller {
 
 	public function agentLogin()
 	{
-		return view('front-end.agent-login');
+		$cities = ["","Almora","Almora Cantonment","Badrinathpuri","Bageshwar","Bahadarabad","Bajpur (Bazpur)","Banbasa","Bandiya (Bandia)","Bangherimahabatpur (Must)","Barkot","Bhagwanpur","BHEL Ranipur","Bhimtal","Bhowali","Central Hope Town","Chakrata","Chamba","Chamoli Gopeshwar","Champawat","Clement Town","Dehradun","Dehradun Cantonment","Devaprayag","Dhaluwala","Dhandera","Dharchula","Didihat","Dineshpur","Dogadda","Doiwala","Dwarahat","Fatehpur Range, Dhamua Dunga Area","Gadarpur","Gangotri","Gochar (Gauchar)","Gumaniwala","Haldwani-cum-Kathgodam","Haldwani Talli","Hardwar (Haridwar)","Haripur Kalan","Herbertpur","Jagjeetpur","Jaspur","Jhabrera","Jiwangarh","Jonk","Joshimath (Jyotirmath)","Kaladhungi","Kanchal Gosain","Karnaprayag","Kashipur","Kashirampur","Kedarnath","Kela Khera","Khanjarpur","Kharak mafi","Khatima","Khatyari","Kichha","Kirtinagar","Kotdwara (Kotdwar)","Laksar","Lalkuan","Landaur (Landour)","Landhaura","Lansdowne","Lohaghat","Maholiya","Mahua Dabra Haripura","Mahua Kheraganj","Manglaur","Maohanpur Mohammadpur","Mehu Wala Mafi","Mukhani (Roopnagar, Basant Vihar Colony and Judges Farm)","Muni Ki Reti","Mussoorie","Nagala Imarti","Nagla","Nainital","Nainital Cantonment","Nandprayag (Nandaprayag)","Narendranagar","Natthan Pur","Natthuwa Wala","Padali Gujar","Padampur Sukhran","Pauri","Piran Kaliyar","Pithoragarh","Pratitnagar","Raipur","Ramnagar","Ranikhet","Rawali Mahdood","Rishikesh","Rishikesh","Roorkee","Roorkee Cantonment","Rudraprayag","Rudrapur","Saidpura","Salempur Rajputan","Shafipur","Shahpur","Shaktigarh","Sitarganj","Srinagar","Sultanpur","Sunhaira","Tanakpur","Tehri","Umru Khurd","Uttarkashi","Vikasnagar","Virbhadra"];
+		return view('front-end.agent-login',compact('cities'));
 	}
 
 	public function registerUser()
@@ -180,7 +181,7 @@ class FrontendController extends Controller {
 	public function registerAgent()
 	{
 		$cre = ["first_name"=>Input::get("first_name") , "email"=>Input::get("email") , "password"=>Input::get("password")];
-		$rules = ["first_name"=>"required" , "email"=>"required|unique:users" , "password"=>"required"];
+		$rules = ["first_name"=>"required" , "email"=>"required|unique:users" ];
 		$validator = Validator::make($cre ,$rules);
 		if($validator->passes()){
 			$rand_pwd = User::getRandPassword();
@@ -204,7 +205,7 @@ class FrontendController extends Controller {
 			return Redirect::back()->with('success','You have successfully registered , Your login details has been sent to you registered mail id');
 
 		}else{
-			return Redirect::back()->withInput()->withErrors($validator);
+			return Redirect::back()->withInput()->withErrors($validator)->with('failure',$validator->errors()->first());
 		}
 	}
 
@@ -257,7 +258,9 @@ class FrontendController extends Controller {
 			$seller->reviews = DB::table('seller_reviews')->select('seller_reviews.*','users.first_name','users.last_name')
 				->join('users','users.id','=','seller_reviews.added_by')
 				->where('seller_id',$seller_id)->where('seller_reviews.status',1)->orderBy('seller_reviews.id','desc')->take(5)->get();
-
+			$seller->reviews_count = DB::table('seller_reviews')->select('seller_reviews.id')
+                ->where('seller_id',$seller_id)->where('seller_reviews.status',1)->count();
+                
 			foreach ($seller->reviews as $row) {
 				$row->given_by = $row->first_name.' '.$row->last_name;
 			}
@@ -285,6 +288,22 @@ class FrontendController extends Controller {
 
 		}else{
 			return Redirect::back()->with('failure',$validator->errors()->first())->withInput()->withErrors($validator);
+		}
+	}
+
+	public function sendContactUs()
+	{
+		$cre = ["name"=>Input::get("name") , "email"=>Input::get("email"),"message"=>Input::get('message')];
+		$rules = ["name"=>"required" , "email"=>"required","message"=>"required"];
+		$validator = Validator::make($cre ,$rules);
+		if($validator->passes()){
+			$content = view('mails',["type"=>"contact-us","data"=>$cre]);
+			MailQueue::createNew("contact@realstate.in",'','','Contact us form enquiry',$content);
+			
+
+			return Redirect::back()->with('success','You details has submitted successfully , one of our representative will get in touch with you shortly');
+		}else{
+			return Redirect::back()->withInput()->withErrors($validator);
 		}
 	}
 }

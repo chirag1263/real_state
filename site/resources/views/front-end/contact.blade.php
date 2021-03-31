@@ -16,7 +16,13 @@
 
 <!-- Start page content -->
 <section id="page-content" class="page-wrapper">
+  @if(Session::has('success'))
+  <div class="alert alert-success mb-30">{{Session::get('success')}}</div>
+  @endif
 
+  @if(Session::has('failure'))
+  <div class="alert alert-danger mb-30">{{Session::get('failure')}}</div>
+  @endif
   <!-- CONTACT AREA START -->
   <div class="contact-area pt-75 pb-75">
     <div class="container">
@@ -66,12 +72,15 @@
             <!-- blog-details-reply -->
             <div class="leave-review">
               <h5>Leave a Message</h5>
-              <form id="contact-form" action="mail.php" method="post">
-                <input type="text" name="name" placeholder="Your name">
-                <input type="email" name="email" placeholder="Email">
-                <textarea name="message" placeholder="Write here"></textarea>
+              {{Form::open(["url"=>"contact-us","method"=>"post","id"=>"contact-form"])}}
+                {{Form::text('name','',["placeholder"=>"Your Name"])}}
+                <span>{{$errors->first('name')}}</span>
+                {{Form::email('email','',["placeholder"=>"Email"])}}
+                <span>{{$errors->first('email')}}</span>
+                {{Form::textarea('message','',["placeholder"=>"Write here"])}}
+                <span>{{$errors->first('message')}}</span>
                 <button type="submit" class="submit-btn-1">SUBMIT</button>
-              </form>
+              {{Form::close()}}
               <p class="form-messege mb-0"></p>
             </div>
           </div>
