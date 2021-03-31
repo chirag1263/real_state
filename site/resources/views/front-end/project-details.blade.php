@@ -146,7 +146,7 @@
                 <img src="{{url('frontend/images/avatar/1.')}}jpg" class="img-fluid img-circle">
               </div>
               <div class="txt">
-                <h5 class="mb-0"><a href="javascript:;">Seller Name</a></h5>
+                <h5 class="mb-0"><a href="{{url('/seller-details/1')}}">Admin</a></h5>
                 <div class="rating">
                   <small>
                     <i class="fa fa-star"></i>

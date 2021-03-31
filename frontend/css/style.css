@@ -1137,9 +1137,11 @@
 
 
   /*leave-review*/
-
+  #rating_div {
+    font-size: 25px;
+  }
   .leave-review>h5 {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   .leave-review input,
@@ -1640,7 +1642,7 @@
   }
 
   .contact-messge .leave-review input,
-  .contact-messge .leave-review textarea {
+  .contact-messge .leave-review textarea, .contact-messge .leave-review select {
     margin-bottom: 20px;
     background: rgba(250, 250, 250, 0.6) none repeat scroll 0 0;
   }
@@ -2218,5 +2220,10 @@ a.blue-btn:hover {
 }
 .sticky .sticky-buttons {
   display: block;
+}
+.review-list-item li {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 /* End Custom CSS */

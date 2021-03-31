@@ -7,7 +7,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8"/>
-    <title>Realstate </title>
+    <title>Reset Your Password - Rishikesh Real Estate</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -29,15 +29,15 @@
 <!-- END HEAD -->
 
 <body class="login">
-    <div class="logo">
+<div class="logo">
 
-    </div>
+</div>
 
-    <div class="text-center">
-      <div style="font-size:36px; color: #FFF">
-        Realstate
-    </div>
-    <!-- <img src="{{url('assets/admin/img/db_logo.png')}}" style="height: 50px; width: auto; margin-top: 10px"> -->
+<div class="text-center">
+  <div style="font-size:36px; color: #FFF">
+    
+  </div>
+  <!-- <img src="{{url('assets/admin/img/db_logo.png')}}" style="height: 50px; width: auto; margin-top: 10px"> -->
 </div>
 
 
@@ -55,26 +55,33 @@
   </div>
   @endif
 
-<h3 class="form-title" style="font-size: 20px">Enter your registered email id</h3>
+<div class="img text-center">
+  <img src="{{url('assets/admin/img/logo.png')}}" style="width:100px;height:auto;padding-top: 20px;">
+</div>
+<h3 class="form-title text-uppercase" style="font-size: 20px;margin-bottom:15px;">Reset Password</h3>
 
 <div class="user-login">
     <div class="form-group ">
       <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
       <label class="control-label visible-ie8 visible-ie9">Username</label>
       <div class="input-icon">
-        <i class="fa fa-user"></i>
-        {{Form::text('email','',["class"=>"form-control placeholder-no-fix","autocomplete"=>"off"])}}
-        <span class="error">{{$errors->first('email')}}</span>
+        <i class="fa fa-envelope"></i>
+        {{Form::text('email','',["class"=>"form-control placeholder-no-fix","autocomplete"=>"off", "placeholder"=>"Registered Email ID"])}}
+        <div class="text-center">
+          <span class="error" style="color: #f00">{{$errors->first('email')}}</span>
+        </div>
     </div>
 </div>
-<div class="">
-  <button type="submit" class="btn blue pull-right">
-    Reset Password <i class="m-icon-swapright m-icon-white"></i>
+<div class="text-center">
+  <button type="submit" class="btn blue">
+    Reset Password &nbsp; <i class="m-icon-swapright m-icon-white"></i>
 </button>
 </div>
 {{ Form::close() }}
 
-<div><a href="{{url('/login')}}">Click here </a> to login to your account</div>
+  <div class="text-center" style="margin-top: 15px;">
+    <a href="{{url('/login')}}">Click here </a> to login to your account
+  </div>
 </div>
 
 

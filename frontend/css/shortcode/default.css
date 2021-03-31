@@ -343,7 +343,7 @@ textarea {
 *************************/
 input[type="text"], 
 input[type="email"], 
-input[type="password"] {
+input[type="password"], select {
   background: transparent;
   border: 1px solid #e1e1e1;
   color: #606060;
@@ -403,16 +403,16 @@ button {
 }
 select {
   border: 1px solid #eeeeee;
-  color: #999999;
-  font-size: 13px;
-  height: 30px;
-  padding-left: 20px;
+  /*color: #999999;*/
+  /*font-size: 13px;*/
+  /*height: 30px;*/
+  /*padding-left: 20px;*/
 }
 option {
-  background: #ffffff none repeat scroll 0 0;
+  /*background: #ffffff none repeat scroll 0 0;
   border: 0 solid #626262;
-  font-size: 13px;
-  padding-left: 10px;
+  /*font-size: 13px;
+  padding-left: 10px;*/
 }
 textarea {
   background: #ffffff none repeat scroll 0 0;
@@ -429,7 +429,7 @@ textarea {
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
-textarea:focus,
+textarea:focus, select:focus,
 .footer-contact textarea:focus {
   border: 1px solid #95c41f;
 }

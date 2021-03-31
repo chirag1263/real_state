@@ -132,14 +132,14 @@
           </div>   
         </div>
         <div class="col-md-3">
-          <div class="border p-3">
+          <div class="border pt-4 pb-4 p-3">
             <h4>Seller Description:</h4>
             <div class="table-div">
               <div class="img">
                 <img src="{{url('frontend/images/avatar/1.')}}jpg" class="img-fluid img-circle">
               </div>
               <div class="txt">
-                <h5 class="mb-0">Seller Name</h5>
+                <h5 class="mb-0"><a href="{{url('/seller-details/1')}}">Admin</a></h5>
                 <div class="rating">
                   <small>
                     <i class="fa fa-star"></i>
@@ -147,9 +147,11 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
-                  </small> &nbsp;(4.0)
+                  </small> &nbsp;(4)
+                  <div style="margin-top:-10px;">
+                    <small>74 Reviews</small>
+                  </div>
                 </div>
-
               </div>
             </div>
           </div>
