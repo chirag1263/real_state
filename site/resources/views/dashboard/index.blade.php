@@ -57,8 +57,61 @@
 				</div>
 			</a>
 		</div>
-		@else
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<a class="dashboard-stat dashboard-stat-v2 red" href="{{url('admin/enquiries?type=1')}}">
+				<div class="visual">
+					<i class="fa fa-building"></i>
+				</div>
+				<div class="details text-right">
+					<div class="number" style="background:none">
+						<span data-counter1="counterup" data-value="{{App\User::dashboard('projects')}}">{{App\User::dashboard('projects')}}</span>
+					</div>
+					<div class="desc">Project Enquiries</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<a class="dashboard-stat dashboard-stat-v2 yellow" href="{{url('admin/enquiries?type=2')}}">
+				<div class="visual">
+					<i class="fa fa-list"></i>
+				</div>
+				<div class="details text-right">
+					<div class="number" style="background:none">
+						<span data-counter1="counterup" data-value="{{App\User::dashboard('listings')}}">{{App\User::dashboard('listings')}}</span>
+					</div>
+					<div class="desc">Listing Enquiries</div>
+				</div>
+			</a>
+		</div>
+		@elseif(Auth::user()->priv == 2)
 
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<a class="dashboard-stat dashboard-stat-v2 green" href="{{url('admin/projects')}}">
+				<div class="visual">
+					<i class="fa fa-list"></i>
+				</div>
+				<div class="details text-right">
+					<div class="number" style="background:none">
+						<span data-counter1="counterup" data-value="{{App\User::dashboard('wishlist-projects')}}">{{App\User::dashboard('wishlist-projects')}}</span>
+					</div>
+					<div class="desc">Projects</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<a class="dashboard-stat dashboard-stat-v2 green" href="{{url('admin/listings')}}">
+				<div class="visual">
+					<i class="fa fa-list"></i>
+				</div>
+				<div class="details text-right">
+					<div class="number" style="background:none">
+						<span data-counter1="counterup" data-value="{{App\User::dashboard('wishlist-listing')}}">{{App\User::dashboard('wishlist-listing')}}</span>
+					</div>
+					<div class="desc">Listings</div>
+				</div>
+			</a>
+		</div>
+		@else
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 			<a class="dashboard-stat dashboard-stat-v2 green" href="{{url('wishlist?type=1')}}">
 				<div class="visual">
@@ -72,7 +125,6 @@
 				</div>
 			</a>
 		</div>
-
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 			<a class="dashboard-stat dashboard-stat-v2 green" href="{{url('wishlist?type=2')}}">
 				<div class="visual">
@@ -86,13 +138,10 @@
 				</div>
 			</a>
 		</div>
-
-
-
 		@endif
 	</div>
 
-	@if(Auth::user()->priv != 1)
+	@if(Auth::user()->priv == 3)
 	<div class="featured-flat-area grey-bg pt-70 pb-50 mt-50">
 		<div class="">
 			<h3 class="text-uppercase" style="margin-bottom:20px;">Recently Visited Listings</h3>
