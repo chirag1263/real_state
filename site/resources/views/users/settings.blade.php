@@ -56,6 +56,16 @@
 				<th>Address</th>
 				<td>{{Auth::user()->address}}</td>
 			</tr>
+			@if(Auth::user()->priv == 2)
+			<tr>
+				<th>Company Name</th>
+				<td>{{Auth::user()->company_name}}</td>
+			</tr>
+			<tr>
+				<th>Profession</th>
+				<td>{{Auth::user()->pro_type}}</td>
+			</tr>
+			@endif
 		</table>
 		
 	</div>

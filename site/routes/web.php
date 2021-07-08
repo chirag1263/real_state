@@ -79,6 +79,8 @@ Route::group(["middleware"=>["auth"]],function(){
 		
 	});
 
+
+
 	Route::group(["prefix"=>"wishlist"],function(){
 
 		Route::get('/', 'UserController@wishlist');
@@ -119,6 +121,28 @@ Route::group(["middleware"=>["auth"]],function(){
 
 		Route::group(["prefix"=>"enquiries"],function(){
 			Route::get('/','UserController@enquiries');
+		});
+
+		Route::group(["prefix"=>"faqs","middleware"=>["admin"]],function(){
+
+			Route::get('/', 'FaqController@index');
+			Route::get('/add', 'FaqController@add');
+			Route::post('/store', 'FaqController@store');
+			Route::get('/edit/{id}', 'FaqController@edit');
+			Route::post('/update/{id}', 'FaqController@update');
+			Route::delete('/delete/{id}', 'FaqController@delete');
+			
+		});
+
+		Route::group(["prefix"=>"testimonials","middleware"=>["admin"]],function(){
+
+			Route::get('/', 'TestimonialController@index');
+			Route::get('/add', 'TestimonialController@add');
+			Route::post('/store', 'TestimonialController@store');
+			Route::get('/edit/{id}', 'TestimonialController@edit');
+			Route::post('/update/{id}', 'TestimonialController@update');
+			Route::delete('/delete/{id}', 'TestimonialController@delete');
+			
 		});
 
 	});

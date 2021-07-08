@@ -192,6 +192,8 @@ class FrontendController extends Controller {
 			$user->username = Input::get('email');
 			$user->phone = Input::get('phone');
 			$user->address = Input::get('address');
+			$user->company_name = Input::get('company_name');
+			$user->pro_type = Input::get('pro_type');
 			$user->city = Input::get('city');
 			$user->state = Input::get('state');
 			$user->password = Hash::make($rand_pwd);

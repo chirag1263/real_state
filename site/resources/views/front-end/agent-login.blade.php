@@ -69,9 +69,17 @@
                     <span class="error">{{$errors->first('phone')}}</span>
                   </div>
                   <div class="col-md-12">
+                    {{Form::text('company_name','',["placeholder"=>"Company"])}}
+                    <span class="error">{{$errors->first('company_name')}}</span>
+                  </div>
+                  <div class="col-md-6">
+                    {{Form::select('pro_type',[""=>"Select","agent"=>"Agent","builder"=>"Builder"],"")}}
+                    <span class="error">{{$errors->first('pro_type')}}</span>
+                  </div>
+
+                  <div class="col-md-12">
                     {{Form::text('address','',["placeholder"=>"Address"])}}
                     <span class="error">{{$errors->first('address')}}</span>
-
                   </div>
                   <div class="col-md-6">
                     {{Form::select('state',[""=>"Select State","uttarakhand"=>"Uttarakhand"],"")}}

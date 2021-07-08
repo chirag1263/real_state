@@ -76,6 +76,21 @@
     <span class="selected"></span>
   </a>
 </li>
+
+<li class="{{($sidebar =='faqs' && $subsidebar == 'faqs')?'active':''}}">
+  <a href="{{url('/admin/faqs')}}">
+    <i class="fa fa-tag"></i>
+    <span class="title">Faqs</span>
+    <span class="selected"></span>
+  </a>
+</li>
+<li class="{{($sidebar =='testimonials' && $subsidebar == 'testimonials')?'active':''}}">
+  <a href="{{url('/admin/testimonials')}}">
+    <i class="fa fa-tag"></i>
+    <span class="title">Testimonials</span>
+    <span class="selected"></span>
+  </a>
+</li>
 @endif
 
 @if(Auth::user()->priv == 1)
