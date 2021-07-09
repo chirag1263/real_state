@@ -53,6 +53,7 @@ class ProjectController extends Controller {
       $project->highlights = DB::table('project_highlights')->where('project_id',$project->id)->get();
       $project->specifications = DB::table('project_specifications')->where('project_id',$project->id)->get();
       $project->photos = DB::table('project_photos')->where('project_id',$project->id)->get();
+      $project->filters = DB::table('project_filters')->where('project_id',$project->id)->pluck('filter_id')->all();
       foreach ($project->photos as $row) {
         if($row->thumb){
           $row->th_photo_link = url($row->thumb);
@@ -60,6 +61,7 @@ class ProjectController extends Controller {
       }
       $data['formData'] = $project;
     }
+    $data['filters'] = DB::table("filters")->get();
     $data['categories'] = LC::get();
     $data['success'] = true;
     return Response::json($data,200,[]);
@@ -164,6 +166,19 @@ class ProjectController extends Controller {
         $project->longitude = Input::get('longitude');
         $project->latitude = Input::get('latitude');
         $project->save();
+
+
+
+        DB::table('project_filters')->where('project_id',$project->id)->delete();
+        foreach(Input::get('filters') as $key=>$value){
+            if($value){
+
+              DB::table('project_filters')->insert([
+                "project_id" =>$project->id,
+                "filter_id" => $value,
+              ]);
+            }
+        }
 
         DB::table('project_highlights')->where('project_id',$project->id)->delete();
         foreach ($highlights as $item) {

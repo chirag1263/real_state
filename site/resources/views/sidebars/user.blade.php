@@ -91,6 +91,29 @@
     <span class="selected"></span>
   </a>
 </li>
+<li class="{{($sidebar =='filters' && $subsidebar == 'filters')?'active':''}}">
+  <a href="{{url('/admin/filters')}}">
+    <i class="fa fa-tag"></i>
+    <span class="title">Filters</span>
+    <span class="selected"></span>
+  </a>
+</li>
+
+<li class="{{($sidebar =='partners' && $subsidebar == 'partners')?'active':''}}">
+  <a href="{{url('/admin/partners')}}">
+    <i class="fa fa-tag"></i>
+    <span class="title">Partners</span>
+    <span class="selected"></span>
+  </a>
+</li>
+
+<li class="{{($sidebar =='sliders' && $subsidebar == 'sliders')?'active':''}}">
+  <a href="{{url('/admin/sliders')}}">
+    <i class="fa fa-tag"></i>
+    <span class="title">Slider</span>
+    <span class="selected"></span>
+  </a>
+</li>
 @endif
 
 @if(Auth::user()->priv == 1)
