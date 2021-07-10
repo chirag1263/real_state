@@ -26,6 +26,7 @@
                     <li class="@{{tab_id == 2 ?'active':''}}" ng-click="tab_id=2;"><a href="javascript:;">Highlights</a></li>
                     <li class="@{{tab_id == 3 ?'active':''}}" ng-click="tab_id=3;"><a href="javascript:;">Specifications</a></li>
                     <li class="@{{tab_id == 4 ?'active':''}}" ng-click="tab_id=4;"><a href="javascript:;">Gallery</a></li>
+                    <li class="@{{tab_id == 6 ?'active':''}}" ng-click="tab_id=6;"><a href="javascript:;">Filters</a></li>
                 </ul>
 
                 <div ng-show="tab_id==1">
@@ -49,6 +50,11 @@
                 <div ng-show="tab_id==5">
                     
                     @include('projects.location')
+                </div>
+
+                <div ng-show="tab_id==6">
+                    
+                    @include('projects.filter')
                 </div>
 
 

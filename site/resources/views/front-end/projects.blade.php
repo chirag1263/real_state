@@ -13,6 +13,20 @@
   </div>
 </div>
 <!-- BREADCRUMBS AREA END -->
+{{Form::open(["url"=>"projects","method"=>"GET"])}}
+<div class="row">
+  @foreach($filters as $filter)
+    <div class="col-md-3 form-group">
+        <label>
+            <input type="checkbox" @if(in_array($filter->id,$f_ids)) checked @endif name="filters[]" value="{{$filter->id}}" > &nbsp;&nbsp;{{$filter->filter_name}}
+        </label>
+    </div>
+  @endforeach
+  <div class="col-md-3">
+    <button class="btn btn-primary">Search</button>
+  </div>
+</div>
+{{Form::close()}}
 
 <!-- Start page content -->
 <section id="page-content" class="page-wrapper">

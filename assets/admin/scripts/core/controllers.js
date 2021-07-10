@@ -49,9 +49,29 @@ app.controller('listCtrl', function($scope,$http,DBService ,Upload){
 
                     $scope.formData.highlights = [{highlight:''}];
                     $scope.formData.specifications = [{specification:''}];
+                    $scope.formData.filters = [];
                 }
+
+                $scope.filters = data.filters;
             }
         }); 
+    }
+
+    $scope.addFilter = function(filter){
+        if($scope.formData.filters.indexOf(filter.id) > -1){
+
+            $scope.formData.filters.splice($scope.formData.filters.indexOf(filter.id),1);
+        }else{
+            $scope.formData.filters.push(filter.id);
+        }
+    }
+
+    $scope.checkSelected = function(id){
+        if($scope.formData.filters.indexOf(id) > -1){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     $scope.addMoreHighlight = function(){
@@ -181,9 +201,29 @@ app.controller('projectCtrl', function($scope,$http,DBService ,Upload){
                     $scope.formData.highlights = [{highlight:''}];
                     $scope.formData.specifications = [{specification:''}];
                     $scope.formData.photos = [{photo:''}];
+                    $scope.formData.filters = [];
                 }
+
+                $scope.filters = data.filters;
             }
         }); 
+    }
+
+    $scope.addFilter = function(filter){
+        if($scope.formData.filters.indexOf(filter.id) > -1){
+
+            $scope.formData.filters.splice($scope.formData.filters.indexOf(filter.id),1);
+        }else{
+            $scope.formData.filters.push(filter.id);
+        }
+    }
+
+    $scope.checkSelected = function(id){
+        if($scope.formData.filters.indexOf(id) > -1){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     $scope.addMoreHighlight = function(){

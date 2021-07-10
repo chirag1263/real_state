@@ -26,30 +26,53 @@ class FrontendController extends Controller {
 		$sql = Lists::select('listings.*','list_categories.category_name')->join('list_categories','list_categories.id','=','listings.list_category_id');
 
 		$total = $sql->count();
-        $max_per_page = 8;
-        $total_pages = ceil($total/$max_per_page);
-        if(Input::has('page')){
-          $page_id = Input::get('page');
-        } else {
-          $page_id = 1;
-        }
+    $max_per_page = 8;
+    $total_pages = ceil($total/$max_per_page);
+    if(Input::has('page')){
+      $page_id = Input::get('page');
+    } else {
+      $page_id = 1;
+    }
 
-        $input_string = 'listings?';
-        $count_string = 0;
-        foreach (Input::all() as $key => $value) {
-          if($key != 'page'){
-            $input_string .= ($count_string == 0)?'':'&';
-            $input_string .= $key.'='.$value;
-            $count_string++;
-          }
-        }
+    $input_string = 'listings?';
+    $count_string = 0;
+    foreach (Input::all() as $key => $value) {
+      if($key != 'page' && $key != 'filters'){
+        $input_string .= ($count_string == 0)?'':'&';
+        $input_string .= $key.'='.$value;
+        $count_string++;
+      }
+    }
 
-      	$listings = $sql->skip(($page_id-1)*$max_per_page)->take($max_per_page)->get();
+    $f_ids = Input::get('filters');
+    if(sizeof($f_ids) > 0){
+    	$listing_ids = [];
+    	foreach($f_ids as $fi){
+    		$array[] = DB::table("listing_filters")->where('filter_id',$fi)->pluck('listing_id')->all();
+
+    	}
+    	if(sizeof($array) <= 1){
+    		$listing_ids =	DB::table("listing_filters")->whereIn('filter_id',$f_ids)->pluck('listing_id')->all();
+    	}else{
+    		$listing_ids = call_user_func_array('array_intersect', $array);
+    	}
+
+    	if(sizeof($listing_ids) == 0){
+    		$listing_ids = [0];
+    	}
+
+    	$sql = $sql->whereIn('listings.id',$listing_ids);
+    }
+    if(sizeof($f_ids) == 0){
+    		$f_ids = [0];
+    }
+
+  	$listings = $sql->skip(($page_id-1)*$max_per_page)->take($max_per_page)->get();
         
 
-		
+		$filters = DB::table('filters')->get();
 
-		return view('front-end.listings',["listings"=>$listings,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ]);
+		return view('front-end.listings',["listings"=>$listings,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ,"filters"=>$filters ,"f_ids"=>$f_ids]);
 
 	}
 	public function listingDetails($listing_id){
@@ -81,16 +104,40 @@ class FrontendController extends Controller {
         $input_string = 'projects?';
         $count_string = 0;
         foreach (Input::all() as $key => $value) {
-          if($key != 'page'){
+          if($key != 'page' && $key != 'filters'){
             $input_string .= ($count_string == 0)?'':'&';
             $input_string .= $key.'='.$value;
             $count_string++;
           }
         }
 
-      	$projects = $sql->skip(($page_id-1)*$max_per_page)->take($max_per_page)->get();
+        $f_ids = Input::get('filters');
+		    if(sizeof($f_ids) > 0){
+		    	$project_ids = [];
+		    	foreach($f_ids as $fi){
+		    		$array[] = DB::table("project_filters")->where('filter_id',$fi)->pluck('project_id')->all();
 
-      	return view('front-end.projects',["projects"=>$projects,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ]);
+		    	}
+		    	if(sizeof($array) <= 1){
+		    		$project_ids =	DB::table("project_filters")->whereIn('filter_id',$f_ids)->pluck('project_id')->all();
+		    	}else{
+		    		$project_ids = call_user_func_array('array_intersect', $array);
+		    	}
+
+		    	if(sizeof($project_ids) == 0){
+		    		$project_ids = [0];
+		    	}
+
+		    	$sql = $sql->whereIn('projects.id',$project_ids);
+		    }
+		    if(sizeof($f_ids) == 0){
+		    		$f_ids = [0];
+		    }
+
+      	$projects = $sql->skip(($page_id-1)*$max_per_page)->take($max_per_page)->get();
+      	$filters = DB::table('filters')->get();
+
+      	return view('front-end.projects',["projects"=>$projects,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ,"filters"=>$filters ,"f_ids"=>$f_ids]);
 	}
 	public function projectDetails($project_id){
 		$projects = Project::get();

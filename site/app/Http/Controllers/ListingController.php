@@ -54,12 +54,14 @@ class ListingController extends Controller {
       $list->highlights = DB::table('list_highlights')->where('list_id',$list->id)->get();
       $list->specifications = DB::table('list_specifications')->where('list_id',$list->id)->get();
       $list->photos = DB::table('listing_photos')->where('list_id',$list->id)->get();
+      $list->filters = DB::table('listing_filters')->where('listing_id',$list->id)->pluck('filter_id')->all();
       foreach ($list->photos as $photo) {
           $photo->th_photo_link = url($photo->thumb);
       }
       
       $data['formData'] = $list;
     }
+    $data['filters'] = DB::table("filters")->get();
     $data['categories'] = LC::get();
     $data['success'] = true;
     return Response::json($data,200,[]);
@@ -117,6 +119,17 @@ class ListingController extends Controller {
             $list->cover_image = Input::get('cover_image');
             $list->thumb = Input::get('thumb');
             $list->save();
+
+            DB::table('listing_filters')->where('listing_id',$list->id)->delete();
+            foreach(Input::get('filters') as $key=>$value){
+                if($value){
+
+                  DB::table('listing_filters')->insert([
+                    "listing_id" =>$list->id,
+                    "filter_id" => $value,
+                  ]);
+                }
+            }
 
             DB::table('list_highlights')->where('list_id',$list->id)->delete();
             foreach ($highlights as $item) {

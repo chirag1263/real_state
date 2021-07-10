@@ -134,6 +134,39 @@ Route::group(["middleware"=>["auth"]],function(){
 			
 		});
 
+		Route::group(["prefix"=>"partners","middleware"=>["admin"]],function(){
+
+			Route::get('/', 'MediaPartnerController@index');
+			Route::get('/add', 'MediaPartnerController@add');
+			Route::post('/store', 'MediaPartnerController@store');
+			Route::get('/edit/{id}', 'MediaPartnerController@edit');
+			Route::post('/update/{id}', 'MediaPartnerController@update');
+			Route::delete('/delete/{id}', 'MediaPartnerController@delete');
+			
+		});
+
+		Route::group(["prefix"=>"sliders","middleware"=>["admin"]],function(){
+
+			Route::get('/', 'SliderController@index');
+			Route::get('/add', 'SliderController@add');
+			Route::post('/store', 'SliderController@store');
+			Route::get('/edit/{id}', 'SliderController@edit');
+			Route::post('/update/{id}', 'SliderController@update');
+			Route::delete('/delete/{id}', 'SliderController@delete');
+			
+		});
+
+		Route::group(["prefix"=>"filters","middleware"=>["admin"]],function(){
+
+			Route::get('/', 'FilterController@index');
+			Route::get('/add', 'FilterController@add');
+			Route::post('/store', 'FilterController@store');
+			Route::get('/edit/{id}', 'FilterController@edit');
+			Route::post('/update/{id}', 'FilterController@update');
+			Route::delete('/delete/{id}', 'FilterController@delete');
+			
+		});
+
 		Route::group(["prefix"=>"testimonials","middleware"=>["admin"]],function(){
 
 			Route::get('/', 'TestimonialController@index');
