@@ -116,7 +116,12 @@ class FrontendController extends Controller {
           }
         }
 
-        $f_ids = Input::get('filters');
+        if(Input::has('filters')){
+
+		    	$f_ids = Input::get('filters');
+		    }else{
+		    	$f_ids = [];
+		    }
 		    if(sizeof($f_ids) > 0){
 		    	$project_ids = [];
 		    	foreach($f_ids as $fi){
