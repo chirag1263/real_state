@@ -80,7 +80,7 @@
         <th></th>
       </thead>
       <tbody>
-        <?php $count = 0; ?>
+        <?php $count = 1; ?>
         @foreach($projects as $project)
         <tr id="list_{{$project->id}}">
           <td>{{($page_id-1)*$max_per_page + $count}}</td>

@@ -59,6 +59,8 @@ CREATE TABLE `testimonials` ( `id` INT NOT NULL AUTO_INCREMENT , `content` TEXT 
 
 ALTER TABLE `users` ADD `company_name` TEXT NULL DEFAULT NULL AFTER `blocked`, ADD `pro_type` VARCHAR(100) NULL DEFAULT NULL AFTER `company_name`;
 
+
+// 9 July 2021 Evening
 CREATE TABLE `filters` ( `id` INT NOT NULL AUTO_INCREMENT , `filter_name` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 CREATE TABLE `project_filters` ( `id` INT NOT NULL AUTO_INCREMENT , `project_id` INT NOT NULL , `filter_id` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
