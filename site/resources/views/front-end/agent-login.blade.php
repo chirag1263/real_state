@@ -35,9 +35,9 @@
               <div class="login-account p-30 box-shadow">
                 <p>If you have an account with us, Please log in.</p>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                {{Form::text('username','',["plaseholder"=>"Email Address","required"=>true])}}
+                {{Form::text('username','',["placeholder"=>"Email Address","required"=>true])}}
                 <span class="error">{{$errors->first('username')}}</span>
-                {{Form::password('password',["plaseholder"=>"Password","required"=>true])}}
+                {{Form::password('password',["placeholder"=>"Password","required"=>true])}}
                 <p><small><a href="{{url('forget-password')}}">Forgot Password?</a></small></p>
                 <button class="submit-btn-1" type="submit">Login</button>
               </div>
@@ -56,24 +56,24 @@
                     <span class="error">{{$errors->first('first_name')}}</span>
                   </div>
                   <div class="col-md-6">
-                    {{Form::text('last_name','',["placeholder"=>"Last Name"])}}
+                    {{Form::text('last_name','',["placeholder"=>"Last Name", "required"=>true])}}
                     <span class="error">{{$errors->first('last_name')}}</span>
 
                   </div>
                   <div class="col-md-6">
-                    {{Form::text('email','',["placeholder"=>"Email Address","required"=>true])}}
+                    {{Form::text('email','',["placeholder"=>"Email Address","required"=>true, "pattern"=>"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"])}}
                     <span class="error">{{$errors->first('email')}}</span>
                   </div>
                   <div class="col-md-6">
                     {{Form::text('phone','',["placeholder"=>"Phone"])}}
                     <span class="error">{{$errors->first('phone')}}</span>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     {{Form::text('company_name','',["placeholder"=>"Company"])}}
                     <span class="error">{{$errors->first('company_name')}}</span>
                   </div>
                   <div class="col-md-6">
-                    {{Form::select('pro_type',[""=>"Select","agent"=>"Agent","builder"=>"Builder"],"")}}
+                    {{Form::select('pro_type',[""=>"Profession","agent"=>"Agent","builder"=>"Builder"],"", ["required"=>"true"])}}
                     <span class="error">{{$errors->first('pro_type')}}</span>
                   </div>
 
@@ -82,20 +82,19 @@
                     <span class="error">{{$errors->first('address')}}</span>
                   </div>
                   <div class="col-md-6">
-                    {{Form::select('state',[""=>"Select State","uttarakhand"=>"Uttarakhand"],"")}}
+                    {{Form::select('state',[""=>"Select State","uttarakhand"=>"Uttarakhand"],"", ["required"=>true])}}
                     <span class="error">{{$errors->first('state')}}</span>
 
                   </div>
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <div class="col-md-6">
-                    {{Form::select('city',$cities,'',["class"=>"custom=select-2"])}}
+                    {{Form::select('city',[""=>"Select City", $cities],'',["class"=>"custom=select-2", "required"=>true])}}
                     <span class="error">{{$errors->first('city')}}</span>
-
                   </div>
                 </div>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" name="agree_terms" required> &nbsp; I agree to all the <a href="javascript:;">Terms & Conditions</a>
+                    <input type="checkbox" name="agree_terms" required="true"> &nbsp; I agree to all the <a href="javascript:;">Terms & Conditions</a>
                   </label>
                 </div>
                 <div class="">
