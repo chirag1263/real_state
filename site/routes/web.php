@@ -94,20 +94,22 @@ Route::group(["middleware"=>["auth"]],function(){
 			Route::get('/','ListCategory@index');
 			Route::get('/add/{code_id?}','ListCategory@add');
 			Route::post('/add/{code_id?}','ListCategory@store');
-			Route::get('/delete/{code_id?}','ListCategory@delete');
+			Route::get('/delete/{code_id}','ListCategory@delete');
 		});
 
 		Route::group(["prefix"=>"listings"],function(){
 			Route::get('/','ListingController@index');
 			Route::get('/add/{list_id?}','ListingController@add');
-			Route::delete('/delete/{list_id?}','ListingController@delete');
+			Route::delete('/delete/{list_id}','ListingController@delete');
 			Route::post('/add/{list_id?}','ListingController@store');
+			Route::delete('/toggleStatus/{list_id}/{status}','ListingController@toggleStatus');
 		});
 
 		Route::group(["prefix"=>"projects"],function(){
 			Route::get('/','ProjectController@index');
 			Route::get('/add','ProjectController@add');
-			Route::delete('/delete/{project_id?}','ProjectController@delete');
+			Route::delete('/delete/{project_id}','ProjectController@delete');
+			Route::delete('/toggleStatus/{project_id}/{status}','ProjectController@toggleStatus');
 		});
 
 		Route::group(["prefix"=>"users"],function(){

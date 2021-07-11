@@ -8,7 +8,14 @@ class ProjectController extends Controller {
 
 
   public function index(){
-    $sql = Project::select('projects.*');
+
+    $type = 0;
+
+    if(Input::has('type')){
+      $type = Input::get("type");
+    }
+
+    $sql = Project::select('projects.*','users.first_name','users.last_name')->leftJoin('users','users.id','=','projects.added_by')->where('projects.status',$type);
     if(Auth::user()->priv != 1){
       $sql =$sql->where('added_by',Auth::id());
     }
@@ -43,7 +50,7 @@ class ProjectController extends Controller {
 
     $sidebar = "projects";
     $subsidebar = "projects-project";
-    return view('projects.index',['sidebar'=>$sidebar,'subsidebar'=>$subsidebar,"projects"=>$projects,'flag'=>1,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ]);
+    return view('projects.index',['sidebar'=>$sidebar,'subsidebar'=>$subsidebar,"projects"=>$projects,'flag'=>1,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ,"type"=>$type]);
   }
 
   public function init(){
@@ -245,6 +252,27 @@ class ProjectController extends Controller {
         $project->delete();
         $data['success'] = true;
         $data['message'] = 'projecting is successfully removed';
+      }else{
+        $data['success'] = false;
+        $data['message'] = 'Invalid request';
+      }
+      return json_encode($data);
+    }
+
+    public function toggleStatus($project_id,$status)
+    {
+      $project = Project::find($project_id);
+      if($project){
+        $project->status = $status;
+        $project->save();
+        $data['success'] = true;
+        if($project->status==0){
+
+          $data['message'] = 'Project is marked pending';
+        }else{
+
+          $data['message'] = 'Project is successfully approved';
+        }
       }else{
         $data['success'] = false;
         $data['message'] = 'Invalid request';

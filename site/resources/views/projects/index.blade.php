@@ -13,6 +13,13 @@
       </div>
     </div>
   </div>
+
+
+  <ul class="nav nav-tabs">
+    <li class="{{$type == 0?'active':''}}"><a href="{{url('admin/projects?type=0')}}">Pending</a></li>
+    <li class="{{$type == 1?'active':''}}"><a href="{{url('admin/projects?type=1')}}">Approved</a></li>
+  </ul>
+
   <div class="">
     @if(isset($total))
       <div class="row" style="margin-bottom:20px;">
@@ -77,19 +84,32 @@
         <th>SN</th>
         <th>Title</th>
         <th>Location</th>
+        <th>Added By</th>
         <th></th>
       </thead>
       <tbody>
-        <?php $count = 0; ?>
+        <?php $count = 1; ?>
         @foreach($projects as $project)
         <tr id="list_{{$project->id}}">
           <td>{{($page_id-1)*$max_per_page + $count}}</td>
           <td>{{$project->title}}</td>
           <td>{{$project->location}}</td>
+          <td>{{$project->first_name}} {{$project->last_name}}</td>
           <td>
-            <a href="{{url('admin/projects/add?id='.$project->id)}}" class="btn yellow">Edit</a>
+            @if($project->status == 0 || Auth::user()->priv == 1)
+              <a href="{{url('admin/projects/add?id='.$project->id)}}" class="btn yellow">Edit</a>
 
-            <button div-id="list_{{$project->id}}" action="{{('admin/projects/delete/'.$project->id)}}" class="btn delete-div red">Delete</a>
+              <button div-id="list_{{$project->id}}" action="{{('admin/projects/delete/'.$project->id)}}" class="btn delete-div red">Delete</a>
+            @endif
+              @if(Auth::user()->priv == 1)
+                @if($project->status == 0)
+                  <button div-id="list_{{$project->id}}" action="{{('admin/projects/toggleStatus/'.$project->id.'/1')}}" class="btn delete-div blue">Approve</a>
+                @endif
+
+                @if($project->status == 1)
+                  <button div-id="list_{{$project->id}}" action="{{('admin/projects/toggleStatus/'.$project->id.'/0')}}" class="btn delete-div red">Mark Pending</a>
+                @endif
+              @endif
             </td>
           </tr>
           <?php $count++; ?>

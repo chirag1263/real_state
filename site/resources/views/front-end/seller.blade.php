@@ -62,7 +62,7 @@
           <hr>
           <h4 class="text-uppercase mt-3">Read Customer Reviews:</h4>
           <ul class="list-items review-list-item">
-            @if($seller->reviews)
+            @if(sizeof($seller->reviews) > 0)
               @foreach($seller->reviews as $review)
               <li>
                 </small>

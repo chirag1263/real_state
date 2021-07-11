@@ -13,6 +13,11 @@
       </div>
     </div>
   </div>
+  <ul class="nav nav-tabs">
+    <li class="{{$type == 0?'active':''}}"><a href="{{url('admin/listings?type=0')}}">Pending</a></li>
+    <li class="{{$type == 1?'active':''}}"><a href="{{url('admin/listings?type=1')}}">Approved</a></li>
+  </ul>
+
   <div class="">
     @if(isset($total))
       <div class="row" style="margin-bottom:20px;">
@@ -91,9 +96,22 @@
           <td>{{$list->price}}</td>
           <td>{{$list->location}}</td>
           <td>
-            <a href="{{url('admin/listings/add/'.$list->id)}}" class="btn yellow">Edit</a>
+            @if($project->status == 0 || Auth::user()->priv == 1)
+              <a href="{{url('admin/listings/add/'.$list->id)}}" class="btn yellow">Edit</a>
 
-            <button div-id="list_{{$list->id}}" action="{{('admin/listings/delete/'.$list->id)}}" class="btn delete-div red">Delete</a>
+
+              <button div-id="list_{{$list->id}}" action="{{('admin/listings/delete/'.$list->id)}}" class="btn delete-div red">Delete</a>
+            @endif
+
+              @if(Auth::user()->priv == 1)
+                @if($list->status == 0)
+                  <button div-id="list_{{$list->id}}" action="{{('admin/listings/toggleStatus/'.$list->id.'/1')}}" class="btn delete-div blue">Approve</a>
+                @endif
+
+                @if($list->status == 1)
+                  <button div-id="list_{{$list->id}}" action="{{('admin/listings/toggleStatus/'.$list->id.'/0')}}" class="btn delete-div red">Mark Pending</a>
+                @endif
+              @endif
             </td>
           </tr>
           <?php $count++;?>

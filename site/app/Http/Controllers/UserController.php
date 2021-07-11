@@ -37,6 +37,11 @@ class UserController extends Controller {
 
 		$cre = ["username"=>Input::get("username"),"password"=>Input::get("password")];
 		$rules = ["username"=>"required","password"=>"required"];
+
+        if(Input::has('user_type')){
+            $cre["priv"] = Input::get("user_type");
+        }
+
 		$validator = Validator::make($cre,$rules);
 		if($validator->passes()){
 
@@ -244,9 +249,30 @@ class UserController extends Controller {
         }
         $sidebar = 'users';
         $subsidebar = 'users';
-        $users = User::where('priv',$type)->get();
+        $sql = User::where('priv',$type);
 
-        return view('users.list',compact('sidebar','subsidebar','users','type'));
+        $total = $sql->count();
+        $max_per_page = 100;
+        $total_pages = ceil($total/$max_per_page);
+        if(Input::has('page')){
+          $page_id = Input::get('page');
+        } else {
+          $page_id = 1;
+        }
+
+        $input_string = 'admin/users?';
+        $count_string = 0;
+        foreach (Input::all() as $key => $value) {
+          if($key != 'page' && $key != 'filters'){
+            $input_string .= ($count_string == 0)?'':'&';
+            $input_string .= $key.'='.$value;
+            $count_string++;
+          }
+        }
+
+        $users = $sql->skip(($page_id-1)*$max_per_page)->take($max_per_page)->get();
+
+        return view('users.list',compact('sidebar','subsidebar','users','type',"total" , "page_id", "max_per_page" , "total_pages" ,'input_string' ));
     }
 
     public function settings()
