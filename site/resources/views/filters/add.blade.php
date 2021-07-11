@@ -22,7 +22,7 @@
 	@endif
 	    
         <div class=" form-group">
-            <label>Filter <span class="error">*</span></label>
+            <label>Filter Name<span class="error">*</span></label>
             {{Form::text('filter_name',(isset($filter))?$filter->filter_name:'',["class"=>"form-control","required"=>"true"])}}
             <span class="errors">{{$errors->first('filter_name')}}</span>
         </div>

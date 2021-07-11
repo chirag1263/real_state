@@ -1,8 +1,8 @@
 <div class="text-center">
   @if(Auth::user()->picture)
-  <img src="{{url(Auth::user()->picture)}}" class="img-circle" style="width:100%;max-width:100px;border: 2px solid #fff;padding: 5px;">
+  <img src="{{url(Auth::user()->picture)}}" class="" style="border-radius:5px !important;width:100%;max-width:100px;border: 2px solid #fff;padding: 5px;">
   @else
-  <img class="img-circle" src="{{url('assets/admin/img/avatar-big.jpg')}}" style="width:100%;max-width:100px;border: 2px solid #fff;padding: 5px;">
+  <img class="" src="{{url('assets/admin/img/avatar-big.jpg')}}" style="border-radius: 5px !important;width:100%;max-width:100px;border: 2px solid #fff;padding: 5px;">
   @endif
   <h5 class="text-uppercase" style="color:#fff;"><b>{{Auth::user()->first_name}} {{Auth::user()->last_name}}</b></h5>
   <hr style="width:50px;margin:0 auto 30px auto;">
@@ -80,7 +80,7 @@
 <li class="{{($sidebar =='faqs' && $subsidebar == 'faqs')?'active':''}}">
   <a href="{{url('/admin/faqs')}}">
     <i class="fa fa-tag"></i>
-    <span class="title">Faqs</span>
+    <span class="title">FAQs</span>
     <span class="selected"></span>
   </a>
 </li>
@@ -94,7 +94,7 @@
 <li class="{{($sidebar =='filters' && $subsidebar == 'filters')?'active':''}}">
   <a href="{{url('/admin/filters')}}">
     <i class="fa fa-tag"></i>
-    <span class="title">Filters</span>
+    <span class="title">Listing & Project Filters</span>
     <span class="selected"></span>
   </a>
 </li>
@@ -110,7 +110,7 @@
 <li class="{{($sidebar =='sliders' && $subsidebar == 'sliders')?'active':''}}">
   <a href="{{url('/admin/sliders')}}">
     <i class="fa fa-tag"></i>
-    <span class="title">Slider</span>
+    <span class="title">Home Page Slider</span>
     <span class="selected"></span>
   </a>
 </li>
