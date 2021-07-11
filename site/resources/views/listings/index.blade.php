@@ -84,6 +84,7 @@
         <th>Category</th>
         <th>Price</th>
         <th>Location</th>
+        <th>Added By</th>
         <th></th>
       </thead>
       <tbody>
@@ -95,6 +96,7 @@
           <td>{{$list->category_name}}</td>
           <td>{{$list->price}}</td>
           <td>{{$list->location}}</td>
+          <td>{{$list->first_name}} {{$list->last_name}}</td>
           <td>
             @if($list->status == 0 || Auth::user()->priv == 1)
               <a href="{{url('admin/listings/add/'.$list->id)}}" class="btn yellow">Edit</a>
