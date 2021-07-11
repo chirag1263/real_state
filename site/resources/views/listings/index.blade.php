@@ -96,7 +96,7 @@
           <td>{{$list->price}}</td>
           <td>{{$list->location}}</td>
           <td>
-            @if($project->status == 0 || Auth::user()->priv == 1)
+            @if($list->status == 0 || Auth::user()->priv == 1)
               <a href="{{url('admin/listings/add/'.$list->id)}}" class="btn yellow">Edit</a>
 
 
