@@ -85,7 +85,7 @@ class FrontendController extends Controller {
 
 	}
 	public function listingDetails($listing_id){
-		$listings = Lists::listing()->where('listings.id','!=',$listing_id)->get();
+		$listings = Lists::listing()->where('listings.id','!=',$listing_id)->where('listings.status',1)->get();
 		if(Auth::check()){
 
 			VisitHistory::create(2 , $listing_id);
@@ -153,7 +153,7 @@ class FrontendController extends Controller {
       	return view('front-end.projects',["projects"=>$projects,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ,"filters"=>$filters ,"f_ids"=>$f_ids]);
 	}
 	public function projectDetails($project_id){
-		$projects = Project::where('id','!=',$project_id)->get();
+		$projects = Project::where('id','!=',$project_id)->where('projects.status',1)->get();
 		$project = Project::find($project_id);
 		if(Auth::check()){
 			VisitHistory::create(1 , $project_id);
