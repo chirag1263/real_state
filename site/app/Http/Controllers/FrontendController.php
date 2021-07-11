@@ -27,7 +27,7 @@ class FrontendController extends Controller {
 		return view('front-end.services');
 	}
 	public function listings(){
-		$sql = Lists::select('listings.*','list_categories.category_name')->join('list_categories','list_categories.id','=','listings.list_category_id');
+		$sql = Lists::select('listings.*','list_categories.category_name')->join('list_categories','list_categories.id','=','listings.list_category_id')->where('listings.status',1);
 
 		$total = $sql->count();
     $max_per_page = 8;
@@ -85,8 +85,7 @@ class FrontendController extends Controller {
 
 	}
 	public function listingDetails($listing_id){
-		$listings = Lists::listing()->get();
-		// dd($listings);
+		$listings = Lists::listing()->where('listings.id','!=',$listing_id)->get();
 		if(Auth::check()){
 
 			VisitHistory::create(2 , $listing_id);
@@ -100,7 +99,7 @@ class FrontendController extends Controller {
 		return view('front-end.listing-details', compact('listing','listings'));
 	}
 	public function projects(){
-		$sql = Project::select();
+		$sql = Project::select('projects.*')->where('projects.status',1);
 		$total = $sql->count();
         $max_per_page = 8;
         $total_pages = ceil($total/$max_per_page);
@@ -154,7 +153,7 @@ class FrontendController extends Controller {
       	return view('front-end.projects',["projects"=>$projects,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ,"filters"=>$filters ,"f_ids"=>$f_ids]);
 	}
 	public function projectDetails($project_id){
-		$projects = Project::get();
+		$projects = Project::where('id','!=',$project_id)->get();
 		$project = Project::find($project_id);
 		if(Auth::check()){
 			VisitHistory::create(1 , $project_id);

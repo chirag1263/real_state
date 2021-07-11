@@ -87,10 +87,22 @@ class User extends Authenticatable
                 $count = DB::table('listings')->select('id')->count();
                 break;
             case 'wishlist-projects':
-                $count = DB::table('wishlist')->select('id')->where('type',1)->where('user_id',Auth::id())->count();
+                if(Auth::user()->priv == 1){
+
+                    $count = DB::table('wishlist')->select('id')->where('type',1)->count();
+                }else{
+
+                    $count = DB::table('wishlist')->select('id')->where('type',1)->where('user_id',Auth::id())->count();
+                }
                 break;
             case 'wishlist-listing':
-                $count = DB::table('wishlist')->select('id')->where('type',2)->where('user_id',Auth::id())->count();
+                if(Auth::user()->priv == 1){
+
+                    $count = DB::table('wishlist')->select('id')->where('type',2)->count();
+                }else{
+                    
+                    $count = DB::table('wishlist')->select('id')->where('type',2)->where('user_id',Auth::id())->count();
+                }
                 break;
             case 'history-listing':
                 $count = VisitHistory::select('cat.category_name','ls.feature_image','ls.id as list_id','ls.title','ls.price','ls.location','visit_history.*')

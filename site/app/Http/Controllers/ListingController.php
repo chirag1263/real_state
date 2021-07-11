@@ -7,11 +7,15 @@ use App\LC,App\Lists;
 class ListingController extends Controller {
 
   public function index(){
-    $sql = Lists::listing();
+    $type = 0;
+
+    if(Input::has('type')){
+      $type = Input::get("type");
+    }
+    $sql = Lists::listing()->where('listings.status',$type);
     if(Auth::user()->priv != 1){
       $sql =$sql->where('added_by',Auth::id());
     }
-
 
     $total = $sql->count();
     $max_per_page = 100;
@@ -42,7 +46,7 @@ class ListingController extends Controller {
 
     $sidebar = "listings";
     $subsidebar = "listings-list";
-    return view('listings.index',['sidebar'=>$sidebar,'subsidebar'=>$subsidebar,"listings"=>$listings,'flag'=>1,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string ]);
+    return view('listings.index',['sidebar'=>$sidebar,'subsidebar'=>$subsidebar,"listings"=>$listings,'flag'=>1,"total" => $total, "page_id"=>$page_id, "max_per_page" => $max_per_page, "total_pages" => $total_pages,'input_string'=>$input_string,"type"=>$type ]);
   }
 
   
@@ -206,5 +210,26 @@ class ListingController extends Controller {
     }
     return json_encode($data);
   }
+
+  public function toggleStatus($list_id,$status)
+    {
+        $list = Lists::find($list_id);
+        if($list){
+            $list->status = $status;
+            $list->save();
+            $data['success'] = true;
+            if($list->status==0){
+
+              $data['message'] = 'Listing is marked pending';
+            }else{
+
+              $data['message'] = 'Listing is successfully approved';
+            }
+      }else{
+        $data['success'] = false;
+        $data['message'] = 'Invalid request';
+      }
+      return json_encode($data);
+    }
 
 }

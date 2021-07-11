@@ -31,6 +31,10 @@
 	            {{Form::text('main_heading',(isset($slider))?$slider->main_heading:'',["class"=>"form-control"])}}
 	        </div>
 	        <div class="col-md-12 form-group">
+	            <label>Link</label>
+	            {{Form::text('link',(isset($slider))?$slider->link:'',["class"=>"form-control"])}}
+	        </div>
+	        <div class="col-md-12 form-group">
 	            <label>Description</label>
 	            {{Form::text('description',(isset($slider))?$slider->description:'',["class"=>"form-control"])}}
 	        </div>

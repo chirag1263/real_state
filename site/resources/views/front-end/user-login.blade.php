@@ -35,6 +35,7 @@
               <div class="login-account p-30 box-shadow">
                 <p>If you have an account with us, Please log in.</p>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="user_type" value="3">
                 <input type="text" name="username" placeholder="Email Address" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <p><small><a href="{{url('forget-password')}}">Forgot Password?</a></small></p>

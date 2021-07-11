@@ -32,6 +32,7 @@ class SliderController extends Controller {
         $slider = new Slider;
         $slider->small_heading = Input::get("small_heading");
         $slider->main_heading = Input::get("main_heading");
+        $slider->link = Input::get("link");
         $slider->description = Input::get("description");
         $destination = 'uploads/';
         if(Input::hasFile('slider_image')){
@@ -60,6 +61,7 @@ class SliderController extends Controller {
         $slider->small_heading = Input::get("small_heading");
         $slider->main_heading = Input::get("main_heading");
         $slider->description = Input::get("description");
+        $slider->link = Input::get("link");
         $destination = 'uploads/';
         if(Input::hasFile('slider_image')){
             $file = Input::file('slider_image');
