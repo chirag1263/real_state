@@ -244,7 +244,7 @@ class ProjectController extends Controller {
         DB::table('project_specifications')->where('project_id',$project->id)->delete();
         $project->delete();
         $data['success'] = true;
-        $data['message'] = 'projecting is successfully removed';
+        $data['message'] = 'Project removed successfully';
       }else{
         $data['success'] = false;
         $data['message'] = 'Invalid request';

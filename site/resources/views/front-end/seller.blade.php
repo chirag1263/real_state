@@ -52,7 +52,7 @@
                 <b>Phone</b>: {{$seller->phone}}
               </div> -->
               <div>
-                <b>Rating</b>: {{$seller->rating ? round($seller->rating,2):0}}
+                <b>Rating</b>: {{$seller->rating ? round($seller->rating,1):0}}
               </div>
               <div>
                 <b>Reviews</b>: {{$seller->reviews_count}}
@@ -82,7 +82,7 @@
               </li>
               @endforeach
             @else
-              <div class="alert alert-danger">No Reviews Found.</div>
+              <div class="alert alert-danger mt-3">No Reviews Found.</div>
             @endif
           </ul>
         </div>
@@ -101,7 +101,7 @@
                 </div>
                 {{Form::hidden('rating_value')}}
                 {{csrf_field()}}
-                {{Form::textarea('review','',["placeholder"=>"write here"])}}
+                {{Form::textarea('review','',["placeholder"=>"Write you review here..."])}}
                 <span>{{$errors->first('review')}}</span>
                 @if(Auth::check())
                 @endif

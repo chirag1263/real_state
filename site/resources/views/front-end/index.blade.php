@@ -4,64 +4,35 @@
 <div class="slider-1 pos-relative slider-overlay">
   <div class="bend niceties preview-1">
     <div id="ensign-nivoslider-3" class="slides">
-      <img src="{{url('/frontend/images/slider/1.jpg')}}" alt="" title="#slider-direction-1">
-      <img src="{{url('/frontend/images/slider/2.jpg')}}" alt="" title="#slider-direction-2">
-      <img src="{{url('/frontend/images/slider/1.jpg')}}" alt="" title="#slider-direction-3">
+      <?php $count=1;?>
+      @foreach($slides as $slide)
+        <img src="{{$slide->slider_image}}" alt="" title="#slider-direction-<?php echo $count;?>">
+        <?php $count++;?>
+      @endforeach
     </div>
+
+    <?php $count=1;?>
+    @foreach($slides as $slide)
     <!-- direction 1 -->
-    <div id="slider-direction-1" class="slider-direction">
-      <div class="slider-content text-center">
-        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
-          <h4 class="slider-1-title-1">Welcome to <span>Rishikesh Real Estate</span></h4>
-        </div>
-        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
-          <h1 class="slider-1-title-2">FIND YOUR DREAM PROPERTY WITH US</h1>
-        </div>
-        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">
-          <p class="slider-1-desc">If you are searching to buy or rent a land, apartment, independent house, villa <br>in Rishikesh Uttarakhand then search from our listings and enquire now. 
-          </p>
-        </div>
-        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s">
-          <a class="slider-button mt-40" href="{{url('/listings')}}">Explore Now</a>
-        </div>
-      </div>
-    </div>
-    <!-- direction 2 -->
-    <div id="slider-direction-2" class="slider-direction">
-      <div class="slider-content text-left">
-        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
-          <h4 class="slider-1-title-1">Welcome to <span>Rishikesh Real Estate</span></h4>
-        </div>
-        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
-          <h1 class="slider-1-title-2">SALE OR RENT YOUR PROPERTY</h1>
-        </div>
-        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">
-          <p class="slider-1-desc">Want to sale or rent your property, we have organised everything for you. <br>Login now and add your property listing with us. 
-          </p>
-        </div>
-        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s">
-          <a class="slider-button mt-40" href="{{url('/user-login')}}">Explore Now</a>
+      <div id="slider-direction-<?php echo $count;?>" class="slider-direction">
+        <div class="slider-content text-center">
+          <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
+            <h4 class="slider-1-title-1">{{$slide->small_heading}}</span></h4>
+          </div>
+          <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+            <h1 class="slider-1-title-2">{{$slide->main_heading}}</h1>
+          </div>
+          <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">
+            <p class="slider-1-desc">{{$slide->description}}
+            </p>
+          </div>
+          <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s">
+            <a class="slider-button mt-40" href="{{url('/listings')}}">Explore Now</a>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- direction 2 -->
-    <div id="slider-direction-3" class="slider-direction">
-      <div class="slider-content text-right">
-        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
-          <h4 class="slider-1-title-1">Welcome to <span>Rishikesh Real Estate</span></h4>
-        </div>
-        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
-          <h1 class="slider-1-title-2">Our Upcoming Projects</h1>
-        </div>
-        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">
-          <p class="slider-1-desc">If you are interested in 1BHK, 2BHK, 3BHK or individual villas,<br> have a look at our upcoming projects and pick yours. 
-          </p>
-        </div>
-        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s">
-          <a class="slider-button mt-40" href="{{url('/projects')}}">Explore Now</a>
-        </div>
-      </div>
-    </div>
+      <?php $count++;?>
+    @endforeach
   </div>
 </div>
 <!-- Slider End -->
@@ -224,15 +195,14 @@
                   <h2 class="h1">HAPPY CLIENTS</h2>
                 </div>
                 <div class="testimonial-carousel dots-right-btm">
-                  <?php for($i=1;$i<=3;$i++){?>
+                  @foreach($testimonials as $testimonial)
                     <div class="testimonial-item">
-                      <div class="testimonial-brief">
-                        <p>Rishikesh Real Estate is the best theme for elit, sed do eiusmod tempor dolor sit amet, conse cteturadipiscing elit, ed do eiusmod tempor incididunt ut labore etlorna aliquatd minim veniam, quis nostrud exercitation oris nisiut aliquip ex ea commodo equat. Duis aute irure dolo. liquatdminim veniam, quis nostrud exercitation oris nisi ut aliquip exea commodo equat. Duis aute irure dolo uis nostrud exercitation
-                        </p>
+                      <div class="testimonial-brief mb-3">
+                        {{$testimonial->content}}
                       </div>
-                      <h6>Zasica Luci, <span>CEO</span></h6>
+                      <h6>{{$testimonial->user_name}}</h6>
                     </div>
-                  <?php }?>
+                  @endforeach
                 </div>
               </div>
             </div>
@@ -245,51 +215,22 @@
   <!-- BRAND AREA START -->
   <div class="brand-area pt-115 pb-115">
     <div class="container">
+      <div class="section-title-2 text-center">
+        <h2>Our Partners</h2>
+        <p>Rishikesh Real Estate is the best theme for elit, sed do eiusmod tempor dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatdminim veniam, quis nostrud</p>
+      </div>
       <div class="row">
         <div class="col-12">
           <div class="brand-carousel">
-            <!-- brand-item -->
-            <div class="col">
-              <div class="brand-item">
-                <img src="{{url('/frontend/images/brand/1.png')}}" alt="">
+            @foreach($partners as $partner)
+              <!-- brand-item -->
+              <div class="col text-center">
+                <div class="brand-item mb-2">
+                  <img src="{{$partner->logo}}" alt="">
+                </div>
+                <h5>{{$partner->name}}</h5>
               </div>
-            </div>
-            <!-- brand-item -->
-            <div class="col">
-              <div class="brand-item">
-                <img src="{{url('/frontend/images/brand/2.png')}}" alt="">
-              </div>
-            </div>
-            <!-- brand-item -->
-            <div class="col">
-              <div class="brand-item">
-                <img src="{{url('/frontend/images/brand/3.png')}}" alt="">
-              </div>
-            </div>
-            <!-- brand-item -->
-            <div class="col">
-              <div class="brand-item">
-                <img src="{{url('/frontend/images/brand/4.png')}}" alt="">
-              </div>
-            </div>
-            <!-- brand-item -->
-            <div class="col">
-              <div class="brand-item">
-                <img src="{{url('/frontend/images/brand/5.png')}}" alt="">
-              </div>
-            </div>
-            <!-- brand-item -->
-            <div class="col">
-              <div class="brand-item">
-                <img src="{{url('/frontend/images/brand/1.png')}}" alt="">
-              </div>
-            </div>
-            <!-- brand-item -->
-            <div class="col">
-              <div class="brand-item">
-                <img src="{{url('/frontend/images/brand/4.png')}}" alt="">
-              </div>
-            </div>
+            @endforeach
           </div>
         </div>
       </div>

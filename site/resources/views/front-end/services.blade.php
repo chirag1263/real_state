@@ -35,10 +35,10 @@
             <div class="col">
               <div class="service-item">
                 <div class="service-item-image">
-                  <a href="service-details.html"><img src="{{url('/frontend/images\service\1.jpg')}}"></a>
+                  <a href="{{url('/enquiry')}}"><img src="{{url('/frontend/images/service/1.jpg')}}"></a>
                 </div>
                 <div class="service-item-info">
-                  <h5><a href="service-details.html">Sale Property</a></h5>
+                  <h5><a href="{{url('/enquiry')}}">Sale Property</a></h5>
                   <p>Property sale best theme for litdo eiusmod tempor dolor sit amet, conse
                   tetur adiping eiusmo</p>
                 </div>
@@ -48,10 +48,10 @@
             <div class="col">
               <div class="service-item">
                 <div class="service-item-image">
-                  <a href="service-details.html"><img src="{{url('/frontend/images\service\2.jpg')}}"></a>
+                  <a href="{{url('/enquiry')}}"><img src="{{url('/frontend/images/service/2.jpg')}}"></a>
                 </div>
                 <div class="service-item-info">
-                  <h5><a href="service-details.html">Buy Property</a></h5>
+                  <h5><a href="{{url('/enquiry')}}">Buy Property</a></h5>
                   <p>Property sale best theme for litdo eiusmod tempor dolor sit amet, conse
                   tetur adiping eiusmo</p>
                 </div>
@@ -61,10 +61,10 @@
             <div class="col">
               <div class="service-item">
                 <div class="service-item-image">
-                  <a href="service-details.html"><img src="{{url('/frontend/images\service\3.jpg')}}"></a>
+                  <a href="{{url('/enquiry')}}"><img src="{{url('/frontend/images/service/3.jpg')}}"></a>
                 </div>
                 <div class="service-item-info">
-                  <h5><a href="service-details.html">Rent Property</a></h5>
+                  <h5><a href="{{url('/enquiry')}}">Rent Property</a></h5>
                   <p>Property sale best theme for litdo eiusmod tempor dolor sit amet, conse
                   tetur adiping eiusmo</p>
                 </div>
@@ -74,10 +74,10 @@
             <div class="col">
               <div class="service-item">
                 <div class="service-item-image">
-                  <a href="service-details.html"><img src="{{url('/frontend/images\service\4.jpg')}}"></a>
+                  <a href="{{url('/enquiry')}}"><img src="{{url('/frontend/images/service/4.jpg')}}"></a>
                 </div>
                 <div class="service-item-info">
-                  <h5><a href="service-details.html">Property Management</a></h5>
+                  <h5><a href="{{url('/enquiry')}}">Property Management</a></h5>
                   <p>Property sale best theme for litdo eiusmod tempor dolor sit amet, conse
                   tetur adiping eiusmo</p>
                 </div>
@@ -87,10 +87,10 @@
             <div class="col">
               <div class="service-item">
                 <div class="service-item-image">
-                  <a href="service-details.html"><img src="{{url('/frontend/images\service\4.jpg')}}"></a>
+                  <a href="{{url('/enquiry')}}"><img src="{{url('/frontend/images/service/4.jpg')}}"></a>
                 </div>
                 <div class="service-item-info">
-                  <h5><a href="service-details.html">Sale Property</a></h5>
+                  <h5><a href="{{url('/enquiry')}}">Sale Property</a></h5>
                   <p>Property sale best theme for litdo eiusmod tempor dolor sit amet, conse
                   tetur adiping eiusmo</p>
                 </div>

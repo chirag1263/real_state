@@ -77,6 +77,7 @@
         <th>SN</th>
         <th>Title</th>
         <th>Location</th>
+        <th>Cost</th>
         <th></th>
       </thead>
       <tbody>
@@ -86,6 +87,7 @@
           <td>{{($page_id-1)*$max_per_page + $count}}</td>
           <td>{{$project->title}}</td>
           <td>{{$project->location}}</td>
+          <td>INR {{$project->cost}}</td>
           <td>
             <a href="{{url('admin/projects/add?id='.$project->id)}}" class="btn yellow">Edit</a>
 

@@ -79,14 +79,14 @@
 
 <li class="{{($sidebar =='faqs' && $subsidebar == 'faqs')?'active':''}}">
   <a href="{{url('/admin/faqs')}}">
-    <i class="fa fa-tag"></i>
+    <i class="fa fa-question"></i>
     <span class="title">FAQs</span>
     <span class="selected"></span>
   </a>
 </li>
 <li class="{{($sidebar =='testimonials' && $subsidebar == 'testimonials')?'active':''}}">
   <a href="{{url('/admin/testimonials')}}">
-    <i class="fa fa-tag"></i>
+    <i class="fa fa-edit"></i>
     <span class="title">Testimonials</span>
     <span class="selected"></span>
   </a>
@@ -101,7 +101,7 @@
 
 <li class="{{($sidebar =='partners' && $subsidebar == 'partners')?'active':''}}">
   <a href="{{url('/admin/partners')}}">
-    <i class="fa fa-tag"></i>
+    <i class="fa fa-user"></i>
     <span class="title">Partners</span>
     <span class="selected"></span>
   </a>
@@ -109,7 +109,7 @@
 
 <li class="{{($sidebar =='sliders' && $subsidebar == 'sliders')?'active':''}}">
   <a href="{{url('/admin/sliders')}}">
-    <i class="fa fa-tag"></i>
+    <i class="fa fa-image"></i>
     <span class="title">Home Page Slider</span>
     <span class="selected"></span>
   </a>

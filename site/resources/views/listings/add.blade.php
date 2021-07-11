@@ -68,7 +68,7 @@
 
                     <div class="col-md-4">
                         
-                        <label>Upload Cover Image</label><br>
+                        <label>Location Map</label><br>
                         <button type="button" ng-show="!formData.cover_image" class="button btn blue" ngf-select="uploadFile($file,'cover_image')" ngf-max-size="5MB" ladda="uploading_cover_image" data-style="expand-right">Select</button>
 
                         <a class="btn blue ng-cloak" href="{{url('/')}}/@{{formData.cover_image}}" ng-show="formData.cover_image" target="_blank">View</a>

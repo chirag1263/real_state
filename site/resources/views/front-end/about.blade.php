@@ -47,120 +47,6 @@
   </div>
   <!-- ABOUT END -->
 
-  <!-- BOOKING AREA START -->
-  <div class="booking-area bg-1 call-to-bg plr-140 pt-75">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-3 col-md-4 col-12">
-          <div class="section-title text-white">
-            <h3>SOME</h3>
-            <h2 class="h1">FUN FACTOR</h2>
-          </div>
-        </div>
-        <div class="col-lg-9 col-md-8 col-12">
-          <div class="booking-conternt  clearfix">
-            <div class="counter-content">
-              <!-- counter-item -->
-              <div class="counter-item">
-                <h2>
-                  <i class="fa fa-home" aria-hidden="true"></i>
-                  <span class="counter">999</span>
-                </h2>
-                <p>Projects Done</p>
-              </div>
-              <!-- counter-item -->
-              <div class="counter-item">
-                <h2>
-                  <i class="fa fa-key" aria-hidden="true"></i>
-                  <span class="counter">555</span>
-                </h2>
-                <p>Property Sold</p>
-              </div>
-              <!-- counter-item -->
-              <div class="counter-item">
-                <h2>
-                  <i class="fa fa-smile-o" aria-hidden="true"></i>
-                  <span class="counter">350</span>
-                </h2>
-                <p>Happy Clients</p>
-              </div>
-              <!-- counter-item -->
-              <div class="counter-item">
-                <h2>
-                  <i class="fa fa-server" aria-hidden="true"></i>
-                  <span class="counter">1500</span>
-                </h2>
-                <p>Property Listings</p>
-              </div>
-            </div>
-            <div class="booking-imgae">
-              <img src="{{url('frontend/images/others\booking.png')}}" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- BOOKING AREA END -->
-  <!-- BRAND AREA START -->
-  <div class="brand-area pt-70 pb-75">
-    <div class="container">
-      <div class="section-title-2 text-center">
-        <h2>Our Partners</h2>
-        <p>Rishikesh Real Estate is the best theme for elit, sed do eiusmod tempor dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatdminim veniam, quis nostrud</p>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="brand-carousel">
-            <!-- brand-item -->
-            <div class="col-md-12">
-              <div class="brand-item">
-                <img src="{{url('frontend/images/brand/1.png')}}" alt="">
-              </div>
-            </div>
-            <!-- brand-item -->
-            <div class="col-md-12">
-              <div class="brand-item">
-                <img src="{{url('frontend/images/brand/2.png')}}" alt="">
-              </div>
-            </div>
-            <!-- brand-item -->
-            <div class="col-md-12">
-              <div class="brand-item">
-                <img src="{{url('frontend/images/brand/3.png')}}" alt="">
-              </div>
-            </div>
-            <!-- brand-item -->
-            <div class="col-md-12">
-              <div class="brand-item">
-                <img src="{{url('frontend/images/brand/4.png')}}" alt="">
-              </div>
-            </div>
-            <!-- brand-item -->
-            <div class="col-md-12">
-              <div class="brand-item">
-                <img src="{{url('frontend/images/brand/5.png')}}" alt="">
-              </div>
-            </div>
-            <!-- brand-item -->
-            <div class="col-md-12">
-              <div class="brand-item">
-                <img src="{{url('frontend/images/brand/1.png')}}" alt="">
-              </div>
-            </div>
-            <!-- brand-item -->
-            <div class="col-md-12">
-              <div class="brand-item">
-                <img src="{{url('frontend/images/brand/4.png')}}" alt="">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- BRAND AREA END -->
-
   <!-- Testimonials Start -->
   <div class="features-area fix">
     <div class="container-fluid">
@@ -174,15 +60,14 @@
                   <h2 class="h1">HAPPY CLIENTS</h2>
                 </div>
                 <div class="testimonial-carousel dots-right-btm">
-                  <?php for($i=1;$i<=3;$i++){?>
+                  @foreach($testimonials as $testimonial)
                     <div class="testimonial-item">
-                      <div class="testimonial-brief">
-                        <p>Rishikesh Real Estate is the best theme for elit, sed do eiusmod tempor dolor sit amet, conse cteturadipiscing elit, ed do eiusmod tempor incididunt ut labore etlorna aliquatd minim veniam, quis nostrud exercitation oris nisiut aliquip ex ea commodo equat. Duis aute irure dolo. liquatdminim veniam, quis nostrud exercitation oris nisi ut aliquip exea commodo equat. Duis aute irure dolo uis nostrud exercitation
-                        </p>
+                      <div class="testimonial-brief mb-3">
+                        {{$testimonial->content}}
                       </div>
-                      <h6>Zasica Luci, <span>CEO</span></h6>
+                      <h6>{{$testimonial->user_name}}</h6>
                     </div>
-                  <?php }?>
+                  @endforeach
                 </div>
               </div>
             </div>

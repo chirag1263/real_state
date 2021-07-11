@@ -148,7 +148,7 @@
                 @if($seller->picture)
                   <img src="{{url($seller->picture)}}" class="img-fluid img-circle">
                 @else
-                  <img src="{{url('frontend/images/avatar/1.jpg')}}" class="img-fluid img-circle">
+                  <img src="{{url('frontend/images/avatar/avatar-big.jpg')}}" class="img-fluid img-circle">
 
                 @endif
               </div>
@@ -162,7 +162,7 @@
                     @for($i=1;$i<=5-$seller->rating;$i++)
                       <i class="fa fa-star-o"></i>
                     @endfor
-                  </small> &nbsp;({{$seller->rating ? $seller->rating : 0}})
+                  </small> &nbsp;({{$seller->rating ? round($seller->rating,1):0}})
                   <div style="margin-top:-10px;">
                     <small>{{sizeof($seller->reviews)}} Reviews</small>
                   </div>

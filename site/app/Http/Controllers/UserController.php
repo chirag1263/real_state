@@ -312,7 +312,7 @@ class UserController extends Controller {
 
             $user->save();
 
-            return Redirect::back()->with('success','Details is updated successfully');
+            return Redirect::back()->with('success','Details are updated successfully');
         }else{
             return Redirect::back()->withInput()->withErrors($validator)->with('failure','Please fill all required fields');
         }

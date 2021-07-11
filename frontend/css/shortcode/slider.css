@@ -49,7 +49,7 @@
     text-transform: uppercase;
 }
 
-.slider-1-title-1 span {
+.slider-1-title-1 {
     color: #95C41F;
 }
 
@@ -69,7 +69,6 @@
     margin-bottom: 0;
 }
 
-.slider-1-title-1,
 .slider-1-title-2,
 .slider-1-desc {
     color: #FFF;

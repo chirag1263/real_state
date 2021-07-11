@@ -13,26 +13,30 @@
   </div>
 </div>
 <!-- BREADCRUMBS AREA END -->
-{{Form::open(["url"=>"projects","method"=>"GET"])}}
-<div class="row">
-  @foreach($filters as $filter)
-    <div class="col-md-3 form-group">
-        <label>
-            <input type="checkbox" @if(in_array($filter->id,$f_ids)) checked @endif name="filters[]" value="{{$filter->id}}" > &nbsp;&nbsp;{{$filter->filter_name}}
-        </label>
-    </div>
-  @endforeach
-  <div class="col-md-3">
-    <button class="btn btn-primary">Search</button>
-  </div>
-</div>
-{{Form::close()}}
 
 <!-- Start page content -->
 <section id="page-content" class="page-wrapper">
   <!-- FEATURED FLAT AREA START -->
   <div class="featured-flat-area pt-115 pb-60">
     <div class="container">
+      <div class="filters-area">
+        <h3>Search by:</h3>
+        {{Form::open(["url"=>"projects","method"=>"GET"])}}
+          <ul>
+            @foreach($filters as $filter)
+            <li>
+              <label>
+                <input type="checkbox" @if(in_array($filter->id,$f_ids)) checked @endif name="filters[]" value="{{$filter->id}}" > &nbsp;&nbsp;{{$filter->filter_name}}
+              </label>
+            </li>
+            @endforeach
+            <li>
+              <button class="green-btn blue-btn">Search</button>
+            </li>
+          </ul>
+        {{Form::close()}}
+        <hr>
+      </div>
       <div class="featured-flat">
         <div class="row">
           @foreach($projects as $project)

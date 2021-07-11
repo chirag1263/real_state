@@ -641,6 +641,7 @@
     font-size: 25px;
     content: "\f10d";
     color: #DADADA;
+    margin-right: 10px;
   }
 
   .testimonial-item h6 span {
@@ -1139,6 +1140,12 @@
   /*leave-review*/
   #rating_div {
     font-size: 25px;
+  }
+  #rating_div i.fa-star {
+    margin-right: 5px;
+  }
+  #rating_div i.fa-star-o {
+    margin-right: 0;
   }
   .leave-review>h5 {
     margin-bottom: 20px;
@@ -2225,5 +2232,20 @@ a.blue-btn:hover {
   border-bottom: 1px solid #eee;
   padding-bottom: 10px;
   margin-bottom: 10px;
+}
+.filters-area {
+  margin-bottom: 50px;
+}
+.filters-area ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+.filters-area ul li label {
+  cursor: pointer;
+  font-size: 16px;
+}
+.slider-1-desc {
+  max-width: 750px;
+  margin: 0 auto !important;
 }
 /* End Custom CSS */

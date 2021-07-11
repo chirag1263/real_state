@@ -24,7 +24,7 @@
   <!-- User style -->
   <link rel="stylesheet" href="{{url('frontend/css/custom.css')}}">
   <!-- Modernizr JS -->
-  <script src="{{url('frontend/js/modernizr-2.8.3.min.js')}}"></script>
+  <script src="{{url('frontend/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 </head>
 <body>
   <div class="wrapper">
@@ -98,7 +98,16 @@
                     <li>
                       <a href="{{url('/projects')}}">Our Projects</a>
                     </li>
-                    <li><a href="{{url('/about')}}">About</a></li>
+                    <li>
+                      <a href="{{url('/faqs')}}">FAQs</a>
+                    </li>
+                    <li>
+                      <a href="javascript:;">About</a>
+                      <ul class="drop-menu">
+                        <li><a href="{{url('/about')}}">About Company</a></li>
+                        <li><a href="{{url('/partners')}}">Partners</a></li>
+                      </ul>
+                    </li>
                     <li><a href="{{url('/contact')}}">Contact</a></li>
                   </ul>
                 </nav>
@@ -138,7 +147,14 @@
                   <li>
                     <a href="{{url('/projects')}}">Our Projects</a>
                   </li>
-                  <li><a href="{{url('/about')}}">About</a></li>
+                  <li>
+                    <a href="javascript:;">About</a>
+                    <ul>
+                      <li><a href="{{url('/about')}}">About Company</a></li>
+                      <li><a href="{{url('/partners')}}">Partners</a></li>
+                    </ul>
+                    <a class="mean-expand" href="#">+</a>
+                  </li>
                   <li><a href="{{url('/user-login')}}">Login</a></li>
                   <li><a href="{{url('/contact')}}">Contact</a></li>
                 </ul>

@@ -105,6 +105,9 @@
                   <a class="nav-link active show" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Highlights</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" id="pills-location-tab" data-toggle="pill" href="#pills-location" role="tab" aria-controls="pills-home" aria-selected="true">Location Map</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Specifications</a>
                 </li>
               </ul>
@@ -117,6 +120,11 @@
                     </li>
                     @endforeach
                   </ul>
+                </div>
+                <div class="tab-pane fade" id="pills-location" role="tabpanel" aria-labelledby="pills-location">
+                  <div class="text-center">
+                    <img class="img-fluid" src="{{url($listing->cover_image)}}">
+                  </div>
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                   <ul>
@@ -155,7 +163,7 @@
                     @for($i=1;$i<=5-$seller->rating;$i++)
                       <i class="fa fa-star-o"></i>
                     @endfor
-                  </small> &nbsp;({{$seller->rating ? $seller->rating : 0}})
+                  </small> &nbsp;{{$seller->rating ? round($seller->rating,1):0}}
                   <div style="margin-top:-10px;">
                     <small>{{sizeof($seller->reviews)}} Reviews</small>
                   </div>

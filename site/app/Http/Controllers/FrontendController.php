@@ -9,14 +9,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use Input,Redirect,Validator,Hash,Response,Session;
-use App\Project , App\User, App\Lists, App\Wishlist ,App\VisitHistory,App\MailQueue;
+use App\Project , App\Faq, App\Testimonial, App\Partner, App\User, App\Lists, App\Wishlist ,App\VisitHistory,App\MailQueue, App\Slider;
 
 class FrontendController extends Controller {
 
 	public function home(){
 		$projects = Project::get();
-		$listings = Lists::join('list_categories','list_categories.id','=','listings.list_category_id')->get();;
-		return view('front-end.index', compact('projects'), compact('listings'));
+		$listings = Lists::join('list_categories','list_categories.id','=','listings.list_category_id')->get();
+		$testimonials = Testimonial::get();
+		$partners = Partner::get();
+		$slides = Slider::get();
+
+		return view('front-end.index', compact('projects', 'listings', 'testimonials', 'partners', 'slides'));
 	}
 
 	public function services(){
@@ -164,10 +168,22 @@ class FrontendController extends Controller {
 		return view('front-end.project-details',compact('project'), compact('projects'));
 	}
 	public function about(){
-		return view('front-end.about');
+		$testimonials = Testimonial::get();
+		return view('front-end.about', compact('testimonials'));
+	}
+	public function partners(){
+		$partners = Partner::get();
+		return view('front-end.partners', compact('partners'));
+	}
+	public function faqs(){
+		$faqs = Faq::get();
+		return view('front-end.faqs', compact('faqs'));
 	}
 	public function contact(){
 		return view('front-end.contact');
+	}
+	public function enquiry(){
+		return view('front-end.enquiry');
 	}
 	public function buyingTips(){
 		return view('front-end.buying-tips');
@@ -339,10 +355,10 @@ class FrontendController extends Controller {
 			if(!$check){
 
 				DB::table("seller_reviews")->insert(["seller_id"=>$seller_id,"review"=>Input::get('review'),"rating"=>Input::get('rating_value'),"added_by"=>Auth::id()]);
-				return Redirect::back()->with('success','Your ratings has been submitted successfully');
+				return Redirect::back()->with('success','Your rating and review has been submitted successfully. It will live be post approval.');
 			}else{
 
-				return Redirect::back()->with('failure','you have already given ratings to this seller')->withInput();
+				return Redirect::back()->with('failure','OOPs! You have already given ratings to this seller.')->withInput();
 			}
 
 		}else{
