@@ -89,19 +89,19 @@ class User extends Authenticatable
             case 'wishlist-projects':
                 if(Auth::user()->priv == 1){
 
-                    $count = DB::table('wishlist')->select('id')->where('type',1)->count();
+                    $count = DB::table('enquiries')->select('id')->where('type',1)->count();
                 }else{
 
-                    $count = DB::table('wishlist')->select('id')->where('type',1)->where('user_id',Auth::id())->count();
+                    $count = DB::table('enquiries')->select('id')->where('type',1)->where('user_id',Auth::id())->count();
                 }
                 break;
             case 'wishlist-listing':
                 if(Auth::user()->priv == 1){
 
-                    $count = DB::table('wishlist')->select('id')->where('type',2)->count();
+                    $count = DB::table('enquiries')->select('id')->where('type',2)->count();
                 }else{
                     
-                    $count = DB::table('wishlist')->select('id')->where('type',2)->where('user_id',Auth::id())->count();
+                    $count = DB::table('enquiries')->select('id')->where('type',2)->where('user_id',Auth::id())->count();
                 }
                 break;
             case 'history-listing':
