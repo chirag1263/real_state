@@ -84,11 +84,8 @@
         <th>SN</th>
         <th>Title</th>
         <th>Location</th>
-<<<<<<< HEAD
         <th>Cost</th>
-=======
         <th>Added By</th>
->>>>>>> 96523db95f4d3fc9d2428fe37a684cb2d3252c37
         <th></th>
       </thead>
       <tbody>
@@ -98,11 +95,8 @@
           <td>{{($page_id-1)*$max_per_page + $count}}</td>
           <td>{{$project->title}}</td>
           <td>{{$project->location}}</td>
-<<<<<<< HEAD
           <td>INR {{$project->cost}}</td>
-=======
           <td>{{$project->first_name}} {{$project->last_name}}</td>
->>>>>>> 96523db95f4d3fc9d2428fe37a684cb2d3252c37
           <td>
             @if($project->status == 0 || Auth::user()->priv == 1)
               <a href="{{url('admin/projects/add?id='.$project->id)}}" class="btn yellow">Edit</a>
