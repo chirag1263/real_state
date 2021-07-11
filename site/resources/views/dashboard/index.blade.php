@@ -64,7 +64,7 @@
 				</div>
 				<div class="details text-right">
 					<div class="number" style="background:none">
-						<span data-counter1="counterup" data-value="{{App\User::dashboard('projects')}}">{{App\User::dashboard('projects')}}</span>
+						<span data-counter1="counterup" data-value="{{App\User::dashboard('projects-enquiries')}}">{{App\User::dashboard('projects-enquiries')}}</span>
 					</div>
 					<div class="desc">Project Enquiries</div>
 				</div>
@@ -77,7 +77,7 @@
 				</div>
 				<div class="details text-right">
 					<div class="number" style="background:none">
-						<span data-counter1="counterup" data-value="{{App\User::dashboard('enquiries')}}">{{App\User::dashboard('enquiries')}}</span>
+						<span data-counter1="counterup" data-value="{{App\User::dashboard('list-enquiries')}}">{{App\User::dashboard('list-enquiries')}}</span>
 					</div>
 					<div class="desc">Listing Enquiries</div>
 				</div>
